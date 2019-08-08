@@ -15,7 +15,8 @@ namespace Ex01_Facebook.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            UIManager ui = new UIManager();
+            ui.Run();
         }
     }
 }
