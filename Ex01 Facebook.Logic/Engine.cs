@@ -10,6 +10,7 @@ namespace Ex01_Facebook.Logic
     public class Engine
     {
         public FacebookDatingFeature DatingFeature{ get; set; }
+        public FacebookGuessMyNameFeature GuessMyNameFeature { get; set; }
         public User LoggedInUser { get; set; }
         private readonly string[] r_Permissions =
         #region PERMISSIONS
@@ -43,7 +44,7 @@ namespace Ex01_Facebook.Logic
             {
                 LoggedInUser = result.LoggedInUser;
                 DatingFeature = new FacebookDatingFeature(LoggedInUser);
-                //fetchUserInfo();
+                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser);
             }
             else
             {   // alert to UI error was occurred
@@ -62,12 +63,9 @@ namespace Ex01_Facebook.Logic
             return filteredFriendsList;
         }
 
-        private void fetchUserInfo()
+        public User PickRandomFriend()
         {
-            //picture_smallPictureBox.LoadAsync(m_LoggedInUser.PictureNormalURL);
-       
+            return GuessMyNameFeature.RollAFriend();
         }
-
-        
     }
 }

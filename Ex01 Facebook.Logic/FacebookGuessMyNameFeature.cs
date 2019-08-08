@@ -10,16 +10,21 @@ namespace Ex01_Facebook.Logic
     public class FacebookGuessMyNameFeature
     {
         public User LoggedInUser { get; set; }
-        public User[] FriendsOfLoggedInUser { get; set; }
+        public FacebookObjectCollection<User> FriendsOfLoggedInUser { get; set; }
         private int m_ChosenFriendIndex;
 
+        public FacebookGuessMyNameFeature(User i_LoggedInUser)
+        {
+            LoggedInUser = i_LoggedInUser;
+            FriendsOfLoggedInUser = i_LoggedInUser.Friends;
+        }
 
         public User RollAFriend()
         {
             Random rnd = new Random();
             int numberOfFriends;
 
-            numberOfFriends = FriendsOfLoggedInUser.Length;
+            numberOfFriends = FriendsOfLoggedInUser.Count;
             m_ChosenFriendIndex = rnd.Next(0, numberOfFriends-1);
 
             return FriendsOfLoggedInUser[m_ChosenFriendIndex];

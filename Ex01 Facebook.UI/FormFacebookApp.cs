@@ -24,6 +24,8 @@ namespace Ex01_Facebook.UI
         private void FormFacebookApp_Load(object sender, EventArgs e)
         {
             pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
+            pictureBoxProfilePicture2.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
+
         }
 
 
@@ -101,6 +103,13 @@ namespace Ex01_Facebook.UI
         private void userBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonRollAFriend_Click(object sender, EventArgs e)
+        {
+            User friendToGuess = EngineManager.PickRandomFriend();
+            pictureBoxFriend.Image = friendToGuess.ImageNormal;
+            buttonRollAFriend.Enabled = false;
         }
     }
 }
