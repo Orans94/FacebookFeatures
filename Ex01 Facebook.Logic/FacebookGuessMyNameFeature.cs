@@ -11,6 +11,8 @@ namespace Ex01_Facebook.Logic
     {
         public readonly User LoggedInUser { get; set; }
         public readonly User[] FriendsOfLoggedInUser { get; set; }
+        private int m_ChosenFriendIndex;
+
 
         public User RollAFriend()
         {
@@ -18,11 +20,27 @@ namespace Ex01_Facebook.Logic
             int numberOfFriends;
 
             numberOfFriends = FriendsOfLoggedInUser.Length;
-            int randomIndex = rnd.Next(0, numberOfFriends-1);
+            m_ChosenFriendIndex = rnd.Next(0, numberOfFriends-1);
 
-            return FriendsOfLoggedInUser[randomIndex];
+            return FriendsOfLoggedInUser[m_ChosenFriendIndex];
         }
 
+        public bool IsUserGuessCorrect(string i_UserGuess)
+        {
+            bool isUserGuessRight;
 
+            isUserGuessRight = FriendsOfLoggedInUser[m_ChosenFriendIndex].Name == i_UserGuess;
+
+            return isUserGuessRight;
+        }
+
+        public string getHintFirstName()
+        {
+            string friendFirstName;
+
+            friendFirstName = FriendsOfLoggedInUser[m_ChosenFriendIndex];
+
+            return friendFirstName;
+        }
     }
 }

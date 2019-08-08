@@ -68,11 +68,13 @@
             this.checkBoxFilterHomeTown = new System.Windows.Forms.CheckBox();
             this.textBoxHomeTown = new System.Windows.Forms.TextBox();
             this.buttonFilter = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             aboutLabel = new System.Windows.Forms.Label();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             relationshipStatusLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelMatchDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -81,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoggedInUser)).BeginInit();
             this.panelMatch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -95,6 +98,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.pictureBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -370,7 +374,7 @@
             // 
             this.listBoxFilteredFriends.FormattingEnabled = true;
             this.listBoxFilteredFriends.ItemHeight = 16;
-            this.listBoxFilteredFriends.Location = new System.Drawing.Point(7, 165);
+            this.listBoxFilteredFriends.Location = new System.Drawing.Point(3, 165);
             this.listBoxFilteredFriends.Name = "listBoxFilteredFriends";
             this.listBoxFilteredFriends.Size = new System.Drawing.Size(268, 260);
             this.listBoxFilteredFriends.TabIndex = 1;
@@ -407,6 +411,7 @@
             this.radioButtonMale.TabStop = true;
             this.radioButtonMale.Text = "Male";
             this.radioButtonMale.UseVisualStyleBackColor = true;
+            this.radioButtonMale.CheckedChanged += new System.EventHandler(this.radioButtonMale_CheckedChanged);
             // 
             // radioButtonFemale
             // 
@@ -418,6 +423,7 @@
             this.radioButtonFemale.TabStop = true;
             this.radioButtonFemale.Text = "Female";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
+            this.radioButtonFemale.CheckedChanged += new System.EventHandler(this.radioButtonFemale_CheckedChanged);
             // 
             // labelInterestedIn
             // 
@@ -437,6 +443,7 @@
             this.checkBoxFilterHomeTown.TabIndex = 4;
             this.checkBoxFilterHomeTown.Text = "Filter HomeTown";
             this.checkBoxFilterHomeTown.UseVisualStyleBackColor = true;
+            this.checkBoxFilterHomeTown.CheckedChanged += new System.EventHandler(this.checkBoxFilterHomeTown_CheckedChanged);
             this.checkBoxFilterHomeTown.Click += new System.EventHandler(this.checkBoxFilterHomeTown_Click);
             // 
             // textBoxHomeTown
@@ -457,6 +464,14 @@
             this.buttonFilter.UseVisualStyleBackColor = true;
             this.buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(80, 63);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(125, 121);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormFacebookApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -468,6 +483,7 @@
             this.Text = "FormFacebookApp";
             this.Load += new System.EventHandler(this.FormFacebookApp_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panelMatchDetails.ResumeLayout(false);
             this.panelMatchDetails.PerformLayout();
@@ -479,6 +495,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoggedInUser)).EndInit();
             this.panelMatch.ResumeLayout(false);
             this.panelMatch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,5 +537,6 @@
         private System.Windows.Forms.TextBox textBoxHomeTown;
         private System.Windows.Forms.CheckBox checkBoxFilterHomeTown;
         private System.Windows.Forms.Label labelInterestedIn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

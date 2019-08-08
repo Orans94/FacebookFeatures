@@ -9,6 +9,7 @@ namespace Ex01_Facebook.Logic
 {
     public class Engine
     {
+        public FacebookDatingFeature DatingFeature{ get; set; }
         private User m_LoggedInUser;
         private readonly string[] r_Permissions =
         #region PERMISSIONS
@@ -53,7 +54,11 @@ namespace Ex01_Facebook.Logic
 
         public LinkedList<User> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
-            LinkedList<User> 
+            LinkedList<User> filteredFriendsList;
+
+            filteredFriendsList = DatingFeature.GenerateFilteredFriendsList(i_HomeTownFilter, i_GenderFilter);
+
+            return filteredFriendsList;
         }
 
         private void fetchUserInfo()

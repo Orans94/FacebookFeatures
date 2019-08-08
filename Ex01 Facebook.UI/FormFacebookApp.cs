@@ -33,17 +33,37 @@ namespace Ex01_Facebook.UI
 
         private void buttonFilter_Click(object sender, EventArgs e)
         {
-            bool female, male;
-            string cityFilter = "all";
+            string cityFilter;
+            User.eGender gender;
+            bool genderFilterChosen = true;
+            LinkedList<User> filteredFriendsList;
 
-            female = radioButtonFemale.Checked;
-            male = radioButtonMale.Checked;
-            if(checkBoxFilterHomeTown.Checked)
+            if (checkBoxFilterHomeTown.Checked)
             {
                 cityFilter = textBoxHomeTown.Text;
             }
+            else
+            {
+                cityFilter = "all";
+            }
 
-            EngineManager.
+            if (!radioButtonMale.Checked && !radioButtonFemale.Checked)
+            {
+                MessageBox.Show("Please choose a gender filter");
+                genderFilterChosen = false;
+            }
+            if(genderFilterChosen)
+            {
+                gender = radioButtonMale.Checked ? User.eGender.male : User.eGender.female;
+                filteredFriendsList = EngineManager.MatchMe(cityFilter, gender);
+                updateListBoxFriendsList(filteredFriendsList);
+            }
+        }
+
+        private void updateListBoxFriendsList(LinkedList<User> i_FilteredFriendsList)
+        {
+            listBoxFilteredFriends.DataSource = i_FilteredFriendsList;
+            throw new NotImplementedException();
         }
 
         private void checkBoxFilterHomeTown_Click(object sender, EventArgs e)
@@ -55,6 +75,30 @@ namespace Ex01_Facebook.UI
             else
             {
                 textBoxHomeTown.Enabled = false;
+            }
+        }
+
+        private void radioButtonMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonMale.Checked)
+            {
+                radioButtonFemale.Checked = false;
+            }
+        }
+
+        private void radioButtonFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonFemale.Checked)
+            {
+                radioButtonMale.Checked = false;
+            }
+        }
+
+        private void checkBoxFilterHomeTown_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxFilterHomeTown.Checked)
+            {
+                textBoxHomeTown.Enabled = true;
             }
         }
     }
