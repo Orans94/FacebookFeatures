@@ -50,6 +50,12 @@ namespace Ex01_Facebook.Logic
 
             return result;
         }
+
+        public LinkedList<User> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
+        {
+            LinkedList<User> 
+        }
+
         private void fetchUserInfo()
         {
             //picture_smallPictureBox.LoadAsync(m_LoggedInUser.PictureNormalURL);

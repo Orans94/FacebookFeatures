@@ -10,13 +10,14 @@ namespace Ex01_Facebook.Logic
     public class FacebookDatingFeature
     {
         private readonly User m_LoggedInUser;
+        
 
         public FacebookDatingFeature(User i_LoggedInUser)
         {
             m_LoggedInUser = i_LoggedInUser;
         }
 
-        public LinkedList<User> GenerateFilteredFriendsList(City i_HomeTownFilter, User.eGender i_GenderFilter)
+        public LinkedList<User> GenerateFilteredFriendsList(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             // show a dialog which the user can choose which gender he wants to date
             // and also the user will enter a city which he wants to find the date/all cities.
@@ -33,7 +34,7 @@ namespace Ex01_Facebook.Logic
             return filteredFriendsList;
         }
 
-        private bool isFriendAMatch(User i_Friend, City i_HomeTownFilter, User.eGender i_GenderFilter)
+        private bool isFriendAMatch(User i_Friend, string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             // this method recieve a friend and return true if he mathces the filters.
 
@@ -46,20 +47,20 @@ namespace Ex01_Facebook.Logic
             return isFriendMatchingFilter;
         }
 
-        private bool isCityMatch(City i_HomeTownFilter, City i_FriendHomeTown)
+        private bool isCityMatch(string i_HomeTownFilter, City i_FriendHomeTown)
         {
             // this method recieves a HomeTownFilter and the friend hometown
             // and return true if the friend's hometown mathces the filter
 
             bool isCityAMatch;
 
-            if (i_HomeTownFilter == null)
+            if (i_HomeTownFilter == "all")
             {
                 isCityAMatch = true;
             }
             else
             {
-                isCityAMatch = i_FriendHomeTown == i_HomeTownFilter;
+                isCityAMatch = i_FriendHomeTown.Name == i_HomeTownFilter;
             }
 
             return isCityAMatch;

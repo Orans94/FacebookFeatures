@@ -61,9 +61,13 @@
             this.relationshipStatusLabel1 = new System.Windows.Forms.Label();
             this.listBoxFilteredFriends = new System.Windows.Forms.ListBox();
             this.pictureBoxLoggedInUser = new System.Windows.Forms.PictureBox();
-            this.panelFilters = new System.Windows.Forms.Panel();
+            this.panelMatch = new System.Windows.Forms.Panel();
             this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.radioButtonFemale = new System.Windows.Forms.RadioButton();
+            this.labelInterestedIn = new System.Windows.Forms.Label();
+            this.checkBoxFilterHomeTown = new System.Windows.Forms.CheckBox();
+            this.textBoxHomeTown = new System.Windows.Forms.TextBox();
+            this.buttonFilter = new System.Windows.Forms.Button();
             aboutLabel = new System.Windows.Forms.Label();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
@@ -76,7 +80,7 @@
             this.userBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoggedInUser)).BeginInit();
-            this.panelFilters.SuspendLayout();
+            this.panelMatch.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -104,9 +108,8 @@
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.finder_dating;
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage1.Controls.Add(this.panelFilters);
+            this.tabPage1.Controls.Add(this.panelMatch);
             this.tabPage1.Controls.Add(this.pictureBoxLoggedInUser);
-            this.tabPage1.Controls.Add(this.listBoxFilteredFriends);
             this.tabPage1.Controls.Add(this.panelMatchDetails);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
@@ -267,7 +270,7 @@
             // aboutLabel
             // 
             aboutLabel.AutoSize = true;
-            aboutLabel.Location = new System.Drawing.Point(109, 298);
+            aboutLabel.Location = new System.Drawing.Point(109, 264);
             aboutLabel.Name = "aboutLabel";
             aboutLabel.Size = new System.Drawing.Size(49, 17);
             aboutLabel.TabIndex = 0;
@@ -276,7 +279,7 @@
             // aboutLabel1
             // 
             this.aboutLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "About", true));
-            this.aboutLabel1.Location = new System.Drawing.Point(249, 298);
+            this.aboutLabel1.Location = new System.Drawing.Point(249, 264);
             this.aboutLabel1.Name = "aboutLabel1";
             this.aboutLabel1.Size = new System.Drawing.Size(100, 23);
             this.aboutLabel1.TabIndex = 1;
@@ -285,7 +288,7 @@
             // birthdayLabel
             // 
             birthdayLabel.AutoSize = true;
-            birthdayLabel.Location = new System.Drawing.Point(109, 321);
+            birthdayLabel.Location = new System.Drawing.Point(109, 309);
             birthdayLabel.Name = "birthdayLabel";
             birthdayLabel.Size = new System.Drawing.Size(64, 17);
             birthdayLabel.TabIndex = 2;
@@ -294,7 +297,7 @@
             // birthdayLabel1
             // 
             this.birthdayLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
-            this.birthdayLabel1.Location = new System.Drawing.Point(249, 321);
+            this.birthdayLabel1.Location = new System.Drawing.Point(249, 309);
             this.birthdayLabel1.Name = "birthdayLabel1";
             this.birthdayLabel1.Size = new System.Drawing.Size(100, 23);
             this.birthdayLabel1.TabIndex = 3;
@@ -303,7 +306,7 @@
             // emailLabel
             // 
             emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(109, 344);
+            emailLabel.Location = new System.Drawing.Point(108, 353);
             emailLabel.Name = "emailLabel";
             emailLabel.Size = new System.Drawing.Size(46, 17);
             emailLabel.TabIndex = 4;
@@ -312,7 +315,7 @@
             // emailLabel1
             // 
             this.emailLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
-            this.emailLabel1.Location = new System.Drawing.Point(249, 344);
+            this.emailLabel1.Location = new System.Drawing.Point(248, 353);
             this.emailLabel1.Name = "emailLabel1";
             this.emailLabel1.Size = new System.Drawing.Size(100, 23);
             this.emailLabel1.TabIndex = 5;
@@ -325,7 +328,7 @@
             this.firstNameLabel1.Name = "firstNameLabel1";
             this.firstNameLabel1.Size = new System.Drawing.Size(65, 23);
             this.firstNameLabel1.TabIndex = 7;
-            this.firstNameLabel1.Text = "label1";
+            this.firstNameLabel1.Text = "First";
             // 
             // imageNormalPictureBox
             // 
@@ -343,7 +346,7 @@
             this.lastNameLabel1.Name = "lastNameLabel1";
             this.lastNameLabel1.Size = new System.Drawing.Size(79, 23);
             this.lastNameLabel1.TabIndex = 11;
-            this.lastNameLabel1.Text = "label1";
+            this.lastNameLabel1.Text = "Last";
             // 
             // relationshipStatusLabel
             // 
@@ -367,7 +370,7 @@
             // 
             this.listBoxFilteredFriends.FormattingEnabled = true;
             this.listBoxFilteredFriends.ItemHeight = 16;
-            this.listBoxFilteredFriends.Location = new System.Drawing.Point(6, 264);
+            this.listBoxFilteredFriends.Location = new System.Drawing.Point(7, 165);
             this.listBoxFilteredFriends.Name = "listBoxFilteredFriends";
             this.listBoxFilteredFriends.Size = new System.Drawing.Size(268, 260);
             this.listBoxFilteredFriends.TabIndex = 1;
@@ -380,19 +383,24 @@
             this.pictureBoxLoggedInUser.TabIndex = 2;
             this.pictureBoxLoggedInUser.TabStop = false;
             // 
-            // panelFilters
+            // panelMatch
             // 
-            this.panelFilters.Controls.Add(this.radioButtonFemale);
-            this.panelFilters.Controls.Add(this.radioButtonMale);
-            this.panelFilters.Location = new System.Drawing.Point(3, 97);
-            this.panelFilters.Name = "panelFilters";
-            this.panelFilters.Size = new System.Drawing.Size(310, 161);
-            this.panelFilters.TabIndex = 3;
+            this.panelMatch.Controls.Add(this.buttonFilter);
+            this.panelMatch.Controls.Add(this.textBoxHomeTown);
+            this.panelMatch.Controls.Add(this.listBoxFilteredFriends);
+            this.panelMatch.Controls.Add(this.checkBoxFilterHomeTown);
+            this.panelMatch.Controls.Add(this.labelInterestedIn);
+            this.panelMatch.Controls.Add(this.radioButtonFemale);
+            this.panelMatch.Controls.Add(this.radioButtonMale);
+            this.panelMatch.Location = new System.Drawing.Point(3, 97);
+            this.panelMatch.Name = "panelMatch";
+            this.panelMatch.Size = new System.Drawing.Size(300, 428);
+            this.panelMatch.TabIndex = 3;
             // 
             // radioButtonMale
             // 
             this.radioButtonMale.AutoSize = true;
-            this.radioButtonMale.Location = new System.Drawing.Point(4, 23);
+            this.radioButtonMale.Location = new System.Drawing.Point(7, 45);
             this.radioButtonMale.Name = "radioButtonMale";
             this.radioButtonMale.Size = new System.Drawing.Size(59, 21);
             this.radioButtonMale.TabIndex = 0;
@@ -403,13 +411,51 @@
             // radioButtonFemale
             // 
             this.radioButtonFemale.AutoSize = true;
-            this.radioButtonFemale.Location = new System.Drawing.Point(4, 51);
+            this.radioButtonFemale.Location = new System.Drawing.Point(7, 81);
             this.radioButtonFemale.Name = "radioButtonFemale";
             this.radioButtonFemale.Size = new System.Drawing.Size(75, 21);
             this.radioButtonFemale.TabIndex = 1;
             this.radioButtonFemale.TabStop = true;
             this.radioButtonFemale.Text = "Female";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
+            // 
+            // labelInterestedIn
+            // 
+            this.labelInterestedIn.AutoSize = true;
+            this.labelInterestedIn.Location = new System.Drawing.Point(4, 15);
+            this.labelInterestedIn.Name = "labelInterestedIn";
+            this.labelInterestedIn.Size = new System.Drawing.Size(86, 17);
+            this.labelInterestedIn.TabIndex = 2;
+            this.labelInterestedIn.Text = "Interested in";
+            // 
+            // checkBoxFilterHomeTown
+            // 
+            this.checkBoxFilterHomeTown.AutoSize = true;
+            this.checkBoxFilterHomeTown.Location = new System.Drawing.Point(150, 15);
+            this.checkBoxFilterHomeTown.Name = "checkBoxFilterHomeTown";
+            this.checkBoxFilterHomeTown.Size = new System.Drawing.Size(136, 21);
+            this.checkBoxFilterHomeTown.TabIndex = 4;
+            this.checkBoxFilterHomeTown.Text = "Filter HomeTown";
+            this.checkBoxFilterHomeTown.UseVisualStyleBackColor = true;
+            this.checkBoxFilterHomeTown.Click += new System.EventHandler(this.checkBoxFilterHomeTown_Click);
+            // 
+            // textBoxHomeTown
+            // 
+            this.textBoxHomeTown.Enabled = false;
+            this.textBoxHomeTown.Location = new System.Drawing.Point(150, 53);
+            this.textBoxHomeTown.Name = "textBoxHomeTown";
+            this.textBoxHomeTown.Size = new System.Drawing.Size(136, 22);
+            this.textBoxHomeTown.TabIndex = 5;
+            // 
+            // buttonFilter
+            // 
+            this.buttonFilter.Location = new System.Drawing.Point(150, 92);
+            this.buttonFilter.Name = "buttonFilter";
+            this.buttonFilter.Size = new System.Drawing.Size(121, 53);
+            this.buttonFilter.TabIndex = 6;
+            this.buttonFilter.Text = "Find My Matches!";
+            this.buttonFilter.UseVisualStyleBackColor = true;
+            this.buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
             // 
             // FormFacebookApp
             // 
@@ -431,8 +477,8 @@
             this.userBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoggedInUser)).EndInit();
-            this.panelFilters.ResumeLayout(false);
-            this.panelFilters.PerformLayout();
+            this.panelMatch.ResumeLayout(false);
+            this.panelMatch.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,8 +513,12 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton userBindingNavigatorSaveItem;
-        private System.Windows.Forms.Panel panelFilters;
+        private System.Windows.Forms.Panel panelMatch;
         private System.Windows.Forms.RadioButton radioButtonFemale;
         private System.Windows.Forms.RadioButton radioButtonMale;
+        private System.Windows.Forms.Button buttonFilter;
+        private System.Windows.Forms.TextBox textBoxHomeTown;
+        private System.Windows.Forms.CheckBox checkBoxFilterHomeTown;
+        private System.Windows.Forms.Label labelInterestedIn;
     }
 }
