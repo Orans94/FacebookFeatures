@@ -24,7 +24,7 @@ namespace Ex01_Facebook.UI
         {
             timerForwardingFacebook.Enabled = false;
             m_Engine.LoginToFacebook();
-
+            Close();
         }
     }
 }

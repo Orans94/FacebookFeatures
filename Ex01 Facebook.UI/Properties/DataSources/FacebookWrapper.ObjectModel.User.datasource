@@ -48,6 +48,9 @@
       <GenericObjectDataSource DisplayName="Languages" Version="1.0">
          <TypeInfo>FacebookWrapper.ObjectModel.Page, FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, PublicKeyToken=null</TypeInfo>
       </GenericObjectDataSource>
+      <GenericObjectDataSource DisplayName="WorkExperiences" Version="1.0">
+         <TypeInfo>FacebookWrapper.ObjectModel.WorkExperience, FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, PublicKeyToken=null</TypeInfo>
+      </GenericObjectDataSource>
       <GenericObjectDataSource DisplayName="Educations" Version="1.0">
          <TypeInfo>FacebookWrapper.ObjectModel.Education, FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, PublicKeyToken=null</TypeInfo>
       </GenericObjectDataSource>
@@ -86,6 +89,9 @@
       </GenericObjectDataSource>
       <GenericObjectDataSource DisplayName="MessageUpdates" Version="1.0">
          <TypeInfo>FacebookWrapper.ObjectModel.Message, FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, PublicKeyToken=null</TypeInfo>
+      </GenericObjectDataSource>
+      <GenericObjectDataSource DisplayName="Videos" Version="1.0">
+         <TypeInfo>FacebookWrapper.ObjectModel.Video, FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, PublicKeyToken=null</TypeInfo>
       </GenericObjectDataSource>
       <GenericObjectDataSource DisplayName="Pictures" Version="1.0">
          <TypeInfo>FacebookWrapper.ObjectModel.PicturesColleciton, FbGraphApiWrapper, Version=6.8.0.18, Culture=neutral, PublicKeyToken=null</TypeInfo>
@@ -129,7 +135,7 @@
          <PropertyUISetting Name="FirstName">
             <ControlSettings>
                <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-                  <BindableControlInfo Name="Label" Type="System.Windows.Forms.Label" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                  <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
                </ControlSetting>
             </ControlSettings>
          </PropertyUISetting>
@@ -171,14 +177,14 @@
          <PropertyUISetting Name="LastName">
             <ControlSettings>
                <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-                  <BindableControlInfo Name="Label" Type="System.Windows.Forms.Label" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                  <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
                </ControlSetting>
             </ControlSettings>
          </PropertyUISetting>
          <PropertyUISetting Name="Link">
             <ControlSettings>
                <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-                  <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
+                  <BindableControlInfo Name="LinkLabel" Type="System.Windows.Forms.LinkLabel" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
                </ControlSetting>
             </ControlSettings>
          </PropertyUISetting>
@@ -199,7 +205,7 @@
          <PropertyUISetting Name="Name">
             <ControlSettings>
                <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-                  <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
+                  <BindableControlInfo Name="Label" Type="System.Windows.Forms.Label" AssemblyName="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
                </ControlSetting>
             </ControlSettings>
          </PropertyUISetting>

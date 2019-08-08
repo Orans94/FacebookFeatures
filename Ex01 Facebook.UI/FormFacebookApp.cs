@@ -15,14 +15,15 @@ namespace Ex01_Facebook.UI
     {
         public Engine EngineManager { get; set; }
 
-        public FormFacebookApp()
+        public FormFacebookApp(Engine i_Engine)
         {
             InitializeComponent();
+            EngineManager = i_Engine;
         }
 
         private void FormFacebookApp_Load(object sender, EventArgs e)
         {
-
+            pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
         }
 
 
@@ -56,15 +57,10 @@ namespace Ex01_Facebook.UI
             {
                 gender = radioButtonMale.Checked ? User.eGender.male : User.eGender.female;
                 filteredFriendsList = EngineManager.MatchMe(cityFilter, gender);
-                updateListBoxFriendsList(filteredFriendsList);
+                userBindingSource.DataSource = filteredFriendsList;
             }
         }
 
-        private void updateListBoxFriendsList(LinkedList<User> i_FilteredFriendsList)
-        {
-            listBoxFilteredFriends.DataSource = i_FilteredFriendsList;
-            throw new NotImplementedException();
-        }
 
         private void checkBoxFilterHomeTown_Click(object sender, EventArgs e)
         {
@@ -100,6 +96,11 @@ namespace Ex01_Facebook.UI
             {
                 textBoxHomeTown.Enabled = true;
             }
+        }
+
+        private void userBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

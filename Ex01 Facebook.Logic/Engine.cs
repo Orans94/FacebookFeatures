@@ -10,7 +10,7 @@ namespace Ex01_Facebook.Logic
     public class Engine
     {
         public FacebookDatingFeature DatingFeature{ get; set; }
-        private User m_LoggedInUser;
+        public User LoggedInUser { get; set; }
         private readonly string[] r_Permissions =
         #region PERMISSIONS
             {
@@ -33,7 +33,7 @@ namespace Ex01_Facebook.Logic
            "user_posts",
            "user_hometown"
         };
-    #endregion
+        #endregion
 
         public LoginResult LoginToFacebook()
         {
@@ -41,7 +41,8 @@ namespace Ex01_Facebook.Logic
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
-                m_LoggedInUser = result.LoggedInUser;
+                LoggedInUser = result.LoggedInUser;
+                DatingFeature = new FacebookDatingFeature(LoggedInUser);
                 //fetchUserInfo();
             }
             else
@@ -64,10 +65,7 @@ namespace Ex01_Facebook.Logic
         private void fetchUserInfo()
         {
             //picture_smallPictureBox.LoadAsync(m_LoggedInUser.PictureNormalURL);
-            if (m_LoggedInUser.Posts.Count > 0)
-            {
-                //  textBoxStatus.Text = m_LoggedInUser.Posts[0].Message;
-            }
+       
         }
 
         

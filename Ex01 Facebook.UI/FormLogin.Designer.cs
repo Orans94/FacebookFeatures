@@ -47,6 +47,7 @@
             // 
             // timerForwardingFacebook
             // 
+            this.timerForwardingFacebook.Enabled = true;
             this.timerForwardingFacebook.Interval = 3000;
             this.timerForwardingFacebook.Tick += new System.EventHandler(this.timerForwardingFacebook_Tick);
             // 

@@ -9,8 +9,8 @@ namespace Ex01_Facebook.Logic
     
     public class FacebookGuessMyNameFeature
     {
-        public readonly User LoggedInUser { get; set; }
-        public readonly User[] FriendsOfLoggedInUser { get; set; }
+        public User LoggedInUser { get; set; }
+        public User[] FriendsOfLoggedInUser { get; set; }
         private int m_ChosenFriendIndex;
 
 
@@ -38,7 +38,7 @@ namespace Ex01_Facebook.Logic
         {
             string friendFirstName;
 
-            friendFirstName = FriendsOfLoggedInUser[m_ChosenFriendIndex];
+            friendFirstName = FriendsOfLoggedInUser[m_ChosenFriendIndex].Name;
 
             return friendFirstName;
         }

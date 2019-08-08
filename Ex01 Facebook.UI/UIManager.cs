@@ -1,5 +1,6 @@
 ﻿using Ex01_Facebook.Logic;
 using System;
+using System.Windows.Forms;
 
 namespace Ex01_Facebook.UI
 {
@@ -13,12 +14,13 @@ namespace Ex01_Facebook.UI
         {
             m_Engine = new Engine();
             m_FormLogin = new FormLogin(m_Engine);
-            m_FormFacebookApp = new FormFacebookApp();
+            m_FormFacebookApp = new FormFacebookApp(m_Engine);
         }
 
         public void Run()
         {
-            
+            Application.Run(m_FormLogin);
+            Application.Run(m_FormFacebookApp);
         }
     }
 }
