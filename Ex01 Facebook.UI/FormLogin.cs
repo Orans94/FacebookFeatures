@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ex01_Facebook.Logic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,19 @@ namespace Ex01_Facebook.UI
 {
     public partial class FormLogin : Form
     {
-        public FormLogin()
+        private Engine m_Engine;
+
+        public FormLogin(Engine i_Engine)
         {
             InitializeComponent();
+            m_Engine = i_Engine;
+        }
+
+        private void timerForwardingFacebook_Tick(object sender, EventArgs e)
+        {
+            timerForwardingFacebook.Enabled = false;
+            m_Engine.LoginToFacebook();
+
         }
     }
 }

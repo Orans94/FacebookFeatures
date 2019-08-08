@@ -9,15 +9,11 @@ namespace Ex01_Facebook.Logic
 {
     public class Engine
     {
-        private readonly User m_LoggedInUser;
-
-       
-
-        public void LoginToFacebook()
-        {
-            LoginResult result = FacebookService.Login("1450160541956417",
-
-           "public_profile",
+        private User m_LoggedInUser;
+        private readonly string[] r_Permissions =
+        #region PERMISSIONS
+            {
+            "public_profile",
            "email",
            "publish_to_groups",
            "user_birthday",
@@ -35,19 +31,24 @@ namespace Ex01_Facebook.Logic
            "user_photos",
            "user_posts",
            "user_hometown"
-           );
+        };
+    #endregion
+
+        public LoginResult LoginToFacebook()
+        {
+            LoginResult result = FacebookService.Login("1450160541956417", r_Permissions);
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
-
                 m_LoggedInUser = result.LoggedInUser;
-                fetchUserInfo();
+                //fetchUserInfo();
             }
             else
             {   // alert to UI error was occurred
-                MessageBox.Show(result.ErrorMessage);
+               // MessageBox.Show(result.ErrorMessage);
             }
 
+            return result;
         }
         private void fetchUserInfo()
         {

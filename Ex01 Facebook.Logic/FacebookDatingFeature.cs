@@ -16,16 +16,16 @@ namespace Ex01_Facebook.Logic
             m_LoggedInUser = i_LoggedInUser;
         }
 
-        public List<User> GenerateFilteredFriendsList(City i_HomeTownFilter, User.eGender i_GenderFilter)
+        public LinkedList<User> GenerateFilteredFriendsList(City i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             // show a dialog which the user can choose which gender he wants to date
             // and also the user will enter a city which he wants to find the date/all cities.
-            List<User> filteredFriendsList = new List<User>();
+            LinkedList<User> filteredFriendsList = new LinkedList<User>();
             foreach (User friend in m_LoggedInUser.Friends)
             {
                 if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
                 {
-                    filteredFriendsList.Add(friend);
+                    filteredFriendsList.AddLast(friend);
                 }
             }
             //now show filteredUsers list in listBox -and when the user choose one of them -
@@ -35,17 +35,22 @@ namespace Ex01_Facebook.Logic
 
         private bool isFriendAMatch(User i_Friend, City i_HomeTownFilter, User.eGender i_GenderFilter)
         {
+            // this method recieve a friend and return true if he mathces the filters.
+
             bool isFriendMatchingFilter;
 
-            isFriendMatchingFilter = isCityMatch(i_HomeTownFilter, m_LoggedInUser.Hometown, i_Friend.Hometown)
-                && isGenderMatch(i_GenderFilter, i_Friend, m_LoggedInUser.Gender)
-                && isOpenToDating(i_Friend);
+            isFriendMatchingFilter = isOpenToDating(i_Friend)
+                && isCityMatch(i_HomeTownFilter, i_Friend.Hometown)
+                && isGenderMatch(i_GenderFilter, i_Friend);
 
             return isFriendMatchingFilter;
         }
 
-        private bool isCityMatch(City i_HomeTownFilter, City i_LoggedInUserHomeTown, City i_FriendHomeTown)
+        private bool isCityMatch(City i_HomeTownFilter, City i_FriendHomeTown)
         {
+            // this method recieves a HomeTownFilter and the friend hometown
+            // and return true if the friend's hometown mathces the filter
+
             bool isCityAMatch;
 
             if (i_HomeTownFilter == null)
@@ -54,28 +59,38 @@ namespace Ex01_Facebook.Logic
             }
             else
             {
-                isCityAMatch = i_LoggedInUserHomeTown == i_FriendHomeTown;
+                isCityAMatch = i_FriendHomeTown == i_HomeTownFilter;
             }
 
             return isCityAMatch;
         }
 
-        private bool isGenderMatch(User.eGender i_GenderFilter, User i_Friend, User.eGender? i_LoggedInUserGender)
+        private bool isGenderMatch(User.eGender i_GenderFilter, User i_Friend)
         {
+            // this method recieve gender filter and a friend
+            // and return true if the friend is interested in the logged in user gender
+            // and if the friend's gender matches the gender filter.
+
             bool isGenderAMatch;
 
-            isGenderAMatch = i_Friend.InterestedIn.Equals(i_LoggedInUserGender) && i_GenderFilter.Equals(i_Friend.Gender);
+            isGenderAMatch = i_Friend.InterestedIn.Equals(m_LoggedInUser.Gender) && i_GenderFilter.Equals(i_Friend.Gender);
 
             return isGenderAMatch;
         }
 
         private bool isOpenToDating(User i_UserToCheck)
         {
-            return i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.Divorced
+            // this method recieves a user and return true if his relationship status is open to dating.
+
+            bool isUserOpenToDating;
+
+            isUserOpenToDating = i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.Divorced
                 || i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.InAnOpenRelationship
                 || i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.Separated
                 || i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.Single
                 || i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.Widowed;
+
+            return isUserOpenToDating;
         }
     }
 }
