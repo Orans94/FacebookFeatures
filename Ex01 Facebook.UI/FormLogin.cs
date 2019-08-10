@@ -13,11 +13,12 @@ namespace Ex01_Facebook.UI
     public partial class FormLogin : Form
     {
         private Engine EngineManager { get; set; }
-
-        public FormLogin(Engine i_Engine)
+        private AppSettings ApplicationSettings { get; set; }
+        public FormLogin(Engine i_Engine, AppSettings i_AppSettings)
         {
             InitializeComponent();
             EngineManager = i_Engine;
+            ApplicationSettings = i_AppSettings;
         }
 
         private void timerForwardingFacebook_Tick(object sender, EventArgs e)
@@ -25,16 +26,24 @@ namespace Ex01_Facebook.UI
             bool isUserLoggedIn, isUserWantToRetryLogin = true;
 
             timerForwardingFacebook.Enabled = false;
-            EngineManager.LoginToFacebook();
-            isUserLoggedIn = isLoginSuccessed();
-            while (!isUserLoggedIn && isUserWantToRetryLogin)
+            if (ApplicationSettings.LastAccessToken == null)
             {
-                isUserWantToRetryLogin = isUserWantToTryLoginAgain();
-                if (isUserWantToRetryLogin)
+                EngineManager.LoginToFacebook();
+                isUserLoggedIn = isLoginSuccessed();
+                while (!isUserLoggedIn && isUserWantToRetryLogin)
                 {
-                    EngineManager.LoginToFacebook();
-                    isUserLoggedIn = isLoginSuccessed();
+                    isUserWantToRetryLogin = isUserWantToTryLoginAgain();
+                    if (isUserWantToRetryLogin)
+                    {
+                        EngineManager.LoginToFacebook();
+                        isUserLoggedIn = isLoginSuccessed();
+                    }
                 }
+            }
+            else
+            {
+               // this.Location = ApplicationSettings.LastWindowLocation;
+                EngineManager.ConnectToFacebookWithLastAccessToken(ApplicationSettings.LastAccessToken);
             }
             Close();
         }
@@ -52,7 +61,7 @@ namespace Ex01_Facebook.UI
         {
             bool toRetry;
 
-            string title = "Facebook features";
+            string title = "Facebook Login";
             string message = string.Format("It seems like you are offline from facebook, Would you like to proceed to facebook login again?{0}No button will end the program", Environment.NewLine);
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);

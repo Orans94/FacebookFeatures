@@ -88,6 +88,9 @@
             this.labelFriendPicture = new System.Windows.Forms.Label();
             this.labelEventDetails = new System.Windows.Forms.Label();
             this.labelPageDetails = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
+            this.labelOptions = new System.Windows.Forms.Label();
             labelAbout = new System.Windows.Forms.Label();
             labelBirthday = new System.Windows.Forms.Label();
             labelEmail = new System.Windows.Forms.Label();
@@ -111,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedFriend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPage)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelAbout
@@ -172,6 +176,7 @@
             this.tabControl1.Controls.Add(this.tabPageBasicFacebook);
             this.tabControl1.Controls.Add(this.tabPageFinderDating);
             this.tabControl1.Controls.Add(this.tabPageGuessFriendName);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -761,6 +766,7 @@
             this.labelFriendPicture.Size = new System.Drawing.Size(99, 17);
             this.labelFriendPicture.TabIndex = 66;
             this.labelFriendPicture.Text = "Friend picture:";
+            this.labelFriendPicture.Visible = false;
             // 
             // labelEventDetails
             // 
@@ -771,6 +777,7 @@
             this.labelEventDetails.Size = new System.Drawing.Size(93, 17);
             this.labelEventDetails.TabIndex = 67;
             this.labelEventDetails.Text = "Event details:";
+            this.labelEventDetails.Visible = false;
             // 
             // labelPageDetails
             // 
@@ -781,6 +788,40 @@
             this.labelPageDetails.Size = new System.Drawing.Size(90, 17);
             this.labelPageDetails.TabIndex = 68;
             this.labelPageDetails.Text = "Page details:";
+            this.labelPageDetails.Visible = false;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.labelOptions);
+            this.tabPage1.Controls.Add(this.checkBoxRememberMe);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(999, 554);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Application Settings";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRememberMe
+            // 
+            this.checkBoxRememberMe.AutoSize = true;
+            this.checkBoxRememberMe.Checked = true;
+            this.checkBoxRememberMe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(399, 139);
+            this.checkBoxRememberMe.Name = "checkBoxRememberMe";
+            this.checkBoxRememberMe.Size = new System.Drawing.Size(122, 21);
+            this.checkBoxRememberMe.TabIndex = 0;
+            this.checkBoxRememberMe.Text = "Remember me";
+            this.checkBoxRememberMe.UseVisualStyleBackColor = true;
+            // 
+            // labelOptions
+            // 
+            this.labelOptions.AutoSize = true;
+            this.labelOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOptions.Location = new System.Drawing.Point(358, 58);
+            this.labelOptions.Name = "labelOptions";
+            this.labelOptions.Size = new System.Drawing.Size(218, 46);
+            this.labelOptions.TabIndex = 1;
+            this.labelOptions.Text = "OPTIONS:";
             // 
             // FormFacebookApp
             // 
@@ -788,7 +829,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1031, 607);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormFacebookApp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook features";
             this.Load += new System.EventHandler(this.FormFacebookApp_Load);
             this.tabControl1.ResumeLayout(false);
@@ -813,6 +856,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedFriend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPage)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -885,5 +930,8 @@
         private System.Windows.Forms.Label labelPageDetails;
         private System.Windows.Forms.Label labelEventDetails;
         private System.Windows.Forms.Label labelFriendPicture;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label labelOptions;
+        private System.Windows.Forms.CheckBox checkBoxRememberMe;
     }
 }

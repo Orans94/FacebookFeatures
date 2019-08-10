@@ -24,10 +24,10 @@ namespace Ex01_Facebook.Logic
             LinkedList<User> filteredFriendsList = new LinkedList<User>();
             foreach (User friend in m_LoggedInUser.Friends)
             {
-                //if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
-               // {
+                if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
+                {
                     filteredFriendsList.AddLast(friend);
-               // }
+                }
             }
             //now show filteredUsers list in listBox -and when the user choose one of them -
             // their profile picture and email to contact will appear.

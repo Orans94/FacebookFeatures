@@ -8,7 +8,7 @@ namespace Ex01_Facebook.Logic
     public class RandomNumbersGenerator
     {
 
-        Random random = new Random();
+        Random m_Random = new Random();
 
         public List<int> GenerateRandom(int i_CountOfNumberToGenerate, int i_Min, int i_Max)
         {
@@ -30,7 +30,7 @@ namespace Ex01_Facebook.Logic
                 // May strike a duplicate.
                 // Need to add +1 to make inclusive generator
                 // +1 is safe even for MaxVal max value because top < max
-                if (!candidates.Add(random.Next(i_Min, top + 1)))
+                if (!candidates.Add(m_Random.Next(i_Min, top + 1)))
                 {
                     // collision, add inclusive max.
                     // which could not possibly have been added before.
@@ -46,7 +46,7 @@ namespace Ex01_Facebook.Logic
             // random-ordered results
             for (int i = result.Count - 1; i > 0; i--)
             {
-                int k = random.Next(i + 1);
+                int k = m_Random.Next(i + 1);
                 int tmp = result[k];
                 result[k] = result[i];
                 result[i] = tmp;
@@ -55,9 +55,9 @@ namespace Ex01_Facebook.Logic
             return result;
         }
 
-        public List<int> GenerateRandom(int count)
+        public List<int> GenerateRandom(int i_Count)
         {
-            return GenerateRandom(count, 0, Int32.MaxValue);
+            return GenerateRandom(i_Count, 0, Int32.MaxValue);
         }
 
     }

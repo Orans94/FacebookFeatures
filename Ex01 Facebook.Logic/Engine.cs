@@ -12,6 +12,7 @@ namespace Ex01_Facebook.Logic
         public FacebookDatingFeature DatingFeature{ get; set; }
         public FacebookGuessMyNameFeature GuessMyNameFeature { get; set; }
         public User LoggedInUser { get; set; }
+        public LoginResult LastLoginResult { get; set; }
         private readonly string[] r_Permissions =
         #region PERMISSIONS
             {
@@ -38,7 +39,6 @@ namespace Ex01_Facebook.Logic
 
         public LoginResult LoginToFacebook()
         {
-            // TODO handle expection!!
             LoginResult result;
             try
             {
@@ -46,18 +46,30 @@ namespace Ex01_Facebook.Logic
             }
             catch (Exception)
             {
-                // error was occurred
+                // error has occurred while try to login to Facebook server.
                 result = null;
             }
 
-            if (!string.IsNullOrEmpty(result.AccessToken))
+            if (result != null && !string.IsNullOrEmpty(result.AccessToken))
             {
-                LoggedInUser = result.LoggedInUser;
-                DatingFeature = new FacebookDatingFeature(LoggedInUser);
-                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 6, Score = 0 };
+                prepareFacebookApplication(result);
             }
 
             return result;
+        }
+
+        private void prepareFacebookApplication(LoginResult i_Result)
+        {
+            LastLoginResult = i_Result;
+            LoggedInUser = i_Result.LoggedInUser;
+            DatingFeature = new FacebookDatingFeature(LoggedInUser);
+            GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 6, Score = 0 };
+        }
+
+        public void ConnectToFacebookWithLastAccessToken(string i_LastAccessToken)
+        {
+            LastLoginResult = FacebookService.Connect(i_LastAccessToken);
+            prepareFacebookApplication(LastLoginResult);
         }
 
         public LinkedList<User> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
@@ -86,7 +98,7 @@ namespace Ex01_Facebook.Logic
 
         public void UpdateUserDueToHisGuess(bool i_IsUserGuessedRight)
         {
-            GuessMyNameFeature.UpdateUserDueToHisGuess(i_IsUserGuessedRight);
+            GuessMyNameFeature.UpdateUserDataDueToHisGuess(i_IsUserGuessedRight);
         }
 
         public int GetUserGuessingGameScore()

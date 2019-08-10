@@ -7,14 +7,17 @@ namespace Ex01_Facebook.UI
     public class UIManager
     {
         private Engine m_Engine;
+        private AppSettings m_AppSettings;
         private FormLogin m_FormLogin;
         private FormFacebookApp m_FormFacebookApp;
 
+
         public UIManager()
         {
+            m_AppSettings = AppSettings.LoadFromFile();
             m_Engine = new Engine();
-            m_FormLogin = new FormLogin(m_Engine);
-            m_FormFacebookApp = new FormFacebookApp(m_Engine);
+            m_FormLogin = new FormLogin(m_Engine, m_AppSettings);
+            m_FormFacebookApp = new FormFacebookApp(m_Engine, m_AppSettings);
         }
 
         public void Run()

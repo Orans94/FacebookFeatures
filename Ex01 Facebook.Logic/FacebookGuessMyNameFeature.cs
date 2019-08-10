@@ -9,13 +9,13 @@ namespace Ex01_Facebook.Logic
     
     public class FacebookGuessMyNameFeature
     {
+        private int m_WinsInARow = 0;
+        private int m_ChosenFriendIndex = -1; 
         public User LoggedInUser { get; set; }
         public FacebookObjectCollection<User> FriendsOfLoggedInUser { get; set; }
         public RandomNumbersGenerator RandomNumbersGenerator { get; set; }
         public int Score { get; set; }
         public int Health { get; set; }
-        private int m_WinsInARow = 0;
-        private int m_ChosenFriendIndex = -1; 
         public User GetChosenFriend()
         {
             User chosenFriend = null;
@@ -37,6 +37,7 @@ namespace Ex01_Facebook.Logic
 
         public User RollAFriend()
         {
+            // this method return a random friend's user
             Random rnd = new Random();
             int numberOfFriends;
 
@@ -66,6 +67,9 @@ namespace Ex01_Facebook.Logic
 
         private string generatePartlyName(string i_FriendName)
         {
+            // this method generate a clue about the friend's name to guess
+            // it return a string that represent a part of his name
+            // ex: if his name is Yossi Cohen, a clue could be Y_ss_ C__en represting in string
             StringBuilder hintedName = new StringBuilder();
             List<int> generatedIndices;
 
@@ -82,6 +86,7 @@ namespace Ex01_Facebook.Logic
             }
             try
             {
+                // generate a list of indices to expose random letter from the friend name
                 generatedIndices = RandomNumbersGenerator.GenerateRandom(i_FriendName.Length / 2, 0, i_FriendName.Length - 1);
             }
             catch (ArgumentOutOfRangeException)
@@ -97,7 +102,7 @@ namespace Ex01_Facebook.Logic
             return hintedName.ToString();
         }
 
-        public void UpdateUserDueToHisGuess(bool i_IsUserGuessedRight)
+        public void UpdateUserDataDueToHisGuess(bool i_IsUserGuessedRight)
         {
             if (i_IsUserGuessedRight)
             {

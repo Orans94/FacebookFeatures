@@ -15,11 +15,13 @@ namespace Ex01_Facebook.UI
     public partial class FormFacebookApp : Form
     {
         public Engine EngineManager { get; set; }
+        private AppSettings ApplicationSettings { get; set; }
 
-        public FormFacebookApp(Engine i_Engine)
+        public FormFacebookApp(Engine i_Engine, AppSettings i_AppSettings)
         {
             InitializeComponent();
             EngineManager = i_Engine;
+            ApplicationSettings = i_AppSettings;
         }
 
         private void FormFacebookApp_Load(object sender, EventArgs e)
@@ -33,9 +35,36 @@ namespace Ex01_Facebook.UI
             pictureBoxProfilePicture2.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
             pictureBoxProfilePicture3.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
         }
-
-
         #region BASIC FACEBOOK FEATURES
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            if (ApplicationSettings.RememberUser)
+            {
+                this.Location = ApplicationSettings.LastWindowLocation;
+            }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            ApplicationSettings.LastWindowLocation = Location;
+            ApplicationSettings.RememberUser = checkBoxRememberMe.Checked;
+
+            if (ApplicationSettings.RememberUser)
+            {
+                ApplicationSettings.LastAccessToken = EngineManager.LastLoginResult.AccessToken;
+            }
+            else
+            {
+                ApplicationSettings.LastAccessToken = null;
+            }
+
+            ApplicationSettings.SaveToFile();
+
+        }
+
         private void linkPosts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             fetchPosts();
@@ -66,6 +95,7 @@ namespace Ex01_Facebook.UI
 
         private void linkFriends_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            labelFriendPicture.Visible = true;
             fetchFriends();
         }
 
@@ -109,6 +139,7 @@ namespace Ex01_Facebook.UI
 
         private void labelEvents_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            labelEventDetails.Visible = true;
             fetchEvents();
         }
         private void fetchEvents()
@@ -144,6 +175,7 @@ namespace Ex01_Facebook.UI
         }
         private void linkPages_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            labelPageDetails.Visible = true;
             fetchPages();
         }
         private void fetchPages()
@@ -348,7 +380,8 @@ namespace Ex01_Facebook.UI
 
         private void restartGuessingGame()
         {
-            PictureBoxFriendPicture.BackgroundImage = null;
+            pictureBoxFriend.BackgroundImage = null;
+            labelUserInteraction.Text = string.Empty;
             updateUserGamingData();
             initGuessingGame();
         }
@@ -439,8 +472,8 @@ namespace Ex01_Facebook.UI
         {
             EngineManager.GiveUpGuessingGame();
             updateHealthBar();
-            prepareNextRound();
             exposeFriendName();
+            prepareNextRound();
         }
 
         private void exposeFriendName()
