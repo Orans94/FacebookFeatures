@@ -377,7 +377,7 @@
             this.labelRules.ForeColor = System.Drawing.Color.White;
             this.labelRules.Location = new System.Drawing.Point(8, 335);
             this.labelRules.Name = "labelRules";
-            this.labelRules.Size = new System.Drawing.Size(307, 115);
+            this.labelRules.Size = new System.Drawing.Size(218, 115);
             this.labelRules.TabIndex = 12;
             this.labelRules.Text = "Rules:\r\nCorrect guess => +10 to score\r\nWrong guess => -6 to health bar\r\nThree cor" +
     "rect guesses in a row => +3 to health bar\r\nGiveup => -3 to health bar";

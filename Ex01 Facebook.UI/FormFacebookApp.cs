@@ -148,7 +148,7 @@ namespace Ex01_Facebook.UI
 
             // validate user guess
             isUserGuessedRight = EngineManager.IsUserGuessCorrect(textBoxUserGuess.Text);
-            isStrikeThree = EngineManager.IsUserStrikeThreeInARow(isUserGuessedRight);
+            isStrikeThree = EngineManager.IsUserWorthyExtraHealth(isUserGuessedRight);
             EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
             friendName = EngineManager.GetFriendToGuess().Name;
             updateUserState(isUserGuessedRight, isStrikeThree, friendName);
@@ -258,6 +258,14 @@ namespace Ex01_Facebook.UI
             initGuessingGame();
             updateHealthBar();
             updateInstructionForNewRound();
+            exposeFriendName();
+        }
+
+        private void exposeFriendName()
+        {
+            string friendName = EngineManager.GetFriendToGuess().Name;
+            labelUserInteraction.ForeColor = Color.Red;
+            labelUserInteraction.Text = string.Format("The friend's name is: {0}", friendName);
         }
 
         private void textBoxUserGuess_KeyPress(object sender, KeyPressEventArgs e)

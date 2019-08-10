@@ -108,9 +108,9 @@ namespace Ex01_Facebook.Logic
             return GuessMyNameFeature.GetChosenFriend();
         }
 
-        public bool IsUserStrikeThreeInARow(bool i_IsUserGuessedRight)
+        public bool IsUserWorthyExtraHealth(bool i_IsUserGuessedRight)
         {
-            return GuessMyNameFeature.IsUserStrikeThreeInARow(i_IsUserGuessedRight);
+            return GuessMyNameFeature.IsUserWorthyExtraHealth(i_IsUserGuessedRight);
         }
     }
 }

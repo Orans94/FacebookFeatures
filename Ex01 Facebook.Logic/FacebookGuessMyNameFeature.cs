@@ -111,10 +111,11 @@ namespace Ex01_Facebook.Logic
             Health--;
         }
 
-        public bool IsUserStrikeThreeInARow(bool i_IsUserGuessedRight)
+        public bool IsUserWorthyExtraHealth(bool i_IsUserGuessedRight)
         {
-            // this is the third time the user guesse right in a row
-            return m_WinsInARow == 2 && i_IsUserGuessedRight;
+            // this method return true if the user it is the third time the user guesse right in a row
+            // and it life it not over max
+            return m_WinsInARow == 2 && i_IsUserGuessedRight && Health < 6;
         }
 
         private void updateUserDataDueToCorrectGussing()
