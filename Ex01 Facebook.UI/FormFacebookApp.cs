@@ -24,11 +24,23 @@ namespace Ex01_Facebook.UI
 
         private void FormFacebookApp_Load(object sender, EventArgs e)
         {
-            pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
-            pictureBoxProfilePicture2.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
-
+            updateProfilePictureBox();
+            initGuessingGame();
         }
 
+        private void updateProfilePictureBox()
+        {
+            pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
+            pictureBoxProfilePicture2.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
+        }
+
+        private void initGuessingGame()
+        {
+            buttonRollAFriend.Enabled = true;
+            buttonGiveUp.Enabled = false;
+            buttonCheckGuess.Enabled = false;
+            buttonHint.Enabled = false;
+        }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -109,9 +121,18 @@ namespace Ex01_Facebook.UI
         private void buttonRollAFriend_Click(object sender, EventArgs e)
         {
             User friendToGuess = EngineManager.PickRandomFriend();
-            pictureBoxFriend.Image = friendToGuess.ImageLarge;
-            buttonRollAFriend.Enabled = false;
+            pictureBoxFriend.BackgroundImage = friendToGuess.ImageLarge;
+            activateActiveButtonsInGuessingGame();
             labelInstruction.Text = string.Empty;
+            Console.WriteLine(friendToGuess.Name); //TODO DELETE
+        }
+
+        private void activateActiveButtonsInGuessingGame()
+        {
+            buttonRollAFriend.Enabled = false;
+            buttonGiveUp.Enabled = true;
+            buttonCheckGuess.Enabled = true;
+            buttonHint.Enabled = true;
         }
 
         private void buttonHint_Click(object sender, EventArgs e)
@@ -134,7 +155,7 @@ namespace Ex01_Facebook.UI
         private void updateHealthBar(int currentUserScore)
         {
             int health = EngineManager.GetHealthGuessingGame();
-            pictureBoxHealthBar.Image = getHealthBar(health);
+            pictureBoxHealthBar.BackgroundImage = getHealthBar(health);
         }
         private Bitmap getHealthBar(int i_CurrentHealth)
         {
@@ -142,20 +163,26 @@ namespace Ex01_Facebook.UI
 
             switch (i_CurrentHealth)
             {
-                case 100:
-                    healthBarToSet = Resources.life100;
+                case 6:
+                    healthBarToSet = Resources.life6;
                     break;
-                case 80:
-                    healthBarToSet = Resources.life80;
+                case 5:
+                    healthBarToSet = Resources.life5;
                     break;
-                case 60:
-                    healthBarToSet = Resources.life60;
+                case 4:
+                    healthBarToSet = Resources.life4;
                     break;
-                case 40:
-                    healthBarToSet = Resources.life40;
+                case 3:
+                    healthBarToSet = Resources.life3;
                     break;
-                case 20:
-                    healthBarToSet = Resources.life20;
+                case 2:
+                    healthBarToSet = Resources.life2;
+                    break;
+                case 1:
+                    healthBarToSet = Resources.life1;
+                    break;
+                case 0:
+                    healthBarToSet = Resources.life0;
                     break;
             }
 

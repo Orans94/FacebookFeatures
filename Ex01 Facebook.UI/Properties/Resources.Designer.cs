@@ -103,9 +103,9 @@ namespace Ex01_Facebook.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap life100 {
+        internal static System.Drawing.Bitmap life0 {
             get {
-                object obj = ResourceManager.GetObject("life100", resourceCulture);
+                object obj = ResourceManager.GetObject("life0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace Ex01_Facebook.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap life20 {
+        internal static System.Drawing.Bitmap life1 {
             get {
-                object obj = ResourceManager.GetObject("life20", resourceCulture);
+                object obj = ResourceManager.GetObject("life1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace Ex01_Facebook.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap life40 {
+        internal static System.Drawing.Bitmap life2 {
             get {
-                object obj = ResourceManager.GetObject("life40", resourceCulture);
+                object obj = ResourceManager.GetObject("life2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace Ex01_Facebook.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap life60 {
+        internal static System.Drawing.Bitmap life3 {
             get {
-                object obj = ResourceManager.GetObject("life60", resourceCulture);
+                object obj = ResourceManager.GetObject("life3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,29 @@ namespace Ex01_Facebook.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap life80 {
+        internal static System.Drawing.Bitmap life4 {
             get {
-                object obj = ResourceManager.GetObject("life80", resourceCulture);
+                object obj = ResourceManager.GetObject("life4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap life5 {
+            get {
+                object obj = ResourceManager.GetObject("life5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap life6 {
+            get {
+                object obj = ResourceManager.GetObject("life6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

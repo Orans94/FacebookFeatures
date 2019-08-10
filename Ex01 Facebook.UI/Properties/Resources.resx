@@ -130,19 +130,25 @@
   <data name="finder_dating" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\finder dating.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="life100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\life100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="life0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="life20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\life20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="life1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="life40" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\life40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="life2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="life60" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\life60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="life3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="life80" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\life80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="life4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="life5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="life6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\life6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

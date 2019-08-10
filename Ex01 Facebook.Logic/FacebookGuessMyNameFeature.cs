@@ -39,7 +39,7 @@ namespace Ex01_Facebook.Logic
         {
             bool isUserGuessRight;
 
-            isUserGuessRight = FriendsOfLoggedInUser[m_ChosenFriendIndex].Name == i_UserGuess;
+            isUserGuessRight = FriendsOfLoggedInUser[m_ChosenFriendIndex].Name.ToUpper() == i_UserGuess.ToUpper();
 
             return isUserGuessRight;
         }
@@ -91,7 +91,7 @@ namespace Ex01_Facebook.Logic
         private void updateUserDataDueToWrongGuessing()
         {
             m_WinsInARow = 0;
-            Health -= 20;
+            Health--;
         }
 
         private void updateUserDataDueToCorrectGussing()
@@ -100,9 +100,9 @@ namespace Ex01_Facebook.Logic
             m_WinsInARow++;
             if (m_WinsInARow == 3)
             {
-                if (Health < 100)
+                if (Health < 6)
                 {
-                    Health += 20;
+                    Health ++;
                 }
                 m_WinsInARow = 0;
             }

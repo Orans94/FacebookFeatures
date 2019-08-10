@@ -125,5 +125,26 @@
   <ItemGroup>
     <None Include="Resources\life80.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

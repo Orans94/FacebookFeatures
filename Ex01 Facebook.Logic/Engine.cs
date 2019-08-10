@@ -44,7 +44,7 @@ namespace Ex01_Facebook.Logic
             {
                 LoggedInUser = result.LoggedInUser;
                 DatingFeature = new FacebookDatingFeature(LoggedInUser);
-                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 100 };
+                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 6 };
             }
             else
             {   // alert to UI error was occurred

@@ -56,6 +56,7 @@
             this.nameLabel1 = new System.Windows.Forms.Label();
             this.labelRelationshipStatus1 = new System.Windows.Forms.Label();
             this.tabPageGuessFriendName = new System.Windows.Forms.TabPage();
+            this.pictureBoxHealthBar = new System.Windows.Forms.PictureBox();
             this.labelScore = new System.Windows.Forms.Label();
             this.labelHint = new System.Windows.Forms.Label();
             this.buttonGiveUp = new System.Windows.Forms.Button();
@@ -67,7 +68,6 @@
             this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
             this.buttonRollAFriend = new System.Windows.Forms.Button();
             this.pictureBoxProfilePicture2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxHealthBar = new System.Windows.Forms.PictureBox();
             labelAbout = new System.Windows.Forms.Label();
             labelBirthday = new System.Windows.Forms.Label();
             labelEmail = new System.Windows.Forms.Label();
@@ -82,9 +82,9 @@
             this.panelMatchDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxFriendPicture)).BeginInit();
             this.tabPageGuessFriendName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAbout
@@ -371,6 +371,16 @@
             this.tabPageGuessFriendName.Text = "How really do you know your friends on facebook?";
             this.tabPageGuessFriendName.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxHealthBar
+            // 
+            this.pictureBoxHealthBar.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.life6;
+            this.pictureBoxHealthBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxHealthBar.Location = new System.Drawing.Point(618, 0);
+            this.pictureBoxHealthBar.Name = "pictureBoxHealthBar";
+            this.pictureBoxHealthBar.Size = new System.Drawing.Size(348, 100);
+            this.pictureBoxHealthBar.TabIndex = 11;
+            this.pictureBoxHealthBar.TabStop = false;
+            // 
             // labelScore
             // 
             this.labelScore.AutoSize = true;
@@ -398,7 +408,6 @@
             this.buttonGiveUp.TabIndex = 8;
             this.buttonGiveUp.Text = "Give up";
             this.buttonGiveUp.UseVisualStyleBackColor = true;
-            this.buttonGiveUp.Click += new System.EventHandler(this.buttonGiveUp_Click);
             // 
             // buttonHint
             // 
@@ -476,16 +485,6 @@
             this.pictureBoxProfilePicture2.TabIndex = 0;
             this.pictureBoxProfilePicture2.TabStop = false;
             // 
-            // pictureBoxHealthBar
-            // 
-            this.pictureBoxHealthBar.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.life100;
-            this.pictureBoxHealthBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxHealthBar.Location = new System.Drawing.Point(618, 0);
-            this.pictureBoxHealthBar.Name = "pictureBoxHealthBar";
-            this.pictureBoxHealthBar.Size = new System.Drawing.Size(348, 100);
-            this.pictureBoxHealthBar.TabIndex = 11;
-            this.pictureBoxHealthBar.TabStop = false;
-            // 
             // FormFacebookApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -506,9 +505,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxFriendPicture)).EndInit();
             this.tabPageGuessFriendName.ResumeLayout(false);
             this.tabPageGuessFriendName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).EndInit();
             this.ResumeLayout(false);
 
         }
