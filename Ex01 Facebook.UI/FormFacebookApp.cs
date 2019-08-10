@@ -40,14 +40,17 @@ namespace Ex01_Facebook.UI
             buttonGiveUp.Enabled = false;
             buttonCheckGuess.Enabled = false;
             buttonHint.Enabled = false;
+            textBoxUserGuess.Enabled = false;
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void buttonFilter_Click(object sender, EventArgs e)
+        {
+            filterFriends();
+        }
+
+        private void filterFriends()
         {
             string cityFilter;
             User.eGender gender;
@@ -68,14 +71,13 @@ namespace Ex01_Facebook.UI
                 MessageBox.Show("Please choose a gender filter");
                 genderFilterChosen = false;
             }
-            if(genderFilterChosen)
+            if (genderFilterChosen)
             {
                 gender = radioButtonMale.Checked ? User.eGender.male : User.eGender.female;
                 filteredFriendsList = EngineManager.MatchMe(cityFilter, gender);
                 userBindingSource.DataSource = filteredFriendsList;
             }
         }
-
 
         private void checkBoxFilterHomeTown_Click(object sender, EventArgs e)
         {
@@ -89,22 +91,6 @@ namespace Ex01_Facebook.UI
             }
         }
 
-        private void radioButtonMale_CheckedChanged(object sender, EventArgs e)
-        {
-            if(radioButtonMale.Checked)
-            {
-                radioButtonFemale.Checked = false;
-            }
-        }
-
-        private void radioButtonFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if(radioButtonFemale.Checked)
-            {
-                radioButtonMale.Checked = false;
-            }
-        }
-
         private void checkBoxFilterHomeTown_CheckedChanged(object sender, EventArgs e)
         {
             if(checkBoxFilterHomeTown.Checked)
@@ -113,13 +99,15 @@ namespace Ex01_Facebook.UI
             }
         }
 
-        private void userBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonRollAFriend_Click(object sender, EventArgs e)
         {
+            rollAFriend();
+        }
+
+        private void rollAFriend()
+        {
+            initGuessingGame();
+            clearUserInteractionLabelField();
             User friendToGuess = EngineManager.PickRandomFriend();
             pictureBoxFriend.BackgroundImage = friendToGuess.ImageLarge;
             activateActiveButtonsInGuessingGame();
@@ -129,6 +117,7 @@ namespace Ex01_Facebook.UI
 
         private void activateActiveButtonsInGuessingGame()
         {
+            textBoxUserGuess.Enabled = true;
             buttonRollAFriend.Enabled = false;
             buttonGiveUp.Enabled = true;
             buttonCheckGuess.Enabled = true;
@@ -137,27 +126,95 @@ namespace Ex01_Facebook.UI
 
         private void buttonHint_Click(object sender, EventArgs e)
         {
-            labelHint.Text = EngineManager.GetHint();
+            hint();
+        }
+
+        private void hint()
+        {
+            labelUserInteraction.ForeColor = Color.White;
+            labelUserInteraction.Text = EngineManager.GetHint();
             buttonHint.Enabled = false;
         }
 
         private void buttonCheckGuess_Click(object sender, EventArgs e)
         {
-            int currentUserScore;
-            bool isUserGuessedRight = EngineManager.IsUserGuessCorrect(textBoxUserGuess.Text);
-            EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
-
-            labelInstruction.Text = isUserGuessedRight ? "Correct!" : "Wrong!";
-            currentUserScore = EngineManager.GetUserGuessingGameScore();
-            updateHealthBar(currentUserScore);
+            checkGuess();
         }
 
-        private void updateHealthBar(int currentUserScore)
+        private void checkGuess()
+        {
+            bool isUserGuessedRight, isStrikeThree;
+            string friendName;
+
+            // validate user guess
+            isUserGuessedRight = EngineManager.IsUserGuessCorrect(textBoxUserGuess.Text);
+            isStrikeThree = EngineManager.IsUserStrikeThreeInARow(isUserGuessedRight);
+            EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
+            friendName = EngineManager.GetFriendToGuess().Name;
+            updateUserState(isUserGuessedRight, isStrikeThree, friendName);
+            prepareNextRound();
+        }
+
+        private void updateUserState(bool isUserGuessedRight, bool isStrikeThree, string friendName)
+        {
+            updateLabelUserInteractionAboutCurrentRound(isUserGuessedRight, isStrikeThree, friendName);
+            updateScore();
+            updateHealthBar();
+        }
+
+        private void prepareNextRound()
+        {
+            updateInstructionForNewRound();
+            clearGuessingField();
+            initGuessingGame();
+        }
+
+        private void updateLabelUserInteractionAboutCurrentRound(bool isUserGuessedRight, bool isStrikeThree, string friendName)
+        {
+            if (isUserGuessedRight)
+            {
+                labelUserInteraction.ForeColor = Color.Lime;
+                labelUserInteraction.Text = isStrikeThree ? string.Format("PERFECT! You got extra health!") : string.Format("{0} is a CORRECT ANSWER! ", friendName);
+            }
+            else
+            {
+                labelUserInteraction.ForeColor = Color.Red;
+                labelUserInteraction.Text = string.Format("WRONG! The answer is: {0}", friendName);
+            }
+        }
+
+        private void clearGuessingField()
+        {
+            textBoxUserGuess.Text = string.Empty;
+        }
+
+        private void clearUserInteractionLabelField()
+        {
+            labelUserInteraction.Text = string.Empty;
+        }
+
+        private void updateInstructionForNewRound()
+        {
+            labelInstruction.Text = "Click Roll a friend button for another round!";
+        }
+
+        private void updateScore()
+        {
+            string newScoreText;
+            int score;
+
+            score = EngineManager.GetUserGuessingGameScore();
+            newScoreText = string.Format("SCORE : {0}", score);
+            labelScore.Text = newScoreText;
+        }
+
+        private void updateHealthBar()
         {
             int health = EngineManager.GetHealthGuessingGame();
-            pictureBoxHealthBar.BackgroundImage = getHealthBar(health);
+
+            pictureBoxHealthBar.BackgroundImage = getHealthBarImageFromResources(health);
         }
-        private Bitmap getHealthBar(int i_CurrentHealth)
+        private Bitmap getHealthBarImageFromResources(int i_CurrentHealth)
         {
             Bitmap healthBarToSet = null;
 
@@ -191,7 +248,24 @@ namespace Ex01_Facebook.UI
 
         private void buttonGiveUp_Click(object sender, EventArgs e)
         {
+            giveUp();
+        }
 
+        private void giveUp()
+        {
+            EngineManager.GiveUpGuessingGame();
+            clearGuessingField();
+            initGuessingGame();
+            updateHealthBar();
+            updateInstructionForNewRound();
+        }
+
+        private void textBoxUserGuess_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                checkGuess();
+            }
         }
     }
 }

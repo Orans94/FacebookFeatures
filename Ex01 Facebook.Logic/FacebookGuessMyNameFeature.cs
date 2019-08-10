@@ -15,7 +15,18 @@ namespace Ex01_Facebook.Logic
         public int Score { get; set; }
         public int Health { get; set; }
         private int m_WinsInARow = 0;
-        private int m_ChosenFriendIndex;
+        private int m_ChosenFriendIndex = -1; 
+        public User GetChosenFriend()
+        {
+            User chosenFriend = null;
+
+            if (m_ChosenFriendIndex != -1)
+            {
+                chosenFriend = FriendsOfLoggedInUser[m_ChosenFriendIndex];
+            }
+
+            return chosenFriend;
+        }
 
         public FacebookGuessMyNameFeature(User i_LoggedInUser)
         {
@@ -76,7 +87,7 @@ namespace Ex01_Facebook.Logic
             return hintedName.ToString();
         }
 
-        internal void UpdateUserDueToHisGuess(bool i_IsUserGuessedRight)
+        public void UpdateUserDueToHisGuess(bool i_IsUserGuessedRight)
         {
             if (i_IsUserGuessedRight)
             {
@@ -91,7 +102,19 @@ namespace Ex01_Facebook.Logic
         private void updateUserDataDueToWrongGuessing()
         {
             m_WinsInARow = 0;
+            Health -= Health >= 2 ? 2 : 1; 
+        }
+
+        public void GiveUp()
+        {
+            m_WinsInARow = 0;
             Health--;
+        }
+
+        public bool IsUserStrikeThreeInARow(bool i_IsUserGuessedRight)
+        {
+            // this is the third time the user guesse right in a row
+            return m_WinsInARow == 2 && i_IsUserGuessedRight;
         }
 
         private void updateUserDataDueToCorrectGussing()

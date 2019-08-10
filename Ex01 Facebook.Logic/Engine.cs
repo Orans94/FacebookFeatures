@@ -38,6 +38,7 @@ namespace Ex01_Facebook.Logic
 
         public LoginResult LoginToFacebook()
         {
+            // TODO handle expection!!
             LoginResult result = FacebookService.Login("1450160541956417", r_Permissions);
 
             if (!string.IsNullOrEmpty(result.AccessToken))
@@ -87,10 +88,29 @@ namespace Ex01_Facebook.Logic
         {
             return GuessMyNameFeature.Score;
         }
+        public int GetUserGuessingGameHealth()
+        {
+            return GuessMyNameFeature.Health;
+        }
 
         public int GetHealthGuessingGame()
         {
             return GuessMyNameFeature.Health;
+        }
+
+        public void GiveUpGuessingGame()
+        {
+            GuessMyNameFeature.GiveUp();
+        }
+
+        public User GetFriendToGuess()
+        {
+            return GuessMyNameFeature.GetChosenFriend();
+        }
+
+        public bool IsUserStrikeThreeInARow(bool i_IsUserGuessedRight)
+        {
+            return GuessMyNameFeature.IsUserStrikeThreeInARow(i_IsUserGuessedRight);
         }
     }
 }

@@ -38,14 +38,14 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageFinderDating = new System.Windows.Forms.TabPage();
             this.panelMatch = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonFemale = new System.Windows.Forms.RadioButton();
+            this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.buttonFilter = new System.Windows.Forms.Button();
             this.textBoxHomeTown = new System.Windows.Forms.TextBox();
             this.listBoxFilteredFriends = new System.Windows.Forms.ListBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.checkBoxFilterHomeTown = new System.Windows.Forms.CheckBox();
-            this.labelInterestedIn = new System.Windows.Forms.Label();
-            this.radioButtonFemale = new System.Windows.Forms.RadioButton();
-            this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.pictureBoxProfilePicture1 = new System.Windows.Forms.PictureBox();
             this.panelMatchDetails = new System.Windows.Forms.Panel();
             this.aboutLabel1 = new System.Windows.Forms.Label();
@@ -56,9 +56,10 @@
             this.nameLabel1 = new System.Windows.Forms.Label();
             this.labelRelationshipStatus1 = new System.Windows.Forms.Label();
             this.tabPageGuessFriendName = new System.Windows.Forms.TabPage();
+            this.labelRules = new System.Windows.Forms.Label();
             this.pictureBoxHealthBar = new System.Windows.Forms.PictureBox();
             this.labelScore = new System.Windows.Forms.Label();
-            this.labelHint = new System.Windows.Forms.Label();
+            this.labelUserInteraction = new System.Windows.Forms.Label();
             this.buttonGiveUp = new System.Windows.Forms.Button();
             this.buttonHint = new System.Windows.Forms.Button();
             this.buttonCheckGuess = new System.Windows.Forms.Button();
@@ -77,6 +78,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPageFinderDating.SuspendLayout();
             this.panelMatch.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture1)).BeginInit();
             this.panelMatchDetails.SuspendLayout();
@@ -166,21 +168,51 @@
             this.tabPageFinderDating.TabIndex = 0;
             this.tabPageFinderDating.Text = "Finder Dating";
             this.tabPageFinderDating.UseVisualStyleBackColor = true;
-            this.tabPageFinderDating.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // panelMatch
             // 
+            this.panelMatch.Controls.Add(this.groupBox1);
             this.panelMatch.Controls.Add(this.buttonFilter);
             this.panelMatch.Controls.Add(this.textBoxHomeTown);
             this.panelMatch.Controls.Add(this.listBoxFilteredFriends);
             this.panelMatch.Controls.Add(this.checkBoxFilterHomeTown);
-            this.panelMatch.Controls.Add(this.labelInterestedIn);
-            this.panelMatch.Controls.Add(this.radioButtonFemale);
-            this.panelMatch.Controls.Add(this.radioButtonMale);
             this.panelMatch.Location = new System.Drawing.Point(3, 97);
             this.panelMatch.Name = "panelMatch";
             this.panelMatch.Size = new System.Drawing.Size(300, 428);
             this.panelMatch.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButtonFemale);
+            this.groupBox1.Controls.Add(this.radioButtonMale);
+            this.groupBox1.Location = new System.Drawing.Point(7, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(121, 127);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Interested in";
+            // 
+            // radioButtonFemale
+            // 
+            this.radioButtonFemale.AutoSize = true;
+            this.radioButtonFemale.Location = new System.Drawing.Point(33, 57);
+            this.radioButtonFemale.Name = "radioButtonFemale";
+            this.radioButtonFemale.Size = new System.Drawing.Size(75, 21);
+            this.radioButtonFemale.TabIndex = 1;
+            this.radioButtonFemale.TabStop = true;
+            this.radioButtonFemale.Text = "Female";
+            this.radioButtonFemale.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonMale
+            // 
+            this.radioButtonMale.AutoSize = true;
+            this.radioButtonMale.Location = new System.Drawing.Point(33, 21);
+            this.radioButtonMale.Name = "radioButtonMale";
+            this.radioButtonMale.Size = new System.Drawing.Size(59, 21);
+            this.radioButtonMale.TabIndex = 0;
+            this.radioButtonMale.TabStop = true;
+            this.radioButtonMale.Text = "Male";
+            this.radioButtonMale.UseVisualStyleBackColor = true;
             // 
             // buttonFilter
             // 
@@ -228,39 +260,6 @@
             this.checkBoxFilterHomeTown.CheckedChanged += new System.EventHandler(this.checkBoxFilterHomeTown_CheckedChanged);
             this.checkBoxFilterHomeTown.Click += new System.EventHandler(this.checkBoxFilterHomeTown_Click);
             // 
-            // labelInterestedIn
-            // 
-            this.labelInterestedIn.AutoSize = true;
-            this.labelInterestedIn.Location = new System.Drawing.Point(4, 15);
-            this.labelInterestedIn.Name = "labelInterestedIn";
-            this.labelInterestedIn.Size = new System.Drawing.Size(86, 17);
-            this.labelInterestedIn.TabIndex = 2;
-            this.labelInterestedIn.Text = "Interested in";
-            // 
-            // radioButtonFemale
-            // 
-            this.radioButtonFemale.AutoSize = true;
-            this.radioButtonFemale.Location = new System.Drawing.Point(7, 81);
-            this.radioButtonFemale.Name = "radioButtonFemale";
-            this.radioButtonFemale.Size = new System.Drawing.Size(75, 21);
-            this.radioButtonFemale.TabIndex = 1;
-            this.radioButtonFemale.TabStop = true;
-            this.radioButtonFemale.Text = "Female";
-            this.radioButtonFemale.UseVisualStyleBackColor = true;
-            this.radioButtonFemale.CheckedChanged += new System.EventHandler(this.radioButtonFemale_CheckedChanged);
-            // 
-            // radioButtonMale
-            // 
-            this.radioButtonMale.AutoSize = true;
-            this.radioButtonMale.Location = new System.Drawing.Point(7, 45);
-            this.radioButtonMale.Name = "radioButtonMale";
-            this.radioButtonMale.Size = new System.Drawing.Size(59, 21);
-            this.radioButtonMale.TabIndex = 0;
-            this.radioButtonMale.TabStop = true;
-            this.radioButtonMale.Text = "Male";
-            this.radioButtonMale.UseVisualStyleBackColor = true;
-            this.radioButtonMale.CheckedChanged += new System.EventHandler(this.radioButtonMale_CheckedChanged);
-            // 
             // pictureBoxProfilePicture1
             // 
             this.pictureBoxProfilePicture1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -285,9 +284,9 @@
             this.panelMatchDetails.Controls.Add(this.nameLabel1);
             this.panelMatchDetails.Controls.Add(labelRelationshipStatus);
             this.panelMatchDetails.Controls.Add(this.labelRelationshipStatus1);
-            this.panelMatchDetails.Location = new System.Drawing.Point(578, 0);
+            this.panelMatchDetails.Location = new System.Drawing.Point(566, 0);
             this.panelMatchDetails.Name = "panelMatchDetails";
-            this.panelMatchDetails.Size = new System.Drawing.Size(425, 548);
+            this.panelMatchDetails.Size = new System.Drawing.Size(425, 503);
             this.panelMatchDetails.TabIndex = 0;
             // 
             // aboutLabel1
@@ -336,7 +335,7 @@
             this.nameLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Name", true));
             this.nameLabel1.Location = new System.Drawing.Point(203, 153);
             this.nameLabel1.Name = "nameLabel1";
-            this.nameLabel1.Size = new System.Drawing.Size(100, 23);
+            this.nameLabel1.Size = new System.Drawing.Size(191, 23);
             this.nameLabel1.TabIndex = 11;
             // 
             // labelRelationshipStatus1
@@ -351,9 +350,10 @@
             // 
             this.tabPageGuessFriendName.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.blog_facebook1;
             this.tabPageGuessFriendName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabPageGuessFriendName.Controls.Add(this.labelRules);
             this.tabPageGuessFriendName.Controls.Add(this.pictureBoxHealthBar);
             this.tabPageGuessFriendName.Controls.Add(this.labelScore);
-            this.tabPageGuessFriendName.Controls.Add(this.labelHint);
+            this.tabPageGuessFriendName.Controls.Add(this.labelUserInteraction);
             this.tabPageGuessFriendName.Controls.Add(this.buttonGiveUp);
             this.tabPageGuessFriendName.Controls.Add(this.buttonHint);
             this.tabPageGuessFriendName.Controls.Add(this.buttonCheckGuess);
@@ -371,6 +371,17 @@
             this.tabPageGuessFriendName.Text = "How really do you know your friends on facebook?";
             this.tabPageGuessFriendName.UseVisualStyleBackColor = true;
             // 
+            // labelRules
+            // 
+            this.labelRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRules.ForeColor = System.Drawing.Color.White;
+            this.labelRules.Location = new System.Drawing.Point(8, 335);
+            this.labelRules.Name = "labelRules";
+            this.labelRules.Size = new System.Drawing.Size(307, 115);
+            this.labelRules.TabIndex = 12;
+            this.labelRules.Text = "Rules:\r\nCorrect guess => +10 to score\r\nWrong guess => -6 to health bar\r\nThree cor" +
+    "rect guesses in a row => +3 to health bar\r\nGiveup => -3 to health bar";
+            // 
             // pictureBoxHealthBar
             // 
             this.pictureBoxHealthBar.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.life6;
@@ -384,21 +395,23 @@
             // labelScore
             // 
             this.labelScore.AutoSize = true;
-            this.labelScore.Location = new System.Drawing.Point(712, 118);
+            this.labelScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScore.ForeColor = System.Drawing.Color.White;
+            this.labelScore.Location = new System.Drawing.Point(757, 122);
             this.labelScore.Name = "labelScore";
-            this.labelScore.Size = new System.Drawing.Size(64, 17);
+            this.labelScore.Size = new System.Drawing.Size(92, 20);
             this.labelScore.TabIndex = 10;
-            this.labelScore.Text = "SCORE :";
+            this.labelScore.Text = "SCORE : 0";
             // 
-            // labelHint
+            // labelUserInteraction
             // 
-            this.labelHint.AutoSize = true;
-            this.labelHint.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHint.ForeColor = System.Drawing.Color.Red;
-            this.labelHint.Location = new System.Drawing.Point(445, 321);
-            this.labelHint.Name = "labelHint";
-            this.labelHint.Size = new System.Drawing.Size(0, 19);
-            this.labelHint.TabIndex = 9;
+            this.labelUserInteraction.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUserInteraction.ForeColor = System.Drawing.Color.White;
+            this.labelUserInteraction.Location = new System.Drawing.Point(246, 315);
+            this.labelUserInteraction.Name = "labelUserInteraction";
+            this.labelUserInteraction.Size = new System.Drawing.Size(464, 38);
+            this.labelUserInteraction.TabIndex = 9;
+            this.labelUserInteraction.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonGiveUp
             // 
@@ -408,6 +421,7 @@
             this.buttonGiveUp.TabIndex = 8;
             this.buttonGiveUp.Text = "Give up";
             this.buttonGiveUp.UseVisualStyleBackColor = true;
+            this.buttonGiveUp.Click += new System.EventHandler(this.buttonGiveUp_Click);
             // 
             // buttonHint
             // 
@@ -435,12 +449,13 @@
             this.textBoxUserGuess.Name = "textBoxUserGuess";
             this.textBoxUserGuess.Size = new System.Drawing.Size(253, 22);
             this.textBoxUserGuess.TabIndex = 5;
+            this.textBoxUserGuess.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUserGuess_KeyPress);
             // 
             // labelInstruction
             // 
             this.labelInstruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInstruction.ForeColor = System.Drawing.Color.White;
-            this.labelInstruction.Location = new System.Drawing.Point(6, 270);
+            this.labelInstruction.Location = new System.Drawing.Point(6, 242);
             this.labelInstruction.Name = "labelInstruction";
             this.labelInstruction.Size = new System.Drawing.Size(357, 85);
             this.labelInstruction.TabIndex = 4;
@@ -451,7 +466,7 @@
             // 
             this.labelDescription1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescription1.ForeColor = System.Drawing.Color.White;
-            this.labelDescription1.Location = new System.Drawing.Point(6, 181);
+            this.labelDescription1.Location = new System.Drawing.Point(6, 153);
             this.labelDescription1.Name = "labelDescription1";
             this.labelDescription1.Size = new System.Drawing.Size(370, 89);
             this.labelDescription1.TabIndex = 3;
@@ -498,6 +513,8 @@
             this.tabPageFinderDating.ResumeLayout(false);
             this.panelMatch.ResumeLayout(false);
             this.panelMatch.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture1)).EndInit();
             this.panelMatchDetails.ResumeLayout(false);
@@ -539,7 +556,6 @@
         private System.Windows.Forms.Button buttonFilter;
         private System.Windows.Forms.TextBox textBoxHomeTown;
         private System.Windows.Forms.CheckBox checkBoxFilterHomeTown;
-        private System.Windows.Forms.Label labelInterestedIn;
         private System.Windows.Forms.PictureBox pictureBoxProfilePicture2;
         private System.Windows.Forms.Button buttonRollAFriend;
         private System.Windows.Forms.PictureBox pictureBoxFriend;
@@ -557,8 +573,10 @@
         private System.Windows.Forms.Label labelDescription1;
         private System.Windows.Forms.Button buttonGiveUp;
         private System.Windows.Forms.Button buttonHint;
-        private System.Windows.Forms.Label labelHint;
+        private System.Windows.Forms.Label labelUserInteraction;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.PictureBox pictureBoxHealthBar;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label labelRules;
     }
 }
