@@ -67,6 +67,8 @@ namespace Ex01_Facebook.Logic
         private string generatePartlyName(string i_FriendName)
         {
             StringBuilder hintedName = new StringBuilder();
+            List<int> generatedIndices;
+
             for (int i = 0; i < i_FriendName.Length; i++)
             {
                 if (i_FriendName[i] == ' ')
@@ -78,7 +80,15 @@ namespace Ex01_Facebook.Logic
                     hintedName.Append("_");
                 }
             }
-            List<int> generatedIndices = RandomNumbersGenerator.GenerateRandom(i_FriendName.Length / 2, 0, i_FriendName.Length - 1);
+            try
+            {
+                generatedIndices = RandomNumbersGenerator.GenerateRandom(i_FriendName.Length / 2, 0, i_FriendName.Length - 1);
+            }
+            catch (ArgumentOutOfRangeException)
+            { 
+                // a legal name on Facebook must include at least one character
+                generatedIndices = new List<int>(0);
+            }
             foreach (int index in generatedIndices)
             {
                 hintedName[index] = i_FriendName[index];
@@ -103,6 +113,18 @@ namespace Ex01_Facebook.Logic
         {
             m_WinsInARow = 0;
             Health -= Health >= 2 ? 2 : 1; 
+        }
+
+        public bool IsGameOver()
+        {
+            return Health == 0;
+        }
+
+        public void Restart()
+        {
+            Health = 6;
+            Score = 0;
+            m_WinsInARow = 0;
         }
 
         public void GiveUp()

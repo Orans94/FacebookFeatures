@@ -20,7 +20,10 @@ namespace Ex01_Facebook.UI
         public void Run()
         {
             Application.Run(m_FormLogin);
-            Application.Run(m_FormFacebookApp);
+            if (m_Engine.LoggedInUser != null)
+            {
+                Application.Run(m_FormFacebookApp);
+            }
         }
     }
 }

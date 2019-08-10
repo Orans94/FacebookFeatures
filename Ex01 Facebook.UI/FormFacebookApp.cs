@@ -27,13 +27,169 @@ namespace Ex01_Facebook.UI
             updateProfilePictureBox();
             initGuessingGame();
         }
-
         private void updateProfilePictureBox()
         {
             pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
             pictureBoxProfilePicture2.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
+            pictureBoxProfilePicture3.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
         }
 
+
+        #region BASIC FACEBOOK FEATURES
+        private void linkPosts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            fetchPosts();
+        }
+        private void fetchPosts()
+        {
+            foreach (Post post in EngineManager.LoggedInUser.Posts)
+            {
+                if (post.Message != null)
+                {
+                    listBoxPosts.Items.Add(post.Message);
+                }
+                else if (post.Caption != null)
+                {
+                    listBoxPosts.Items.Add(post.Caption);
+                }
+                else
+                {
+                    listBoxPosts.Items.Add(string.Format("[{0}]", post.Type));
+                }
+            }
+
+            if (EngineManager.LoggedInUser.Posts.Count == 0)
+            {
+                MessageBox.Show("Sorry, No Posts to retrieve!");
+            }
+        }
+
+        private void linkFriends_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            fetchFriends();
+        }
+
+        private void fetchFriends()
+        {
+            listBoxFriends.Items.Clear();
+            listBoxFriends.DisplayMember = "Name";
+            foreach (User friend in EngineManager.LoggedInUser.Friends)
+            {
+                listBoxFriends.Items.Add(friend);
+                friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+            }
+
+            if (EngineManager.LoggedInUser.Friends.Count == 0)
+            {
+                MessageBox.Show("No friends to retrieve");
+            }
+        }
+        private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displaySelectedFriend();
+
+        }
+
+        private void displaySelectedFriend()
+        {
+            if (listBoxFriends.SelectedItems.Count == 1)
+            {
+                User selectedFriend = listBoxFriends.SelectedItem as User;
+                if (selectedFriend.PictureNormalURL != null)
+                {
+                    pictureBoxSelectedFriend.LoadAsync(selectedFriend.PictureNormalURL);
+                }
+                else
+                {
+                    pictureBoxProfilePicture3.Image = pictureBoxProfilePicture3.ErrorImage;
+                }
+            }
+        }
+
+
+        private void labelEvents_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            fetchEvents();
+        }
+        private void fetchEvents()
+        {
+            listBoxEvents.Items.Clear();
+            listBoxEvents.DisplayMember = "Name";
+            foreach (Event fbEvent in EngineManager.LoggedInUser.Events)
+            {
+                listBoxEvents.Items.Add(fbEvent);
+            }
+
+            if (EngineManager.LoggedInUser.Events.Count == 0)
+            {
+                MessageBox.Show("No events to retrieve");
+            }
+        }
+        private void linkCheckins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            fetchCheckins();
+        }
+
+        private void fetchCheckins()
+        {
+            foreach (Checkin checkin in EngineManager.LoggedInUser.Checkins)
+            {
+                listBoxCheckins.Items.Add(checkin.Place.Name);
+            }
+
+            if (EngineManager.LoggedInUser.Checkins.Count == 0)
+            {
+                MessageBox.Show("No checkins to retrieve");
+            }
+        }
+        private void linkPages_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            fetchPages();
+        }
+        private void fetchPages()
+        {
+            listBoxPages.Items.Clear();
+            listBoxPages.DisplayMember = "Name";
+
+            foreach (Page page in EngineManager.LoggedInUser.LikedPages)
+            {
+                listBoxPages.Items.Add(page);
+            }
+
+            if (EngineManager.LoggedInUser.LikedPages.Count == 0)
+            {
+                MessageBox.Show("No liked pages to retrieve");
+            }
+        }
+        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxEvents.SelectedItems.Count == 1)
+            {
+                Event selectedEvent = listBoxEvents.SelectedItem as Event;
+                pictureBoxEvent.LoadAsync(selectedEvent.PictureNormalURL);
+            }
+        }
+
+        private void listBoxPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxPages.SelectedItems.Count == 1)
+            {
+                Page selectedPage = listBoxPages.SelectedItem as Page;
+                pictureBoxPage.LoadAsync(selectedPage.PictureNormalURL);
+            }
+
+        }
+
+        private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Post selected = EngineManager.LoggedInUser.Posts[listBoxPosts.SelectedIndex];
+            listBoxPostComments.DisplayMember = "Message";
+            listBoxPostComments.DataSource = selected.Comments;
+        }
+        #endregion
+
+        #region DATING FACEBOOK FEATURE
+        
         private void initGuessingGame()
         {
             buttonRollAFriend.Enabled = true;
@@ -81,7 +237,7 @@ namespace Ex01_Facebook.UI
 
         private void checkBoxFilterHomeTown_Click(object sender, EventArgs e)
         {
-            if(checkBoxFilterHomeTown.Checked)
+            if (checkBoxFilterHomeTown.Checked)
             {
                 textBoxHomeTown.Enabled = true;
             }
@@ -93,12 +249,14 @@ namespace Ex01_Facebook.UI
 
         private void checkBoxFilterHomeTown_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxFilterHomeTown.Checked)
+            if (checkBoxFilterHomeTown.Checked)
             {
                 textBoxHomeTown.Enabled = true;
             }
         }
+        #endregion
 
+        #region GUESS MY NAME FACEBOOK FEATURE
         private void buttonRollAFriend_Click(object sender, EventArgs e)
         {
             rollAFriend();
@@ -155,17 +313,43 @@ namespace Ex01_Facebook.UI
             prepareNextRound();
         }
 
-        private void updateUserState(bool isUserGuessedRight, bool isStrikeThree, string friendName)
+        private void updateUserState(bool i_IsUserGuessedRight, bool i_IsStrikeThree, string i_FriendName)
         {
-            updateLabelUserInteractionAboutCurrentRound(isUserGuessedRight, isStrikeThree, friendName);
+            updateLabelUserInteractionAboutCurrentRound(i_IsUserGuessedRight, i_IsStrikeThree, i_FriendName);
+            updateUserGamingData();
+        }
+
+        private void updateUserGamingData()
+        {
             updateScore();
             updateHealthBar();
         }
 
         private void prepareNextRound()
         {
-            updateInstructionForNewRound();
-            clearGuessingField();
+            bool isGameOver;
+
+            isGameOver = EngineManager.IsGuessingGameOver();
+            if (isGameOver)
+            {
+                string losingMessage = string.Format("You Lost{0}Game Score : {1}{0}Click Roll a friend! to start a new game", Environment.NewLine, EngineManager.GetUserGuessingGameScore());
+                MessageBox.Show(losingMessage,"Facebook guess my name");
+                EngineManager.RestartGuessingGame();
+                restartGuessingGame();
+            }
+            else
+            {
+                updateInstructionForNewRound();
+                clearGuessingField();
+                initGuessingGame();
+            }
+
+        }
+
+        private void restartGuessingGame()
+        {
+            PictureBoxFriendPicture.BackgroundImage = null;
+            updateUserGamingData();
             initGuessingGame();
         }
 
@@ -179,7 +363,7 @@ namespace Ex01_Facebook.UI
             else
             {
                 labelUserInteraction.ForeColor = Color.Red;
-                labelUserInteraction.Text = string.Format("WRONG! The answer is: {0}", friendName);
+                labelUserInteraction.Text = string.Format("WRONG! The correct answer is: {0}", friendName);
             }
         }
 
@@ -254,10 +438,8 @@ namespace Ex01_Facebook.UI
         private void giveUp()
         {
             EngineManager.GiveUpGuessingGame();
-            clearGuessingField();
-            initGuessingGame();
             updateHealthBar();
-            updateInstructionForNewRound();
+            prepareNextRound();
             exposeFriendName();
         }
 
@@ -275,5 +457,6 @@ namespace Ex01_Facebook.UI
                 checkGuess();
             }
         }
+        #endregion
     }
 }

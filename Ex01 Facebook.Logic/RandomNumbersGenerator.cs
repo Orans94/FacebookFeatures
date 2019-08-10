@@ -18,8 +18,7 @@ namespace Ex01_Facebook.Logic
                     (i_CountOfNumberToGenerate > i_Max - i_Min && i_Max - i_Min > 0))
             {
                 // need to use 64-bit to support big ranges (negative min, positive max)
-                throw new ArgumentOutOfRangeException("Range " + i_Min + " to " + i_Max +
-                        " (" + ((Int64)i_Max - (Int64)i_Min) + " values), or count " + i_CountOfNumberToGenerate + " is illegal");
+                throw new ArgumentOutOfRangeException();
             }
 
             // generate count random values.

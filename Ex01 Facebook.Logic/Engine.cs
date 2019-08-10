@@ -39,17 +39,22 @@ namespace Ex01_Facebook.Logic
         public LoginResult LoginToFacebook()
         {
             // TODO handle expection!!
-            LoginResult result = FacebookService.Login("1450160541956417", r_Permissions);
+            LoginResult result;
+            try
+            {
+                result = FacebookService.Login("1450160541956417", r_Permissions);
+            }
+            catch (Exception)
+            {
+                // error was occurred
+                result = null;
+            }
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
                 LoggedInUser = result.LoggedInUser;
                 DatingFeature = new FacebookDatingFeature(LoggedInUser);
-                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 6 };
-            }
-            else
-            {   // alert to UI error was occurred
-               // MessageBox.Show(result.ErrorMessage);
+                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 6, Score = 0 };
             }
 
             return result;
@@ -111,6 +116,16 @@ namespace Ex01_Facebook.Logic
         public bool IsUserWorthyExtraHealth(bool i_IsUserGuessedRight)
         {
             return GuessMyNameFeature.IsUserWorthyExtraHealth(i_IsUserGuessedRight);
+        }
+
+        public bool IsGuessingGameOver()
+        {
+            return GuessMyNameFeature.IsGameOver();
+        }
+
+        public void RestartGuessingGame()
+        {
+            GuessMyNameFeature.Restart();
         }
     }
 }

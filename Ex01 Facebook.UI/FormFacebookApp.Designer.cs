@@ -69,6 +69,25 @@
             this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
             this.buttonRollAFriend = new System.Windows.Forms.Button();
             this.pictureBoxProfilePicture2 = new System.Windows.Forms.PictureBox();
+            this.tabPageBasicFacebook = new System.Windows.Forms.TabPage();
+            this.pictureBoxProfilePicture3 = new System.Windows.Forms.PictureBox();
+            this.listBoxPostComments = new System.Windows.Forms.ListBox();
+            this.linkPosts = new System.Windows.Forms.LinkLabel();
+            this.listBoxPosts = new System.Windows.Forms.ListBox();
+            this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.linkFriends = new System.Windows.Forms.LinkLabel();
+            this.pictureBoxSelectedFriend = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEvent = new System.Windows.Forms.PictureBox();
+            this.listBoxEvents = new System.Windows.Forms.ListBox();
+            this.labelEvents = new System.Windows.Forms.LinkLabel();
+            this.linkCheckins = new System.Windows.Forms.LinkLabel();
+            this.listBoxCheckins = new System.Windows.Forms.ListBox();
+            this.pictureBoxPage = new System.Windows.Forms.PictureBox();
+            this.listBoxPages = new System.Windows.Forms.ListBox();
+            this.linkPages = new System.Windows.Forms.LinkLabel();
+            this.labelFriendPicture = new System.Windows.Forms.Label();
+            this.labelEventDetails = new System.Windows.Forms.Label();
+            this.labelPageDetails = new System.Windows.Forms.Label();
             labelAbout = new System.Windows.Forms.Label();
             labelBirthday = new System.Windows.Forms.Label();
             labelEmail = new System.Windows.Forms.Label();
@@ -87,6 +106,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture2)).BeginInit();
+            this.tabPageBasicFacebook.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedFriend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPage)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAbout
@@ -145,6 +169,7 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPageBasicFacebook);
             this.tabControl1.Controls.Add(this.tabPageFinderDating);
             this.tabControl1.Controls.Add(this.tabPageGuessFriendName);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
@@ -379,8 +404,8 @@
             this.labelRules.Name = "labelRules";
             this.labelRules.Size = new System.Drawing.Size(218, 115);
             this.labelRules.TabIndex = 12;
-            this.labelRules.Text = "Rules:\r\nCorrect guess => +10 to score\r\nWrong guess => -6 to health bar\r\nThree cor" +
-    "rect guesses in a row => +3 to health bar\r\nGiveup => -3 to health bar";
+            this.labelRules.Text = "Rules:\r\nCorrect guess => +10 to score\r\nThree correct guesses in a row => +3 to he" +
+    "alth bar\r\nWrong guess => -6 to health bar\r\nGiveup => -3 to health bar";
             // 
             // pictureBoxHealthBar
             // 
@@ -500,6 +525,263 @@
             this.pictureBoxProfilePicture2.TabIndex = 0;
             this.pictureBoxProfilePicture2.TabStop = false;
             // 
+            // tabPageBasicFacebook
+            // 
+            this.tabPageBasicFacebook.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.bluebackground;
+            this.tabPageBasicFacebook.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPageBasicFacebook.Controls.Add(this.labelPageDetails);
+            this.tabPageBasicFacebook.Controls.Add(this.labelEventDetails);
+            this.tabPageBasicFacebook.Controls.Add(this.labelFriendPicture);
+            this.tabPageBasicFacebook.Controls.Add(this.pictureBoxPage);
+            this.tabPageBasicFacebook.Controls.Add(this.listBoxPages);
+            this.tabPageBasicFacebook.Controls.Add(this.linkPages);
+            this.tabPageBasicFacebook.Controls.Add(this.linkCheckins);
+            this.tabPageBasicFacebook.Controls.Add(this.listBoxCheckins);
+            this.tabPageBasicFacebook.Controls.Add(this.pictureBoxEvent);
+            this.tabPageBasicFacebook.Controls.Add(this.listBoxEvents);
+            this.tabPageBasicFacebook.Controls.Add(this.labelEvents);
+            this.tabPageBasicFacebook.Controls.Add(this.listBoxFriends);
+            this.tabPageBasicFacebook.Controls.Add(this.linkFriends);
+            this.tabPageBasicFacebook.Controls.Add(this.pictureBoxSelectedFriend);
+            this.tabPageBasicFacebook.Controls.Add(this.listBoxPostComments);
+            this.tabPageBasicFacebook.Controls.Add(this.linkPosts);
+            this.tabPageBasicFacebook.Controls.Add(this.listBoxPosts);
+            this.tabPageBasicFacebook.Controls.Add(this.pictureBoxProfilePicture3);
+            this.tabPageBasicFacebook.Location = new System.Drawing.Point(4, 25);
+            this.tabPageBasicFacebook.Name = "tabPageBasicFacebook";
+            this.tabPageBasicFacebook.Size = new System.Drawing.Size(999, 554);
+            this.tabPageBasicFacebook.TabIndex = 2;
+            this.tabPageBasicFacebook.Text = "Basic Facebook featrues";
+            this.tabPageBasicFacebook.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxProfilePicture3
+            // 
+            this.pictureBoxProfilePicture3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxProfilePicture3.Location = new System.Drawing.Point(3, 6);
+            this.pictureBoxProfilePicture3.Name = "pictureBoxProfilePicture3";
+            this.pictureBoxProfilePicture3.Size = new System.Drawing.Size(87, 85);
+            this.pictureBoxProfilePicture3.TabIndex = 1;
+            this.pictureBoxProfilePicture3.TabStop = false;
+            // 
+            // listBoxPostComments
+            // 
+            this.listBoxPostComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxPostComments.DisplayMember = "name";
+            this.listBoxPostComments.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxPostComments.FormattingEnabled = true;
+            this.listBoxPostComments.HorizontalScrollbar = true;
+            this.listBoxPostComments.ItemHeight = 24;
+            this.listBoxPostComments.Location = new System.Drawing.Point(3, 316);
+            this.listBoxPostComments.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxPostComments.Name = "listBoxPostComments";
+            this.listBoxPostComments.Size = new System.Drawing.Size(291, 172);
+            this.listBoxPostComments.TabIndex = 54;
+            // 
+            // linkPosts
+            // 
+            this.linkPosts.AutoSize = true;
+            this.linkPosts.LinkColor = System.Drawing.Color.White;
+            this.linkPosts.Location = new System.Drawing.Point(8, 112);
+            this.linkPosts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkPosts.Name = "linkPosts";
+            this.linkPosts.Size = new System.Drawing.Size(82, 17);
+            this.linkPosts.TabIndex = 53;
+            this.linkPosts.TabStop = true;
+            this.linkPosts.Text = "Fetch Posts";
+            this.linkPosts.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPosts_LinkClicked);
+            // 
+            // listBoxPosts
+            // 
+            this.listBoxPosts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxPosts.DisplayMember = "name";
+            this.listBoxPosts.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxPosts.FormattingEnabled = true;
+            this.listBoxPosts.HorizontalScrollbar = true;
+            this.listBoxPosts.ItemHeight = 24;
+            this.listBoxPosts.Location = new System.Drawing.Point(4, 137);
+            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxPosts.Name = "listBoxPosts";
+            this.listBoxPosts.Size = new System.Drawing.Size(291, 172);
+            this.listBoxPosts.TabIndex = 52;
+            this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
+            // 
+            // listBoxFriends
+            // 
+            this.listBoxFriends.FormattingEnabled = true;
+            this.listBoxFriends.HorizontalScrollbar = true;
+            this.listBoxFriends.ItemHeight = 16;
+            this.listBoxFriends.Location = new System.Drawing.Point(314, 137);
+            this.listBoxFriends.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxFriends.Name = "listBoxFriends";
+            this.listBoxFriends.Size = new System.Drawing.Size(277, 180);
+            this.listBoxFriends.TabIndex = 55;
+            this.listBoxFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
+            // 
+            // linkFriends
+            // 
+            this.linkFriends.AutoSize = true;
+            this.linkFriends.LinkArea = new System.Windows.Forms.LinkArea(0, 13);
+            this.linkFriends.LinkColor = System.Drawing.Color.White;
+            this.linkFriends.Location = new System.Drawing.Point(311, 112);
+            this.linkFriends.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkFriends.Name = "linkFriends";
+            this.linkFriends.Size = new System.Drawing.Size(94, 17);
+            this.linkFriends.TabIndex = 57;
+            this.linkFriends.TabStop = true;
+            this.linkFriends.Text = "Fetch Friends";
+            this.linkFriends.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkFriends_LinkClicked);
+            // 
+            // pictureBoxSelectedFriend
+            // 
+            this.pictureBoxSelectedFriend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxSelectedFriend.Location = new System.Drawing.Point(456, 15);
+            this.pictureBoxSelectedFriend.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxSelectedFriend.Name = "pictureBoxSelectedFriend";
+            this.pictureBoxSelectedFriend.Size = new System.Drawing.Size(106, 100);
+            this.pictureBoxSelectedFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSelectedFriend.TabIndex = 56;
+            this.pictureBoxSelectedFriend.TabStop = false;
+            // 
+            // pictureBoxEvent
+            // 
+            this.pictureBoxEvent.Location = new System.Drawing.Point(748, 52);
+            this.pictureBoxEvent.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxEvent.Name = "pictureBoxEvent";
+            this.pictureBoxEvent.Size = new System.Drawing.Size(144, 77);
+            this.pictureBoxEvent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxEvent.TabIndex = 59;
+            this.pictureBoxEvent.TabStop = false;
+            // 
+            // listBoxEvents
+            // 
+            this.listBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxEvents.DisplayMember = "name";
+            this.listBoxEvents.FormattingEnabled = true;
+            this.listBoxEvents.HorizontalScrollbar = true;
+            this.listBoxEvents.ItemHeight = 16;
+            this.listBoxEvents.Location = new System.Drawing.Point(599, 137);
+            this.listBoxEvents.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxEvents.Name = "listBoxEvents";
+            this.listBoxEvents.Size = new System.Drawing.Size(293, 180);
+            this.listBoxEvents.TabIndex = 58;
+            this.listBoxEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEvents_SelectedIndexChanged);
+            // 
+            // labelEvents
+            // 
+            this.labelEvents.AutoSize = true;
+            this.labelEvents.LinkArea = new System.Windows.Forms.LinkArea(0, 13);
+            this.labelEvents.LinkColor = System.Drawing.Color.White;
+            this.labelEvents.Location = new System.Drawing.Point(596, 112);
+            this.labelEvents.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEvents.Name = "labelEvents";
+            this.labelEvents.Size = new System.Drawing.Size(94, 17);
+            this.labelEvents.TabIndex = 60;
+            this.labelEvents.TabStop = true;
+            this.labelEvents.Text = "Fetch Events ";
+            this.labelEvents.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labelEvents_LinkClicked);
+            // 
+            // linkCheckins
+            // 
+            this.linkCheckins.AutoSize = true;
+            this.linkCheckins.LinkArea = new System.Windows.Forms.LinkArea(0, 14);
+            this.linkCheckins.LinkColor = System.Drawing.Color.White;
+            this.linkCheckins.Location = new System.Drawing.Point(314, 363);
+            this.linkCheckins.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkCheckins.Name = "linkCheckins";
+            this.linkCheckins.Size = new System.Drawing.Size(104, 17);
+            this.linkCheckins.TabIndex = 62;
+            this.linkCheckins.TabStop = true;
+            this.linkCheckins.Text = "Fetch Checkins";
+            this.linkCheckins.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCheckins_LinkClicked);
+            // 
+            // listBoxCheckins
+            // 
+            this.listBoxCheckins.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBoxCheckins.DisplayMember = "name";
+            this.listBoxCheckins.FormattingEnabled = true;
+            this.listBoxCheckins.HorizontalScrollbar = true;
+            this.listBoxCheckins.ItemHeight = 16;
+            this.listBoxCheckins.Location = new System.Drawing.Point(314, 404);
+            this.listBoxCheckins.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxCheckins.Name = "listBoxCheckins";
+            this.listBoxCheckins.Size = new System.Drawing.Size(277, 84);
+            this.listBoxCheckins.TabIndex = 61;
+            // 
+            // pictureBoxPage
+            // 
+            this.pictureBoxPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxPage.Location = new System.Drawing.Point(859, 402);
+            this.pictureBoxPage.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxPage.Name = "pictureBoxPage";
+            this.pictureBoxPage.Size = new System.Drawing.Size(109, 84);
+            this.pictureBoxPage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPage.TabIndex = 64;
+            this.pictureBoxPage.TabStop = false;
+            // 
+            // listBoxPages
+            // 
+            this.listBoxPages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxPages.DisplayMember = "name";
+            this.listBoxPages.FormattingEnabled = true;
+            this.listBoxPages.HorizontalScrollbar = true;
+            this.listBoxPages.ItemHeight = 16;
+            this.listBoxPages.Location = new System.Drawing.Point(595, 402);
+            this.listBoxPages.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxPages.Name = "listBoxPages";
+            this.listBoxPages.Size = new System.Drawing.Size(256, 84);
+            this.listBoxPages.TabIndex = 63;
+            this.listBoxPages.SelectedIndexChanged += new System.EventHandler(this.listBoxPages_SelectedIndexChanged);
+            // 
+            // linkPages
+            // 
+            this.linkPages.AutoSize = true;
+            this.linkPages.LinkArea = new System.Windows.Forms.LinkArea(0, 17);
+            this.linkPages.LinkColor = System.Drawing.Color.White;
+            this.linkPages.Location = new System.Drawing.Point(599, 363);
+            this.linkPages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkPages.Name = "linkPages";
+            this.linkPages.Size = new System.Drawing.Size(214, 35);
+            this.linkPages.TabIndex = 65;
+            this.linkPages.TabStop = true;
+            this.linkPages.Text = "Fetch Liked Pages \r\n(Click on a page to view it\'s picture)";
+            this.linkPages.UseCompatibleTextRendering = true;
+            this.linkPages.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPages_LinkClicked);
+            // 
+            // labelFriendPicture
+            // 
+            this.labelFriendPicture.AutoSize = true;
+            this.labelFriendPicture.ForeColor = System.Drawing.Color.White;
+            this.labelFriendPicture.Location = new System.Drawing.Point(339, 63);
+            this.labelFriendPicture.Name = "labelFriendPicture";
+            this.labelFriendPicture.Size = new System.Drawing.Size(99, 17);
+            this.labelFriendPicture.TabIndex = 66;
+            this.labelFriendPicture.Text = "Friend picture:";
+            // 
+            // labelEventDetails
+            // 
+            this.labelEventDetails.AutoSize = true;
+            this.labelEventDetails.ForeColor = System.Drawing.Color.White;
+            this.labelEventDetails.Location = new System.Drawing.Point(642, 74);
+            this.labelEventDetails.Name = "labelEventDetails";
+            this.labelEventDetails.Size = new System.Drawing.Size(93, 17);
+            this.labelEventDetails.TabIndex = 67;
+            this.labelEventDetails.Text = "Event details:";
+            // 
+            // labelPageDetails
+            // 
+            this.labelPageDetails.AutoSize = true;
+            this.labelPageDetails.ForeColor = System.Drawing.Color.White;
+            this.labelPageDetails.Location = new System.Drawing.Point(878, 363);
+            this.labelPageDetails.Name = "labelPageDetails";
+            this.labelPageDetails.Size = new System.Drawing.Size(90, 17);
+            this.labelPageDetails.TabIndex = 68;
+            this.labelPageDetails.Text = "Page details:";
+            // 
             // FormFacebookApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -525,6 +807,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture2)).EndInit();
+            this.tabPageBasicFacebook.ResumeLayout(false);
+            this.tabPageBasicFacebook.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedFriend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,5 +866,24 @@
         private System.Windows.Forms.PictureBox pictureBoxHealthBar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label labelRules;
+        private System.Windows.Forms.TabPage tabPageBasicFacebook;
+        private System.Windows.Forms.ListBox listBoxPostComments;
+        private System.Windows.Forms.LinkLabel linkPosts;
+        private System.Windows.Forms.ListBox listBoxPosts;
+        private System.Windows.Forms.PictureBox pictureBoxProfilePicture3;
+        private System.Windows.Forms.ListBox listBoxFriends;
+        private System.Windows.Forms.LinkLabel linkFriends;
+        private System.Windows.Forms.PictureBox pictureBoxSelectedFriend;
+        private System.Windows.Forms.PictureBox pictureBoxPage;
+        private System.Windows.Forms.ListBox listBoxPages;
+        private System.Windows.Forms.LinkLabel linkPages;
+        private System.Windows.Forms.LinkLabel linkCheckins;
+        private System.Windows.Forms.ListBox listBoxCheckins;
+        private System.Windows.Forms.PictureBox pictureBoxEvent;
+        private System.Windows.Forms.ListBox listBoxEvents;
+        private System.Windows.Forms.LinkLabel labelEvents;
+        private System.Windows.Forms.Label labelPageDetails;
+        private System.Windows.Forms.Label labelEventDetails;
+        private System.Windows.Forms.Label labelFriendPicture;
     }
 }
