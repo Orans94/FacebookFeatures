@@ -7,14 +7,12 @@ namespace Ex01_Facebook.Logic
 {
     public class RandomNumbersGenerator
     {
-
-        Random m_Random = new Random();
+        private Random m_Random = new Random();
 
         public List<int> GenerateRandom(int i_CountOfNumberToGenerate, int i_Min, int i_Max)
         {
-
+            // max - min > 0 required to avoid overflow
             if (i_Max <= i_Min || i_CountOfNumberToGenerate < 0 ||
-                    // max - min > 0 required to avoid overflow
                     (i_CountOfNumberToGenerate > i_Max - i_Min && i_Max - i_Min > 0))
             {
                 // need to use 64-bit to support big ranges (negative min, positive max)
@@ -57,8 +55,7 @@ namespace Ex01_Facebook.Logic
 
         public List<int> GenerateRandom(int i_Count)
         {
-            return GenerateRandom(i_Count, 0, Int32.MaxValue);
+            return GenerateRandom(i_Count, 0, int.MaxValue);
         }
-
     }
 }

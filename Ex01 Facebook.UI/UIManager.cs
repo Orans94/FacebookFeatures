@@ -1,16 +1,15 @@
-﻿using Ex01_Facebook.Logic;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using Ex01_Facebook.Logic;
 
 namespace Ex01_Facebook.UI
 {
     public class UIManager
     {
+        private readonly AppSettings m_AppSettings;
+        private readonly FormLogin m_FormLogin;
+        private readonly FormFacebookApp m_FormFacebookApp;
         private Engine m_Engine;
-        private AppSettings m_AppSettings;
-        private FormLogin m_FormLogin;
-        private FormFacebookApp m_FormFacebookApp;
-
 
         public UIManager()
         {

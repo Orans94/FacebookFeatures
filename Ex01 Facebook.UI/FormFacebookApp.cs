@@ -1,7 +1,4 @@
-﻿using Ex01_Facebook.Logic;
-using Ex01_Facebook.UI.Properties;
-using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +6,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Ex01_Facebook.Logic;
+using Ex01_Facebook.UI.Properties;
+using FacebookWrapper.ObjectModel;
 
 namespace Ex01_Facebook.UI
 {
     public partial class FormFacebookApp : Form
     {
         public Engine EngineManager { get; set; }
+
         private AppSettings ApplicationSettings { get; set; }
 
         public FormFacebookApp(Engine i_Engine, AppSettings i_AppSettings)
@@ -29,6 +30,7 @@ namespace Ex01_Facebook.UI
             updateProfilePictureBox();
             initGuessingGame();
         }
+
         private void updateProfilePictureBox()
         {
             pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
@@ -62,13 +64,13 @@ namespace Ex01_Facebook.UI
             }
 
             ApplicationSettings.SaveToFile();
-
         }
 
         private void linkPosts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             fetchPosts();
         }
+
         private void fetchPosts()
         {
             foreach (Post post in EngineManager.LoggedInUser.Posts)
@@ -114,10 +116,10 @@ namespace Ex01_Facebook.UI
                 MessageBox.Show("No friends to retrieve");
             }
         }
+
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
             displaySelectedFriend();
-
         }
 
         private void displaySelectedFriend()
@@ -136,12 +138,12 @@ namespace Ex01_Facebook.UI
             }
         }
 
-
         private void labelEvents_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             labelEventDetails.Visible = true;
             fetchEvents();
         }
+
         private void fetchEvents()
         {
             listBoxEvents.Items.Clear();
@@ -156,6 +158,7 @@ namespace Ex01_Facebook.UI
                 MessageBox.Show("No events to retrieve");
             }
         }
+
         private void linkCheckins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             fetchCheckins();
@@ -173,16 +176,17 @@ namespace Ex01_Facebook.UI
                 MessageBox.Show("No checkins to retrieve");
             }
         }
+
         private void linkPages_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             labelPageDetails.Visible = true;
             fetchPages();
         }
+
         private void fetchPages()
         {
             listBoxPages.Items.Clear();
             listBoxPages.DisplayMember = "Name";
-
             foreach (Page page in EngineManager.LoggedInUser.LikedPages)
             {
                 listBoxPages.Items.Add(page);
@@ -193,6 +197,7 @@ namespace Ex01_Facebook.UI
                 MessageBox.Show("No liked pages to retrieve");
             }
         }
+
         private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxEvents.SelectedItems.Count == 1)
@@ -209,7 +214,6 @@ namespace Ex01_Facebook.UI
                 Page selectedPage = listBoxPages.SelectedItem as Page;
                 pictureBoxPage.LoadAsync(selectedPage.PictureNormalURL);
             }
-
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
@@ -230,8 +234,6 @@ namespace Ex01_Facebook.UI
             buttonHint.Enabled = false;
             textBoxUserGuess.Enabled = false;
         }
-
-
 
         private void buttonFilter_Click(object sender, EventArgs e)
         {
@@ -259,6 +261,7 @@ namespace Ex01_Facebook.UI
                 MessageBox.Show("Please choose a gender filter");
                 genderFilterChosen = false;
             }
+
             if (genderFilterChosen)
             {
                 gender = radioButtonMale.Checked ? User.eGender.male : User.eGender.female;
@@ -302,7 +305,6 @@ namespace Ex01_Facebook.UI
             pictureBoxFriend.BackgroundImage = friendToGuess.ImageLarge;
             activateActiveButtonsInGuessingGame();
             labelInstruction.Text = string.Empty;
-            Console.WriteLine(friendToGuess.Name); //TODO DELETE
         }
 
         private void activateActiveButtonsInGuessingGame()
@@ -365,7 +367,7 @@ namespace Ex01_Facebook.UI
             if (isGameOver)
             {
                 string losingMessage = string.Format("You Lost{0}Game Score : {1}{0}Click Roll a friend! to start a new game", Environment.NewLine, EngineManager.GetUserGuessingGameScore());
-                MessageBox.Show(losingMessage,"Facebook guess my name");
+                MessageBox.Show(losingMessage, "Facebook guess my name");
                 EngineManager.RestartGuessingGame();
                 restartGuessingGame();
             }
@@ -375,7 +377,6 @@ namespace Ex01_Facebook.UI
                 clearGuessingField();
                 initGuessingGame();
             }
-
         }
 
         private void restartGuessingGame()
@@ -431,6 +432,7 @@ namespace Ex01_Facebook.UI
 
             pictureBoxHealthBar.BackgroundImage = getHealthBarImageFromResources(health);
         }
+
         private Bitmap getHealthBarImageFromResources(int i_CurrentHealth)
         {
             Bitmap healthBarToSet = null;

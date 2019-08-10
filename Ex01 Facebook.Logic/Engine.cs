@@ -1,20 +1,23 @@
-﻿using FacebookWrapper;
-using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FacebookWrapper;
+using FacebookWrapper.ObjectModel;
 
 namespace Ex01_Facebook.Logic
 {
     public class Engine
     {
-        public FacebookDatingFeature DatingFeature{ get; set; }
+        public FacebookDatingFeature DatingFeature { get; set; }
+
         public FacebookGuessMyNameFeature GuessMyNameFeature { get; set; }
+
         public User LoggedInUser { get; set; }
+
         public LoginResult LastLoginResult { get; set; }
+
         private readonly string[] r_Permissions =
-        #region PERMISSIONS
             {
             "public_profile",
            "email",
@@ -35,7 +38,6 @@ namespace Ex01_Facebook.Logic
            "user_posts",
            "user_hometown"
         };
-        #endregion
 
         public LoginResult LoginToFacebook()
         {
@@ -105,6 +107,7 @@ namespace Ex01_Facebook.Logic
         {
             return GuessMyNameFeature.Score;
         }
+
         public int GetUserGuessingGameHealth()
         {
             return GuessMyNameFeature.Health;

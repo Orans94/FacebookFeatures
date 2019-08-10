@@ -1,5 +1,4 @@
-﻿using Ex01_Facebook.Logic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +6,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Ex01_Facebook.Logic;
 
 namespace Ex01_Facebook.UI
 {
     public partial class FormLogin : Form
     {
         private Engine EngineManager { get; set; }
+
         private AppSettings ApplicationSettings { get; set; }
+
         public FormLogin(Engine i_Engine, AppSettings i_AppSettings)
         {
             InitializeComponent();
@@ -45,6 +47,7 @@ namespace Ex01_Facebook.UI
                // this.Location = ApplicationSettings.LastWindowLocation;
                 EngineManager.ConnectToFacebookWithLastAccessToken(ApplicationSettings.LastAccessToken);
             }
+
             Close();
         }
 

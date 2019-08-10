@@ -1,21 +1,26 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FacebookWrapper.ObjectModel;
 
 namespace Ex01_Facebook.Logic
 {
-    
     public class FacebookGuessMyNameFeature
     {
         private int m_WinsInARow = 0;
         private int m_ChosenFriendIndex = -1; 
+
         public User LoggedInUser { get; set; }
+
         public FacebookObjectCollection<User> FriendsOfLoggedInUser { get; set; }
+
         public RandomNumbersGenerator RandomNumbersGenerator { get; set; }
+
         public int Score { get; set; }
+
         public int Health { get; set; }
+
         public User GetChosenFriend()
         {
             User chosenFriend = null;
@@ -42,7 +47,7 @@ namespace Ex01_Facebook.Logic
             int numberOfFriends;
 
             numberOfFriends = FriendsOfLoggedInUser.Count;
-            m_ChosenFriendIndex = rnd.Next(0, numberOfFriends-1);
+            m_ChosenFriendIndex = rnd.Next(0, numberOfFriends - 1);
 
             return FriendsOfLoggedInUser[m_ChosenFriendIndex];
         }
@@ -84,6 +89,7 @@ namespace Ex01_Facebook.Logic
                     hintedName.Append("_");
                 }
             }
+
             try
             {
                 // generate a list of indices to expose random letter from the friend name
@@ -94,6 +100,7 @@ namespace Ex01_Facebook.Logic
                 // a legal name on Facebook must include at least one character
                 generatedIndices = new List<int>(0);
             }
+
             foreach (int index in generatedIndices)
             {
                 hintedName[index] = i_FriendName[index];
@@ -153,8 +160,9 @@ namespace Ex01_Facebook.Logic
             {
                 if (Health < 6)
                 {
-                    Health ++;
+                    Health++;
                 }
+
                 m_WinsInARow = 0;
             }
         }

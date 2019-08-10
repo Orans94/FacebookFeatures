@@ -11,7 +11,6 @@ namespace Ex01_Facebook.Logic
     {
         private readonly User m_LoggedInUser;
         
-
         public FacebookDatingFeature(User i_LoggedInUser)
         {
             m_LoggedInUser = i_LoggedInUser;
@@ -29,7 +28,8 @@ namespace Ex01_Facebook.Logic
                     filteredFriendsList.AddLast(friend);
                 }
             }
-            //now show filteredUsers list in listBox -and when the user choose one of them -
+
+            // now show filteredUsers list in listBox -and when the user choose one of them -
             // their profile picture and email to contact will appear.
             return filteredFriendsList;
         }
@@ -37,7 +37,6 @@ namespace Ex01_Facebook.Logic
         private bool isFriendAMatch(User i_Friend, string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             // this method recieve a friend and return true if he mathces the filters.
-
             bool isFriendMatchingFilter;
 
             isFriendMatchingFilter = isOpenToDating(i_Friend)
@@ -50,8 +49,7 @@ namespace Ex01_Facebook.Logic
         private bool isCityMatch(string i_HomeTownFilter, City i_FriendHomeTown)
         {
             // this method recieves a HomeTownFilter and the friend hometown
-            // and return true if the friend's hometown mathces the filter
-
+            // and return true if the friend's hometown mathces the 
             bool isCityAMatch;
 
             if (i_HomeTownFilter == "all")
@@ -71,7 +69,6 @@ namespace Ex01_Facebook.Logic
             // this method recieve gender filter and a friend
             // and return true if the friend is interested in the logged in user gender
             // and if the friend's gender matches the gender filter.
-
             bool isGenderAMatch;
 
             isGenderAMatch = i_Friend.InterestedIn.Equals(m_LoggedInUser.Gender) && i_GenderFilter.Equals(i_Friend.Gender);
@@ -82,7 +79,6 @@ namespace Ex01_Facebook.Logic
         private bool isOpenToDating(User i_UserToCheck)
         {
             // this method recieves a user and return true if his relationship status is open to dating.
-
             bool isUserOpenToDating;
 
             isUserOpenToDating = i_UserToCheck.RelationshipStatus == User.eRelationshipStatus.Divorced
