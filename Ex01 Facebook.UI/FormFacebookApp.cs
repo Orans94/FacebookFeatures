@@ -1,4 +1,5 @@
 ﻿using Ex01_Facebook.Logic;
+using Ex01_Facebook.UI.Properties;
 using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
@@ -108,8 +109,62 @@ namespace Ex01_Facebook.UI
         private void buttonRollAFriend_Click(object sender, EventArgs e)
         {
             User friendToGuess = EngineManager.PickRandomFriend();
-            pictureBoxFriend.Image = friendToGuess.ImageNormal;
+            pictureBoxFriend.Image = friendToGuess.ImageLarge;
             buttonRollAFriend.Enabled = false;
+            labelInstruction.Text = string.Empty;
+        }
+
+        private void buttonHint_Click(object sender, EventArgs e)
+        {
+            labelHint.Text = EngineManager.GetHint();
+            buttonHint.Enabled = false;
+        }
+
+        private void buttonCheckGuess_Click(object sender, EventArgs e)
+        {
+            int currentUserScore;
+            bool isUserGuessedRight = EngineManager.IsUserGuessCorrect(textBoxUserGuess.Text);
+            EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
+
+            labelInstruction.Text = isUserGuessedRight ? "Correct!" : "Wrong!";
+            currentUserScore = EngineManager.GetUserGuessingGameScore();
+            updateHealthBar(currentUserScore);
+        }
+
+        private void updateHealthBar(int currentUserScore)
+        {
+            int health = EngineManager.GetHealthGuessingGame();
+            pictureBoxHealthBar.Image = getHealthBar(health);
+        }
+        private Bitmap getHealthBar(int i_CurrentHealth)
+        {
+            Bitmap healthBarToSet = null;
+
+            switch (i_CurrentHealth)
+            {
+                case 100:
+                    healthBarToSet = Resources.life100;
+                    break;
+                case 80:
+                    healthBarToSet = Resources.life80;
+                    break;
+                case 60:
+                    healthBarToSet = Resources.life60;
+                    break;
+                case 40:
+                    healthBarToSet = Resources.life40;
+                    break;
+                case 20:
+                    healthBarToSet = Resources.life20;
+                    break;
+            }
+
+            return healthBarToSet;
+        }
+
+        private void buttonGiveUp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

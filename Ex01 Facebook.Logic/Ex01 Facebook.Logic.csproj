@@ -38,6 +38,7 @@
     <Compile Include="Engine.cs" />
     <Compile Include="FacebookDatingFeature.cs" />
     <Compile Include="FacebookGuessMyNameFeature.cs" />
+    <Compile Include="RandomNumbersGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">

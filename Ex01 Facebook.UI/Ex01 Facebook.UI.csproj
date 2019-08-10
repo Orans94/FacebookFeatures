@@ -110,5 +110,20 @@
   <ItemGroup>
     <None Include="Resources\bluebackground.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life80.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

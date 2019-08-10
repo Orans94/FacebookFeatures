@@ -36,7 +36,7 @@
             System.Windows.Forms.Label labelFriendName;
             System.Windows.Forms.Label labelRelationshipStatus;
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageFinderDating = new System.Windows.Forms.TabPage();
             this.panelMatch = new System.Windows.Forms.Panel();
             this.buttonFilter = new System.Windows.Forms.Button();
             this.textBoxHomeTown = new System.Windows.Forms.TextBox();
@@ -55,16 +55,19 @@
             this.linkLinkLabel = new System.Windows.Forms.LinkLabel();
             this.nameLabel1 = new System.Windows.Forms.Label();
             this.labelRelationshipStatus1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageGuessFriendName = new System.Windows.Forms.TabPage();
+            this.labelScore = new System.Windows.Forms.Label();
+            this.labelHint = new System.Windows.Forms.Label();
+            this.buttonGiveUp = new System.Windows.Forms.Button();
+            this.buttonHint = new System.Windows.Forms.Button();
+            this.buttonCheckGuess = new System.Windows.Forms.Button();
+            this.textBoxUserGuess = new System.Windows.Forms.TextBox();
+            this.labelInstruction = new System.Windows.Forms.Label();
+            this.labelDescription1 = new System.Windows.Forms.Label();
             this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
             this.buttonRollAFriend = new System.Windows.Forms.Button();
             this.pictureBoxProfilePicture2 = new System.Windows.Forms.PictureBox();
-            this.labelDescription1 = new System.Windows.Forms.Label();
-            this.labelDescription2 = new System.Windows.Forms.Label();
-            this.textBoxUserGuess = new System.Windows.Forms.TextBox();
-            this.buttonCheckGuess = new System.Windows.Forms.Button();
-            this.buttonHint = new System.Windows.Forms.Button();
-            this.buttonGiveUp = new System.Windows.Forms.Button();
+            this.pictureBoxHealthBar = new System.Windows.Forms.PictureBox();
             labelAbout = new System.Windows.Forms.Label();
             labelBirthday = new System.Windows.Forms.Label();
             labelEmail = new System.Windows.Forms.Label();
@@ -72,15 +75,16 @@
             labelFriendName = new System.Windows.Forms.Label();
             labelRelationshipStatus = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPageFinderDating.SuspendLayout();
             this.panelMatch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture1)).BeginInit();
             this.panelMatchDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxFriendPicture)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabPageGuessFriendName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAbout
@@ -139,30 +143,30 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPageFinderDating);
+            this.tabControl1.Controls.Add(this.tabPageGuessFriendName);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1007, 583);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabPageFinderDating
             // 
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.finder_dating;
-            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage1.Controls.Add(this.panelMatch);
-            this.tabPage1.Controls.Add(this.pictureBoxProfilePicture1);
-            this.tabPage1.Controls.Add(this.panelMatchDetails);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(999, 554);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Finder Dating";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            this.tabPageFinderDating.AutoScroll = true;
+            this.tabPageFinderDating.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.finder_dating;
+            this.tabPageFinderDating.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPageFinderDating.Controls.Add(this.panelMatch);
+            this.tabPageFinderDating.Controls.Add(this.pictureBoxProfilePicture1);
+            this.tabPageFinderDating.Controls.Add(this.panelMatchDetails);
+            this.tabPageFinderDating.Location = new System.Drawing.Point(4, 25);
+            this.tabPageFinderDating.Name = "tabPageFinderDating";
+            this.tabPageFinderDating.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFinderDating.Size = new System.Drawing.Size(999, 554);
+            this.tabPageFinderDating.TabIndex = 0;
+            this.tabPageFinderDating.Text = "Finder Dating";
+            this.tabPageFinderDating.UseVisualStyleBackColor = true;
+            this.tabPageFinderDating.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // panelMatch
             // 
@@ -343,26 +347,106 @@
             this.labelRelationshipStatus1.Size = new System.Drawing.Size(100, 23);
             this.labelRelationshipStatus1.TabIndex = 13;
             // 
-            // tabPage2
+            // tabPageGuessFriendName
             // 
-            this.tabPage2.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.blog_facebook1;
-            this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tabPage2.Controls.Add(this.buttonGiveUp);
-            this.tabPage2.Controls.Add(this.buttonHint);
-            this.tabPage2.Controls.Add(this.buttonCheckGuess);
-            this.tabPage2.Controls.Add(this.textBoxUserGuess);
-            this.tabPage2.Controls.Add(this.labelDescription2);
-            this.tabPage2.Controls.Add(this.labelDescription1);
-            this.tabPage2.Controls.Add(this.pictureBoxFriend);
-            this.tabPage2.Controls.Add(this.buttonRollAFriend);
-            this.tabPage2.Controls.Add(this.pictureBoxProfilePicture2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(999, 554);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageGuessFriendName.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.blog_facebook1;
+            this.tabPageGuessFriendName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabPageGuessFriendName.Controls.Add(this.pictureBoxHealthBar);
+            this.tabPageGuessFriendName.Controls.Add(this.labelScore);
+            this.tabPageGuessFriendName.Controls.Add(this.labelHint);
+            this.tabPageGuessFriendName.Controls.Add(this.buttonGiveUp);
+            this.tabPageGuessFriendName.Controls.Add(this.buttonHint);
+            this.tabPageGuessFriendName.Controls.Add(this.buttonCheckGuess);
+            this.tabPageGuessFriendName.Controls.Add(this.textBoxUserGuess);
+            this.tabPageGuessFriendName.Controls.Add(this.labelInstruction);
+            this.tabPageGuessFriendName.Controls.Add(this.labelDescription1);
+            this.tabPageGuessFriendName.Controls.Add(this.pictureBoxFriend);
+            this.tabPageGuessFriendName.Controls.Add(this.buttonRollAFriend);
+            this.tabPageGuessFriendName.Controls.Add(this.pictureBoxProfilePicture2);
+            this.tabPageGuessFriendName.Location = new System.Drawing.Point(4, 25);
+            this.tabPageGuessFriendName.Name = "tabPageGuessFriendName";
+            this.tabPageGuessFriendName.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageGuessFriendName.Size = new System.Drawing.Size(999, 554);
+            this.tabPageGuessFriendName.TabIndex = 1;
+            this.tabPageGuessFriendName.Text = "How really do you know your friends on facebook?";
+            this.tabPageGuessFriendName.UseVisualStyleBackColor = true;
+            // 
+            // labelScore
+            // 
+            this.labelScore.AutoSize = true;
+            this.labelScore.Location = new System.Drawing.Point(712, 118);
+            this.labelScore.Name = "labelScore";
+            this.labelScore.Size = new System.Drawing.Size(64, 17);
+            this.labelScore.TabIndex = 10;
+            this.labelScore.Text = "SCORE :";
+            // 
+            // labelHint
+            // 
+            this.labelHint.AutoSize = true;
+            this.labelHint.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHint.ForeColor = System.Drawing.Color.Red;
+            this.labelHint.Location = new System.Drawing.Point(445, 321);
+            this.labelHint.Name = "labelHint";
+            this.labelHint.Size = new System.Drawing.Size(0, 19);
+            this.labelHint.TabIndex = 9;
+            // 
+            // buttonGiveUp
+            // 
+            this.buttonGiveUp.Location = new System.Drawing.Point(334, 400);
+            this.buttonGiveUp.Name = "buttonGiveUp";
+            this.buttonGiveUp.Size = new System.Drawing.Size(94, 50);
+            this.buttonGiveUp.TabIndex = 8;
+            this.buttonGiveUp.Text = "Give up";
+            this.buttonGiveUp.UseVisualStyleBackColor = true;
+            this.buttonGiveUp.Click += new System.EventHandler(this.buttonGiveUp_Click);
+            // 
+            // buttonHint
+            // 
+            this.buttonHint.Location = new System.Drawing.Point(445, 400);
+            this.buttonHint.Name = "buttonHint";
+            this.buttonHint.Size = new System.Drawing.Size(94, 50);
+            this.buttonHint.TabIndex = 7;
+            this.buttonHint.Text = "HINT";
+            this.buttonHint.UseVisualStyleBackColor = true;
+            this.buttonHint.Click += new System.EventHandler(this.buttonHint_Click);
+            // 
+            // buttonCheckGuess
+            // 
+            this.buttonCheckGuess.Location = new System.Drawing.Point(554, 400);
+            this.buttonCheckGuess.Name = "buttonCheckGuess";
+            this.buttonCheckGuess.Size = new System.Drawing.Size(94, 50);
+            this.buttonCheckGuess.TabIndex = 6;
+            this.buttonCheckGuess.Text = "Check your guess";
+            this.buttonCheckGuess.UseVisualStyleBackColor = true;
+            this.buttonCheckGuess.Click += new System.EventHandler(this.buttonCheckGuess_Click);
+            // 
+            // textBoxUserGuess
+            // 
+            this.textBoxUserGuess.Location = new System.Drawing.Point(364, 359);
+            this.textBoxUserGuess.Name = "textBoxUserGuess";
+            this.textBoxUserGuess.Size = new System.Drawing.Size(253, 22);
+            this.textBoxUserGuess.TabIndex = 5;
+            // 
+            // labelInstruction
+            // 
+            this.labelInstruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInstruction.ForeColor = System.Drawing.Color.White;
+            this.labelInstruction.Location = new System.Drawing.Point(6, 270);
+            this.labelInstruction.Name = "labelInstruction";
+            this.labelInstruction.Size = new System.Drawing.Size(357, 85);
+            this.labelInstruction.TabIndex = 4;
+            this.labelInstruction.Text = "Click Roll a friend! button to get random friend photo and try to guess his name!" +
+    "";
+            // 
+            // labelDescription1
+            // 
+            this.labelDescription1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescription1.ForeColor = System.Drawing.Color.White;
+            this.labelDescription1.Location = new System.Drawing.Point(6, 181);
+            this.labelDescription1.Name = "labelDescription1";
+            this.labelDescription1.Size = new System.Drawing.Size(370, 89);
+            this.labelDescription1.TabIndex = 3;
+            this.labelDescription1.Text = "Let\'s see how really you know your friends on Facebook...";
             // 
             // pictureBoxFriend
             // 
@@ -392,60 +476,15 @@
             this.pictureBoxProfilePicture2.TabIndex = 0;
             this.pictureBoxProfilePicture2.TabStop = false;
             // 
-            // labelDescription1
+            // pictureBoxHealthBar
             // 
-            this.labelDescription1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescription1.ForeColor = System.Drawing.Color.White;
-            this.labelDescription1.Location = new System.Drawing.Point(6, 181);
-            this.labelDescription1.Name = "labelDescription1";
-            this.labelDescription1.Size = new System.Drawing.Size(370, 89);
-            this.labelDescription1.TabIndex = 3;
-            this.labelDescription1.Text = "Let\'s see how much you really know your friends on Facebook...";
-            // 
-            // labelDescription2
-            // 
-            this.labelDescription2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescription2.ForeColor = System.Drawing.Color.White;
-            this.labelDescription2.Location = new System.Drawing.Point(6, 270);
-            this.labelDescription2.Name = "labelDescription2";
-            this.labelDescription2.Size = new System.Drawing.Size(357, 85);
-            this.labelDescription2.TabIndex = 4;
-            this.labelDescription2.Text = "Click Roll a friend! button to get random friend photo and try to guess his name!" +
-    "";
-            // 
-            // textBoxUserGuess
-            // 
-            this.textBoxUserGuess.Location = new System.Drawing.Point(364, 359);
-            this.textBoxUserGuess.Name = "textBoxUserGuess";
-            this.textBoxUserGuess.Size = new System.Drawing.Size(253, 22);
-            this.textBoxUserGuess.TabIndex = 5;
-            // 
-            // buttonCheckGuess
-            // 
-            this.buttonCheckGuess.Location = new System.Drawing.Point(554, 400);
-            this.buttonCheckGuess.Name = "buttonCheckGuess";
-            this.buttonCheckGuess.Size = new System.Drawing.Size(94, 50);
-            this.buttonCheckGuess.TabIndex = 6;
-            this.buttonCheckGuess.Text = "Check your guess";
-            this.buttonCheckGuess.UseVisualStyleBackColor = true;
-            // 
-            // buttonHint
-            // 
-            this.buttonHint.Location = new System.Drawing.Point(445, 400);
-            this.buttonHint.Name = "buttonHint";
-            this.buttonHint.Size = new System.Drawing.Size(94, 50);
-            this.buttonHint.TabIndex = 7;
-            this.buttonHint.Text = "HINT";
-            this.buttonHint.UseVisualStyleBackColor = true;
-            // 
-            // buttonGiveUp
-            // 
-            this.buttonGiveUp.Location = new System.Drawing.Point(334, 400);
-            this.buttonGiveUp.Name = "buttonGiveUp";
-            this.buttonGiveUp.Size = new System.Drawing.Size(94, 50);
-            this.buttonGiveUp.TabIndex = 8;
-            this.buttonGiveUp.Text = "Give up";
-            this.buttonGiveUp.UseVisualStyleBackColor = true;
+            this.pictureBoxHealthBar.BackgroundImage = global::Ex01_Facebook.UI.Properties.Resources.life100;
+            this.pictureBoxHealthBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxHealthBar.Location = new System.Drawing.Point(618, 0);
+            this.pictureBoxHealthBar.Name = "pictureBoxHealthBar";
+            this.pictureBoxHealthBar.Size = new System.Drawing.Size(348, 100);
+            this.pictureBoxHealthBar.TabIndex = 11;
+            this.pictureBoxHealthBar.TabStop = false;
             // 
             // FormFacebookApp
             // 
@@ -457,7 +496,7 @@
             this.Text = "Facebook features";
             this.Load += new System.EventHandler(this.FormFacebookApp_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabPageFinderDating.ResumeLayout(false);
             this.panelMatch.ResumeLayout(false);
             this.panelMatch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
@@ -465,10 +504,11 @@
             this.panelMatchDetails.ResumeLayout(false);
             this.panelMatchDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxFriendPicture)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPageGuessFriendName.ResumeLayout(false);
+            this.tabPageGuessFriendName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHealthBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,8 +516,8 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageFinderDating;
+        private System.Windows.Forms.TabPage tabPageGuessFriendName;
         private System.Windows.Forms.Panel panelMatchDetails;
         private System.Windows.Forms.PictureBox pictureBoxProfilePicture1;
         private System.Windows.Forms.ListBox listBoxFilteredFriends;
@@ -514,9 +554,12 @@
         private System.Windows.Forms.Label labelRelationshipStatus1;
         private System.Windows.Forms.Button buttonCheckGuess;
         private System.Windows.Forms.TextBox textBoxUserGuess;
-        private System.Windows.Forms.Label labelDescription2;
+        private System.Windows.Forms.Label labelInstruction;
         private System.Windows.Forms.Label labelDescription1;
         private System.Windows.Forms.Button buttonGiveUp;
         private System.Windows.Forms.Button buttonHint;
+        private System.Windows.Forms.Label labelHint;
+        private System.Windows.Forms.Label labelScore;
+        private System.Windows.Forms.PictureBox pictureBoxHealthBar;
     }
 }

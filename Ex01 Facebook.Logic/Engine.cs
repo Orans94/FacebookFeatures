@@ -44,7 +44,7 @@ namespace Ex01_Facebook.Logic
             {
                 LoggedInUser = result.LoggedInUser;
                 DatingFeature = new FacebookDatingFeature(LoggedInUser);
-                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser);
+                GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 100 };
             }
             else
             {   // alert to UI error was occurred
@@ -66,6 +66,31 @@ namespace Ex01_Facebook.Logic
         public User PickRandomFriend()
         {
             return GuessMyNameFeature.RollAFriend();
+        }
+
+        public string GetHint()
+        {
+            return GuessMyNameFeature.GetHintPartlyName();
+        }
+
+        public bool IsUserGuessCorrect(string i_UserGuess)
+        {
+            return GuessMyNameFeature.IsUserGuessCorrect(i_UserGuess);
+        }
+
+        public void UpdateUserDueToHisGuess(bool i_IsUserGuessedRight)
+        {
+            GuessMyNameFeature.UpdateUserDueToHisGuess(i_IsUserGuessedRight);
+        }
+
+        public int GetUserGuessingGameScore()
+        {
+            return GuessMyNameFeature.Score;
+        }
+
+        public int GetHealthGuessingGame()
+        {
+            return GuessMyNameFeature.Health;
         }
     }
 }
