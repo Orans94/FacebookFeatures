@@ -44,7 +44,7 @@ namespace Ex01_Facebook.Logic
             LoginResult result;
             try
             {
-                result = FacebookService.Login("1450160541956417", r_Permissions);
+                result = FacebookService.Login("337720197182315", r_Permissions);
             }
             catch (Exception)
             {

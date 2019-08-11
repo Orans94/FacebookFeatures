@@ -6,9 +6,9 @@ namespace Ex01_Facebook.UI
 {
     public class UIManager
     {
-        private readonly AppSettings m_AppSettings;
-        private readonly FormLogin m_FormLogin;
-        private readonly FormFacebookApp m_FormFacebookApp;
+        private AppSettings m_AppSettings;
+        private FormLogin m_FormLogin;
+        private FormFacebookApp m_FormFacebookApp;
         private Engine m_Engine;
 
         public UIManager()

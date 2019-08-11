@@ -28,14 +28,26 @@ namespace Ex01_Facebook.UI
         private void FormFacebookApp_Load(object sender, EventArgs e)
         {
             updateProfilePictureBox();
+            updateUserNameLables();
             initGuessingGame();
+        }
+
+        private void updateUserNameLables()
+        {
+            string userNameMessage = string.Format("Hello {0}!", EngineManager.LoggedInUser.Name);
+
+            labelUserName1.Text = userNameMessage;
+            labelUserName2.Text = userNameMessage;
+            labelUserName3.Text = userNameMessage;
         }
 
         private void updateProfilePictureBox()
         {
-            pictureBoxProfilePicture1.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
-            pictureBoxProfilePicture2.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
-            pictureBoxProfilePicture3.BackgroundImage = EngineManager.LoggedInUser.ImageNormal;
+            Image profilePic = EngineManager.LoggedInUser.ImageNormal;
+
+            pictureBoxProfilePicture1.BackgroundImage = profilePic;
+            pictureBoxProfilePicture2.BackgroundImage = profilePic;
+            pictureBoxProfilePicture3.BackgroundImage = profilePic;
         }
         #region BASIC FACEBOOK FEATURES
 
@@ -226,15 +238,6 @@ namespace Ex01_Facebook.UI
 
         #region DATING FACEBOOK FEATURE
         
-        private void initGuessingGame()
-        {
-            buttonRollAFriend.Enabled = true;
-            buttonGiveUp.Enabled = false;
-            buttonCheckGuess.Enabled = false;
-            buttonHint.Enabled = false;
-            textBoxUserGuess.Enabled = false;
-        }
-
         private void buttonFilter_Click(object sender, EventArgs e)
         {
             filterFriends();
@@ -292,6 +295,15 @@ namespace Ex01_Facebook.UI
         #endregion
 
         #region GUESS MY NAME FACEBOOK FEATURE
+        private void initGuessingGame()
+        {
+            buttonRollAFriend.Enabled = true;
+            buttonGiveUp.Enabled = false;
+            buttonCheckGuess.Enabled = false;
+            buttonHint.Enabled = false;
+            textBoxUserGuess.Enabled = false;
+        }
+
         private void buttonRollAFriend_Click(object sender, EventArgs e)
         {
             rollAFriend();
@@ -382,6 +394,7 @@ namespace Ex01_Facebook.UI
         private void restartGuessingGame()
         {
             pictureBoxFriend.BackgroundImage = null;
+            textBoxUserGuess.Text = string.Empty;
             labelUserInteraction.Text = string.Empty;
             updateUserGamingData();
             initGuessingGame();
