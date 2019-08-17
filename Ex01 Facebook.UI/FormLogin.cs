@@ -44,7 +44,6 @@ namespace Ex01_Facebook.UI
             }
             else
             {
-               // this.Location = ApplicationSettings.LastWindowLocation;
                 EngineManager.ConnectToFacebookWithLastAccessToken(ApplicationSettings.LastAccessToken);
             }
 

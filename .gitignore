@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# Files to ignore
+C19 Ex01 Oran 205493489 Tomer 312220007.docx
+C19 Ex01 Oran 205493489 Tomer 312220007.txt

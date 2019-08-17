@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex01 Facebook.UI", "Ex01 Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex01 Facebook.Logic", "Ex01 Facebook.Logic\Ex01 Facebook.Logic.csproj", "{29F0FB7E-F126-4C4C-A469-251D2CCA5CAB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DB0DF4C-0978-486D-BD9B-5AAA122D30E4}"
+	ProjectSection(SolutionItems) = preProject
+		C19 Ex01 Oran 205493489 Tomer 312220007.docx = C19 Ex01 Oran 205493489 Tomer 312220007.docx
+		C19 Ex01 Oran 205493489 Tomer 312220007.txt = C19 Ex01 Oran 205493489 Tomer 312220007.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -313,7 +313,7 @@ namespace Ex01_Facebook.UI
         {
             initGuessingGame();
             clearUserInteractionLabelField();
-            User friendToGuess = EngineManager.PickRandomFriend();
+            User friendToGuess = EngineManager.GuessMyNameFeature.RollAFriend();
             pictureBoxFriend.BackgroundImage = friendToGuess.ImageLarge;
             activateActiveButtonsInGuessingGame();
             labelInstruction.Text = string.Empty;
@@ -336,7 +336,7 @@ namespace Ex01_Facebook.UI
         private void hint()
         {
             labelUserInteraction.ForeColor = Color.White;
-            labelUserInteraction.Text = EngineManager.GetHint();
+            labelUserInteraction.Text = EngineManager.GuessMyNameFeature.GetHintPartlyName();
             buttonHint.Enabled = false;
         }
 
@@ -351,10 +351,10 @@ namespace Ex01_Facebook.UI
             string friendName;
 
             // validate user guess
-            isUserGuessedRight = EngineManager.IsUserGuessCorrect(textBoxUserGuess.Text);
-            isStrikeThree = EngineManager.IsUserWorthyExtraHealth(isUserGuessedRight);
-            EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
-            friendName = EngineManager.GetFriendToGuess().Name;
+            isUserGuessedRight = EngineManager.GuessMyNameFeature.IsUserGuessCorrect(textBoxUserGuess.Text);
+            isStrikeThree = EngineManager.GuessMyNameFeature.IsUserWorthyExtraHealth(isUserGuessedRight);
+            EngineManager.GuessMyNameFeature.UpdateUserDataDueToHisGuess(isUserGuessedRight);
+            friendName = EngineManager.GuessMyNameFeature.GetChosenFriend().Name;
             updateUserState(isUserGuessedRight, isStrikeThree, friendName);
             prepareNextRound();
         }
@@ -375,12 +375,12 @@ namespace Ex01_Facebook.UI
         {
             bool isGameOver;
 
-            isGameOver = EngineManager.IsGuessingGameOver();
+            isGameOver = EngineManager.GuessMyNameFeature.IsGameOver();
             if (isGameOver)
             {
-                string losingMessage = string.Format("You Lost{0}Game Score : {1}{0}Click Roll a friend! to start a new game", Environment.NewLine, EngineManager.GetUserGuessingGameScore());
+                string losingMessage = string.Format("You Lost{0}Game Score : {1}{0}Click Roll a friend! to start a new game", Environment.NewLine, EngineManager.GuessMyNameFeature.Score);
                 MessageBox.Show(losingMessage, "Facebook guess my name");
-                EngineManager.RestartGuessingGame();
+                EngineManager.GuessMyNameFeature.Restart();
                 restartGuessingGame();
             }
             else
@@ -434,14 +434,14 @@ namespace Ex01_Facebook.UI
             string newScoreText;
             int score;
 
-            score = EngineManager.GetUserGuessingGameScore();
+            score = EngineManager.GuessMyNameFeature.Score;
             newScoreText = string.Format("SCORE : {0}", score);
             labelScore.Text = newScoreText;
         }
 
         private void updateHealthBar()
         {
-            int health = EngineManager.GetHealthGuessingGame();
+            int health = EngineManager.GuessMyNameFeature.Health;
 
             pictureBoxHealthBar.BackgroundImage = getHealthBarImageFromResources(health);
         }
@@ -485,7 +485,7 @@ namespace Ex01_Facebook.UI
 
         private void giveUp()
         {
-            EngineManager.GiveUpGuessingGame();
+            EngineManager.GuessMyNameFeature.GiveUp();
             updateHealthBar();
             exposeFriendName();
             prepareNextRound();
@@ -493,7 +493,7 @@ namespace Ex01_Facebook.UI
 
         private void exposeFriendName()
         {
-            string friendName = EngineManager.GetFriendToGuess().Name;
+            string friendName = EngineManager.GuessMyNameFeature.GetChosenFriend().Name;
             labelUserInteraction.ForeColor = Color.Red;
             labelUserInteraction.Text = string.Format("The friend's name is: {0}", friendName);
         }
