@@ -38,7 +38,13 @@
     <Compile Include="Engine.cs" />
     <Compile Include="FacebookDatingFeature.cs" />
     <Compile Include="FacebookGuessMyNameFeature.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RandomNumbersGenerator.cs" />
+    <Compile Include="UserProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
@@ -48,6 +54,16 @@
       <HintPath>..\..\..\..\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\לימודים\קיץ\Design Pattern\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\under18.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

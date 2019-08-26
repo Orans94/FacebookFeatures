@@ -54,7 +54,7 @@ namespace Ex01_Facebook.UI
         {
             bool isLoginConfirmed;
 
-            isLoginConfirmed = EngineManager.LoggedInUser != null ? true : false;
+            isLoginConfirmed = EngineManager.IsUserLoggedIn();
 
             return isLoginConfirmed;
         }

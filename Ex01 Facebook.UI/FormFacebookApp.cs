@@ -34,7 +34,7 @@ namespace Ex01_Facebook.UI
 
         private void updateUserNameLables()
         {
-            string userNameMessage = string.Format("Hello {0}!", EngineManager.LoggedInUser.Name);
+            string userNameMessage = string.Format("Hello {0}!", EngineManager.GetUserName());
 
             labelUserName1.Text = userNameMessage;
             labelUserName2.Text = userNameMessage;
@@ -43,7 +43,7 @@ namespace Ex01_Facebook.UI
 
         private void updateProfilePictureBox()
         {
-            Image profilePic = EngineManager.LoggedInUser.ImageNormal;
+            Image profilePic = EngineManager.GetUserImageNormalSize();
 
             pictureBoxProfilePicture1.BackgroundImage = profilePic;
             pictureBoxProfilePicture2.BackgroundImage = profilePic;
@@ -68,7 +68,7 @@ namespace Ex01_Facebook.UI
 
             if (ApplicationSettings.RememberUser)
             {
-                ApplicationSettings.LastAccessToken = EngineManager.LastLoginResult.AccessToken;
+                ApplicationSettings.LastAccessToken = EngineManager.GetUserAccessToken();
             }
             else
             {
@@ -85,7 +85,7 @@ namespace Ex01_Facebook.UI
 
         private void fetchPosts()
         {
-            foreach (Post post in EngineManager.LoggedInUser.Posts)
+            foreach (Post post in EngineManager.GetUserPosts())
             {
                 if (post.Message != null)
                 {
@@ -101,7 +101,7 @@ namespace Ex01_Facebook.UI
                 }
             }
 
-            if (EngineManager.LoggedInUser.Posts.Count == 0)
+            if (EngineManager.GetUserPosts().Count == 0)
             {
                 MessageBox.Show("Sorry, No Posts to retrieve!");
             }
@@ -117,13 +117,13 @@ namespace Ex01_Facebook.UI
         {
             listBoxFriends.Items.Clear();
             listBoxFriends.DisplayMember = "Name";
-            foreach (User friend in EngineManager.LoggedInUser.Friends)
+            foreach (User friend in EngineManager.GetUserFriends())
             {
                 listBoxFriends.Items.Add(friend);
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
-            if (EngineManager.LoggedInUser.Friends.Count == 0)
+            if (EngineManager.GetUserFriends().Count == 0)
             {
                 MessageBox.Show("No friends to retrieve");
             }
@@ -160,12 +160,12 @@ namespace Ex01_Facebook.UI
         {
             listBoxEvents.Items.Clear();
             listBoxEvents.DisplayMember = "Name";
-            foreach (Event fbEvent in EngineManager.LoggedInUser.Events)
+            foreach (Event fbEvent in EngineManager.GetUserEvents())
             {
                 listBoxEvents.Items.Add(fbEvent);
             }
 
-            if (EngineManager.LoggedInUser.Events.Count == 0)
+            if (EngineManager.GetUserEvents().Count == 0)
             {
                 MessageBox.Show("No events to retrieve");
             }
@@ -178,12 +178,12 @@ namespace Ex01_Facebook.UI
 
         private void fetchCheckins()
         {
-            foreach (Checkin checkin in EngineManager.LoggedInUser.Checkins)
+            foreach (Checkin checkin in EngineManager.GetUserCheckIns())
             {
                 listBoxCheckins.Items.Add(checkin.Place.Name);
             }
 
-            if (EngineManager.LoggedInUser.Checkins.Count == 0)
+            if (EngineManager.GetUserCheckIns().Count == 0)
             {
                 MessageBox.Show("No checkins to retrieve");
             }
@@ -199,12 +199,12 @@ namespace Ex01_Facebook.UI
         {
             listBoxPages.Items.Clear();
             listBoxPages.DisplayMember = "Name";
-            foreach (Page page in EngineManager.LoggedInUser.LikedPages)
+            foreach (Page page in EngineManager.GetUserLikedPages())
             {
                 listBoxPages.Items.Add(page);
             }
 
-            if (EngineManager.LoggedInUser.LikedPages.Count == 0)
+            if (EngineManager.GetUserLikedPages().Count == 0)
             {
                 MessageBox.Show("No liked pages to retrieve");
             }
@@ -230,7 +230,7 @@ namespace Ex01_Facebook.UI
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Post selected = EngineManager.LoggedInUser.Posts[listBoxPosts.SelectedIndex];
+            Post selected = EngineManager.GetUserPosts()[listBoxPosts.SelectedIndex];
             listBoxPostComments.DisplayMember = "Message";
             listBoxPostComments.DataSource = selected.Comments;
         }
@@ -313,7 +313,7 @@ namespace Ex01_Facebook.UI
         {
             initGuessingGame();
             clearUserInteractionLabelField();
-            User friendToGuess = EngineManager.GuessMyNameFeature.RollAFriend();
+            User friendToGuess = EngineManager.PickRandomFriend();
             pictureBoxFriend.BackgroundImage = friendToGuess.ImageLarge;
             activateActiveButtonsInGuessingGame();
             labelInstruction.Text = string.Empty;
@@ -336,7 +336,7 @@ namespace Ex01_Facebook.UI
         private void hint()
         {
             labelUserInteraction.ForeColor = Color.White;
-            labelUserInteraction.Text = EngineManager.GuessMyNameFeature.GetHintPartlyName();
+            labelUserInteraction.Text = EngineManager.GetHint();
             buttonHint.Enabled = false;
         }
 
@@ -351,10 +351,10 @@ namespace Ex01_Facebook.UI
             string friendName;
 
             // validate user guess
-            isUserGuessedRight = EngineManager.GuessMyNameFeature.IsUserGuessCorrect(textBoxUserGuess.Text);
-            isStrikeThree = EngineManager.GuessMyNameFeature.IsUserWorthyExtraHealth(isUserGuessedRight);
-            EngineManager.GuessMyNameFeature.UpdateUserDataDueToHisGuess(isUserGuessedRight);
-            friendName = EngineManager.GuessMyNameFeature.GetChosenFriend().Name;
+            isUserGuessedRight = EngineManager.IsUserGuessCorrect(textBoxUserGuess.Text);
+            isStrikeThree = EngineManager.IsUserWorthyExtraHealth(isUserGuessedRight);
+            EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
+            friendName = EngineManager.GetFriendToGuess().Name;
             updateUserState(isUserGuessedRight, isStrikeThree, friendName);
             prepareNextRound();
         }
@@ -375,12 +375,12 @@ namespace Ex01_Facebook.UI
         {
             bool isGameOver;
 
-            isGameOver = EngineManager.GuessMyNameFeature.IsGameOver();
+            isGameOver = EngineManager.IsGuessingGameOver();
             if (isGameOver)
             {
-                string losingMessage = string.Format("You Lost{0}Game Score : {1}{0}Click Roll a friend! to start a new game", Environment.NewLine, EngineManager.GuessMyNameFeature.Score);
+                string losingMessage = string.Format("You Lost{0}Game Score : {1}{0}Click Roll a friend! to start a new game", Environment.NewLine, EngineManager.GetUserGuessingGameScore());
                 MessageBox.Show(losingMessage, "Facebook guess my name");
-                EngineManager.GuessMyNameFeature.Restart();
+                EngineManager.RestartGuessingGame();
                 restartGuessingGame();
             }
             else
@@ -434,14 +434,14 @@ namespace Ex01_Facebook.UI
             string newScoreText;
             int score;
 
-            score = EngineManager.GuessMyNameFeature.Score;
+            score = EngineManager.GetUserGuessingGameScore();
             newScoreText = string.Format("SCORE : {0}", score);
             labelScore.Text = newScoreText;
         }
 
         private void updateHealthBar()
         {
-            int health = EngineManager.GuessMyNameFeature.Health;
+            int health = EngineManager.GetHealthGuessingGame();
 
             pictureBoxHealthBar.BackgroundImage = getHealthBarImageFromResources(health);
         }
@@ -485,7 +485,7 @@ namespace Ex01_Facebook.UI
 
         private void giveUp()
         {
-            EngineManager.GuessMyNameFeature.GiveUp();
+            EngineManager.GiveUpGuessingGame();
             updateHealthBar();
             exposeFriendName();
             prepareNextRound();
@@ -493,7 +493,7 @@ namespace Ex01_Facebook.UI
 
         private void exposeFriendName()
         {
-            string friendName = EngineManager.GuessMyNameFeature.GetChosenFriend().Name;
+            string friendName = EngineManager.GetFriendToGuess().Name;
             labelUserInteraction.ForeColor = Color.Red;
             labelUserInteraction.Text = string.Format("The friend's name is: {0}", friendName);
         }

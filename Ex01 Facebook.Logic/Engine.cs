@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using FacebookWrapper;
@@ -9,13 +10,13 @@ namespace Ex01_Facebook.Logic
 {
     public class Engine
     {
-        public FacebookDatingFeature DatingFeature { get; set; }
+        private FacebookDatingFeature m_DatingFeature;
 
-        public FacebookGuessMyNameFeature GuessMyNameFeature { get; set; }
+        private FacebookGuessMyNameFeature m_GuessMyNameFeature;
 
-        public User LoggedInUser { get; set; }
+        private User m_LoggedInUser;
 
-        public LoginResult LastLoginResult { get; set; }
+        private LoginResult m_LastLoginResult;
 
         private readonly string[] r_Permissions =
             {
@@ -60,27 +61,132 @@ namespace Ex01_Facebook.Logic
             return result;
         }
 
+        public Image GetUserImageNormalSize()
+        {
+            return m_LoggedInUser.ImageNormal;
+        }
+
+        public bool IsUserLoggedIn()
+        {
+            return m_LoggedInUser != null;
+        }
+
         private void prepareFacebookApplication(LoginResult i_Result)
         {
-            LastLoginResult = i_Result;
-            LoggedInUser = i_Result.LoggedInUser;
-            DatingFeature = new FacebookDatingFeature(LoggedInUser);
-            GuessMyNameFeature = new FacebookGuessMyNameFeature(LoggedInUser) { Health = 6, Score = 0 };
+            m_LastLoginResult = i_Result;
+            m_LoggedInUser = i_Result.LoggedInUser;
+            m_DatingFeature = new FacebookDatingFeature(m_LoggedInUser);
+            m_GuessMyNameFeature = new FacebookGuessMyNameFeature(m_LoggedInUser) { Health = 6, Score = 0 };
         }
 
         public void ConnectToFacebookWithLastAccessToken(string i_LastAccessToken)
         {
-            LastLoginResult = FacebookService.Connect(i_LastAccessToken);
-            prepareFacebookApplication(LastLoginResult);
+            m_LastLoginResult = FacebookService.Connect(i_LastAccessToken);
+            prepareFacebookApplication(m_LastLoginResult);
         }
 
         public LinkedList<User> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             LinkedList<User> filteredFriendsList;
 
-            filteredFriendsList = DatingFeature.GenerateFilteredFriendsList(i_HomeTownFilter, i_GenderFilter);
+            filteredFriendsList = m_DatingFeature.GenerateFilteredFriendsList(i_HomeTownFilter, i_GenderFilter);
 
             return filteredFriendsList;
+        }
+
+        public User PickRandomFriend()
+        {
+            return m_GuessMyNameFeature.RollAFriend();
+        }
+
+        public string GetHint()
+        {
+            return m_GuessMyNameFeature.GetHintPartlyName();
+        }
+
+        public bool IsUserGuessCorrect(string i_UserGuess)
+        {
+            return m_GuessMyNameFeature.IsUserGuessCorrect(i_UserGuess);
+        }
+
+        public void UpdateUserDueToHisGuess(bool i_IsUserGuessedRight)
+        {
+            m_GuessMyNameFeature.UpdateUserDataDueToHisGuess(i_IsUserGuessedRight);
+        }
+
+        public int GetUserGuessingGameScore()
+        {
+            return m_GuessMyNameFeature.Score;
+        }
+
+        public int GetUserGuessingGameHealth()
+        {
+            return m_GuessMyNameFeature.Health;
+        }
+
+        public int GetHealthGuessingGame()
+        {
+            return m_GuessMyNameFeature.Health;
+        }
+
+        public void GiveUpGuessingGame()
+        {
+            m_GuessMyNameFeature.GiveUp();
+        }
+
+        public User GetFriendToGuess()
+        {
+            return m_GuessMyNameFeature.GetChosenFriend();
+        }
+
+        public bool IsUserWorthyExtraHealth(bool i_IsUserGuessedRight)
+        {
+            return m_GuessMyNameFeature.IsUserWorthyExtraHealth(i_IsUserGuessedRight);
+        }
+
+        public bool IsGuessingGameOver()
+        {
+            return m_GuessMyNameFeature.IsGameOver();
+        }
+
+        public void RestartGuessingGame()
+        {
+            m_GuessMyNameFeature.Restart();
+        }
+
+        public FacebookObjectCollection<User> GetUserFriends()
+        {
+            return m_LoggedInUser.Friends;
+        }
+
+        public string GetUserName()
+        {
+            return m_LoggedInUser.Name;
+        }
+
+        public FacebookObjectCollection<Checkin> GetUserCheckIns()
+        {
+            return m_LoggedInUser.Checkins;
+        }
+
+        public FacebookObjectCollection<Event> GetUserEvents()
+        {
+            return m_LoggedInUser.Events;
+        }
+
+        public FacebookObjectCollection<Post> GetUserPosts()
+        {
+            return m_LoggedInUser.Posts;
+        }
+
+        public FacebookObjectCollection<Page> GetUserLikedPages()
+        {
+            return m_LoggedInUser.LikedPages;
+        }
+
+        public string GetUserAccessToken()
+        {
+            return m_LastLoginResult.AccessToken;
         }
     }
 }

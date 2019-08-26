@@ -22,7 +22,7 @@ namespace Ex01_Facebook.UI
         public void Run()
         {
             Application.Run(m_FormLogin);
-            if (m_Engine.LoggedInUser != null)
+            if (m_Engine.IsUserLoggedIn())
             {
                 Application.Run(m_FormFacebookApp);
             }
