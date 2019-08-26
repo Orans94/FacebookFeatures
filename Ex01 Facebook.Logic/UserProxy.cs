@@ -10,13 +10,12 @@ namespace Ex01_Facebook.Logic
 {
     public class UserProxy
     {
-        private User m_User;
-        private bool v_IsMinor;
-        public Image
-        public UserProxy(User i_User)
+        public User FacebookUser { get; set; }
+        public Image UserImage { get; set; }
+        public UserProxy(User i_FacebookUser)
         {
-            m_User = i_User;
-            v_IsMinor = IsMinor();
+            FacebookUser = i_FacebookUser;
+            UserImage = IsMinor() ? Resources.under18 : FacebookUser.ImageNormal;
         }
 
         private bool IsMinor()
@@ -24,7 +23,7 @@ namespace Ex01_Facebook.Logic
             DateTime birthday;
             bool isParseSucceed, isMinor;
             DateTime currentDate = DateTime.Now;
-            isParseSucceed = DateTime.TryParse(m_User.Birthday, birthday);
+            isParseSucceed = DateTime.TryParse(FacebookUser.Birthday, out birthday);
             if(isParseSucceed)
             {
                 isMinor = (currentDate - birthday).TotalDays < 365 * 18;
@@ -35,38 +34,6 @@ namespace Ex01_Facebook.Logic
             }
 
             return isMinor;
-        }
-
-        public FacebookObjectCollection<User> GetUserFriends()
-        {
-            return m_User.Friends;
-        }
-
-        public string GetUserName()
-        {
-            return m_User.Name;
-        }
-
-        public City GetHomeTown()
-        {
-            return m_User.Hometown;
-        }
-
-        public User.eGender? GetGender()
-        {
-            return m_User.Gender;
-        }
-
-        public User.eGender[] GetInterestedIn()
-        {
-            return m_User.InterestedIn;
-        }
-
-        public Image GetImage()
-        {
-            Image userPicture = v_IsMinor ? Resources.under18 : m_User.ImageNormal;
-
-            return Resources.under18;
         }
     }
 }

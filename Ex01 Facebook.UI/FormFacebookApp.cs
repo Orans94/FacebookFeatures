@@ -248,7 +248,7 @@ namespace Ex01_Facebook.UI
             string cityFilter;
             User.eGender gender;
             bool genderFilterChosen = true;
-            LinkedList<User> filteredFriendsList;
+            LinkedList<UserProxy> filteredFriendsList;
 
             if (checkBoxFilterHomeTown.Checked)
             {
@@ -269,7 +269,7 @@ namespace Ex01_Facebook.UI
             {
                 gender = radioButtonMale.Checked ? User.eGender.male : User.eGender.female;
                 filteredFriendsList = EngineManager.MatchMe(cityFilter, gender);
-                userBindingSource.DataSource = filteredFriendsList;
+                userProxyBindingSource.DataSource = filteredFriendsList;
             }
         }
 

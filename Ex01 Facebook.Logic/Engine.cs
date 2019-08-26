@@ -85,9 +85,9 @@ namespace Ex01_Facebook.Logic
             prepareFacebookApplication(m_LastLoginResult);
         }
 
-        public LinkedList<User> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
+        public LinkedList<UserProxy> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
-            LinkedList<User> filteredFriendsList;
+            LinkedList<UserProxy> filteredFriendsList;
 
             filteredFriendsList = m_DatingFeature.GenerateFilteredFriendsList(i_HomeTownFilter, i_GenderFilter);
 

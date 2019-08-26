@@ -16,17 +16,18 @@ namespace Ex01_Facebook.Logic
             m_LoggedInUser = i_LoggedInUser;
         }
 
-        public LinkedList<User> GenerateFilteredFriendsList(string i_HomeTownFilter, User.eGender i_GenderFilter)
+        public LinkedList<UserProxy> GenerateFilteredFriendsList(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             // show a dialog which the user can choose which gender he wants to date
             // and also the user will enter a city which he wants to find the date/all cities.
-            LinkedList<User> filteredFriendsList = new LinkedList<User>();
+            LinkedList<UserProxy> filteredFriendsList = new LinkedList<UserProxy>();
             foreach (User friend in m_LoggedInUser.Friends)
             {
-                if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
-                {
-                    filteredFriendsList.AddLast(friend);
-                }
+                // TODO: UNCOMMENTS!
+               // if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
+                //{
+                    filteredFriendsList.AddLast(new UserProxy (friend));
+                //}
             }
 
             // now show filteredUsers list in listBox -and when the user choose one of them -
