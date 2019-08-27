@@ -10,13 +10,13 @@ using Ex01_Facebook.Logic;
 
 namespace Ex01_Facebook.UI
 {
-    public partial class FormLogin : Form
+    public partial class LoginForm : Form
     {
         private Engine EngineManager { get; set; }
 
         private AppSettings ApplicationSettings { get; set; }
 
-        public FormLogin(Engine i_Engine, AppSettings i_AppSettings)
+        public LoginForm(Engine i_Engine, AppSettings i_AppSettings)
         {
             InitializeComponent();
             EngineManager = i_Engine;

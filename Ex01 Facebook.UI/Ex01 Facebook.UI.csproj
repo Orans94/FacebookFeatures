@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\..\..\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\לימודים\קיץ\Design Pattern\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\Facebook.dll</HintPath>
+      <HintPath>..\..\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\לימודים\קיץ\Design Pattern\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
+      <HintPath>..\..\01_FB01_BasicFacebookFeatures.V6.8.0.18\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,26 +51,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="FormFacebookApp.cs">
+    <Compile Include="FacebookAppForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFacebookApp.Designer.cs">
-      <DependentUpon>FormFacebookApp.cs</DependentUpon>
+    <Compile Include="FacebookAppForm.Designer.cs">
+      <DependentUpon>FacebookAppForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIManager.cs" />
-    <EmbeddedResource Include="FormFacebookApp.resx">
-      <DependentUpon>FormFacebookApp.cs</DependentUpon>
+    <EmbeddedResource Include="FacebookAppForm.resx">
+      <DependentUpon>FacebookAppForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

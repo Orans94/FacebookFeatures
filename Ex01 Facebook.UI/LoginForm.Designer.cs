@@ -1,6 +1,6 @@
 ﻿namespace Ex01_Facebook.UI
 {
-    partial class FormLogin
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.

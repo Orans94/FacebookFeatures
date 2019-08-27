@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Ex01_Facebook.Logic;
 using Ex01_Facebook.UI.Properties;
@@ -12,23 +13,49 @@ using FacebookWrapper.ObjectModel;
 
 namespace Ex01_Facebook.UI
 {
-    public partial class FormFacebookApp : Form
+    public partial class FacebookAppForm : Form
     {
+        private static FacebookAppForm s_Instance = null;
+        private static object s_Locker = new object();
+
         public Engine EngineManager { get; set; }
 
         private AppSettings ApplicationSettings { get; set; }
 
-        public FormFacebookApp(Engine i_Engine, AppSettings i_AppSettings)
+        private FacebookAppForm()
         {
             InitializeComponent();
+        }
+
+        public void ConfigureAppAfterLogin(Engine i_Engine, AppSettings i_AppSettings)
+        {
             EngineManager = i_Engine;
             ApplicationSettings = i_AppSettings;
         }
 
+        public static FacebookAppForm Instance
+        {
+            get
+            {
+                if (s_Instance == null)
+                {
+                    lock (s_Locker)
+                    {
+                        if (s_Instance == null)
+                        {
+                            s_Instance = new FacebookAppForm();
+                        }
+                    }
+                }
+
+                return s_Instance;
+            }
+        }
+
         private void FormFacebookApp_Load(object sender, EventArgs e)
         {
-            updateProfilePictureBox();
-            updateUserNameLables();
+            new Thread(updateProfilePictureBox).Start();
+            new Thread(updateUserNameLables).Start();
             initGuessingGame();
         }
 
@@ -36,18 +63,18 @@ namespace Ex01_Facebook.UI
         {
             string userNameMessage = string.Format("Hello {0}!", EngineManager.GetUserName());
 
-            labelUserName1.Text = userNameMessage;
-            labelUserName2.Text = userNameMessage;
-            labelUserName3.Text = userNameMessage;
+            labelUserName1.Invoke(new Action(() => labelUserName1.Text = userNameMessage));
+            labelUserName2.Invoke(new Action(() => labelUserName2.Text = userNameMessage));
+            labelUserName3.Invoke(new Action(() => labelUserName3.Text = userNameMessage));
         }
 
         private void updateProfilePictureBox()
         {
             Image profilePic = EngineManager.GetUserImageNormalSize();
 
-            pictureBoxProfilePicture1.BackgroundImage = profilePic;
-            pictureBoxProfilePicture2.BackgroundImage = profilePic;
-            pictureBoxProfilePicture3.BackgroundImage = profilePic;
+            pictureBoxProfilePicture1.Invoke(new Action(() => pictureBoxProfilePicture1.BackgroundImage = profilePic));
+            pictureBoxProfilePicture2.Invoke(new Action(() => pictureBoxProfilePicture2.BackgroundImage = profilePic));
+            pictureBoxProfilePicture3.Invoke(new Action(() => pictureBoxProfilePicture3.BackgroundImage = profilePic));
         }
         #region BASIC FACEBOOK FEATURES
 
@@ -80,7 +107,7 @@ namespace Ex01_Facebook.UI
 
         private void linkPosts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            fetchPosts();
+            new Thread(fetchPosts).Start();
         }
 
         private void fetchPosts()
@@ -89,15 +116,15 @@ namespace Ex01_Facebook.UI
             {
                 if (post.Message != null)
                 {
-                    listBoxPosts.Items.Add(post.Message);
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(post.Message)));
                 }
                 else if (post.Caption != null)
                 {
-                    listBoxPosts.Items.Add(post.Caption);
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(post.Caption)));
                 }
                 else
                 {
-                    listBoxPosts.Items.Add(string.Format("[{0}]", post.Type));
+                    listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(string.Format("[{0}]", post.Type))));
                 }
             }
 
@@ -110,16 +137,16 @@ namespace Ex01_Facebook.UI
         private void linkFriends_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             labelFriendPicture.Visible = true;
-            fetchFriends();
+            new Thread(fetchFriends).Start();
         }
 
         private void fetchFriends()
         {
-            listBoxFriends.Items.Clear();
-            listBoxFriends.DisplayMember = "Name";
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Clear()));
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.DisplayMember = "Name"));
             foreach (User friend in EngineManager.GetUserFriends())
             {
-                listBoxFriends.Items.Add(friend);
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
