@@ -142,11 +142,8 @@ namespace Ex01_Facebook.UI
 
         private void fetchFriends()
         {
-            listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Clear()));
-            listBoxFriends.Invoke(new Action(() => listBoxFriends.DisplayMember = "Name"));
             foreach (User friend in EngineManager.GetUserFriends())
             {
-                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
@@ -154,60 +151,36 @@ namespace Ex01_Facebook.UI
             {
                 MessageBox.Show("No friends to retrieve");
             }
-        }
 
-        private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            displaySelectedFriend();
-        }
-
-        private void displaySelectedFriend()
-        {
-            if (listBoxFriends.SelectedItems.Count == 1)
-            {
-                User selectedFriend = listBoxFriends.SelectedItem as User;
-                if (selectedFriend.PictureNormalURL != null)
-                {
-                    pictureBoxSelectedFriend.LoadAsync(selectedFriend.PictureNormalURL);
-                }
-                else
-                {
-                    pictureBoxProfilePicture3.Image = pictureBoxProfilePicture3.ErrorImage;
-                }
-            }
+            listBoxFriends.Invoke(new Action(() => userBindingSource.DataSource = EngineManager.GetUserFriends()));
         }
 
         private void labelEvents_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             labelEventDetails.Visible = true;
-            fetchEvents();
+            new Thread(fetchEvents).Start();
         }
 
         private void fetchEvents()
         {
-            listBoxEvents.Items.Clear();
-            listBoxEvents.DisplayMember = "Name";
-            foreach (Event fbEvent in EngineManager.GetUserEvents())
-            {
-                listBoxEvents.Items.Add(fbEvent);
-            }
-
             if (EngineManager.GetUserEvents().Count == 0)
             {
                 MessageBox.Show("No events to retrieve");
             }
+
+            listBoxEvents.Invoke(new Action(() => eventBindingSource.DataSource = EngineManager.GetUserEvents()));
         }
 
         private void linkCheckins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            fetchCheckins();
+            new Thread(fetchCheckins).Start();
         }
 
         private void fetchCheckins()
         {
             foreach (Checkin checkin in EngineManager.GetUserCheckIns())
             {
-                listBoxCheckins.Items.Add(checkin.Place.Name);
+                listBoxCheckins.Invoke(new Action(() => listBoxCheckins.Items.Add(checkin.Place.Name)));
             }
 
             if (EngineManager.GetUserCheckIns().Count == 0)
@@ -219,40 +192,17 @@ namespace Ex01_Facebook.UI
         private void linkPages_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             labelPageDetails.Visible = true;
-            fetchPages();
+            new Thread(fetchPages).Start();
         }
 
         private void fetchPages()
         {
-            listBoxPages.Items.Clear();
-            listBoxPages.DisplayMember = "Name";
-            foreach (Page page in EngineManager.GetUserLikedPages())
-            {
-                listBoxPages.Items.Add(page);
-            }
-
             if (EngineManager.GetUserLikedPages().Count == 0)
             {
                 MessageBox.Show("No liked pages to retrieve");
             }
-        }
 
-        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxEvents.SelectedItems.Count == 1)
-            {
-                Event selectedEvent = listBoxEvents.SelectedItem as Event;
-                pictureBoxEvent.LoadAsync(selectedEvent.PictureNormalURL);
-            }
-        }
-
-        private void listBoxPages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxPages.SelectedItems.Count == 1)
-            {
-                Page selectedPage = listBoxPages.SelectedItem as Page;
-                pictureBoxPage.LoadAsync(selectedPage.PictureNormalURL);
-            }
+            listBoxPages.Invoke(new Action(() => pageBindingSource.DataSource = EngineManager.GetUserLikedPages()));
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
@@ -533,5 +483,10 @@ namespace Ex01_Facebook.UI
             }
         }
         #endregion
+
+        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
