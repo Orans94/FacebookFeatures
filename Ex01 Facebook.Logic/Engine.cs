@@ -10,14 +10,6 @@ namespace Ex01_Facebook.Logic
 {
     public class Engine
     {
-        private FacebookDatingFeature m_DatingFeature;
-
-        private FacebookGuessMyNameFeature m_GuessMyNameFeature;
-
-        private User m_LoggedInUser;
-
-        private LoginResult m_LastLoginResult;
-
         private readonly string[] r_Permissions =
             {
             "public_profile",
@@ -39,6 +31,11 @@ namespace Ex01_Facebook.Logic
            "user_posts",
            "user_hometown"
         };
+
+        private FacebookDatingFeature m_DatingFeature;
+        private FacebookGuessMyNameFeature m_GuessMyNameFeature;
+        private User m_LoggedInUser;
+        private LoginResult m_LastLoginResult;
 
         public LoginResult LoginToFacebook()
         {

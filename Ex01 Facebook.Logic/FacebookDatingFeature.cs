@@ -23,11 +23,10 @@ namespace Ex01_Facebook.Logic
             LinkedList<UserProxy> filteredFriendsList = new LinkedList<UserProxy>();
             foreach (User friend in m_LoggedInUser.Friends)
             {
-                // TODO: UNCOMMENTS!
-               // if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
-                //{
-                    filteredFriendsList.AddLast(new UserProxy (friend));
-                //}
+                if (isFriendAMatch(friend, i_HomeTownFilter, i_GenderFilter))
+                {
+                    filteredFriendsList.AddLast(new UserProxy(friend));
+                }
             }
 
             // now show filteredUsers list in listBox -and when the user choose one of them -

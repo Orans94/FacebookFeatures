@@ -1,17 +1,16 @@
-﻿using Ex01_Facebook.Logic.Properties;
-using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using Ex01_Facebook.Logic.Properties;
+using FacebookWrapper.ObjectModel;
 
 namespace Ex01_Facebook.Logic
 {
     public class UserProxy
     {
         public User FacebookUser { get; set; }
+
         public Image UserImage { get; set; }
+
         public UserProxy(User i_FacebookUser)
         {
             FacebookUser = i_FacebookUser;

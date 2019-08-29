@@ -18,21 +18,6 @@ namespace Ex01_Facebook.UI
         private static FacebookAppForm s_Instance = null;
         private static object s_Locker = new object();
 
-        public Engine EngineManager { get; set; }
-
-        private AppSettings ApplicationSettings { get; set; }
-
-        private FacebookAppForm()
-        {
-            InitializeComponent();
-        }
-
-        public void ConfigureAppAfterLogin(Engine i_Engine, AppSettings i_AppSettings)
-        {
-            EngineManager = i_Engine;
-            ApplicationSettings = i_AppSettings;
-        }
-
         public static FacebookAppForm Instance
         {
             get
@@ -50,6 +35,21 @@ namespace Ex01_Facebook.UI
 
                 return s_Instance;
             }
+        }
+
+        public Engine EngineManager { get; set; }
+
+        private AppSettings ApplicationSettings { get; set; }
+
+        private FacebookAppForm()
+        {
+            InitializeComponent();
+        }
+
+        public void ConfigureAppAfterLogin(Engine i_Engine, AppSettings i_AppSettings)
+        {
+            EngineManager = i_Engine;
+            ApplicationSettings = i_AppSettings;
         }
 
         private void FormFacebookApp_Load(object sender, EventArgs e)
@@ -483,10 +483,5 @@ namespace Ex01_Facebook.UI
             }
         }
         #endregion
-
-        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
