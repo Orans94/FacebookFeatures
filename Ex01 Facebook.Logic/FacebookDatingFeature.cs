@@ -10,13 +10,15 @@ namespace Ex01_Facebook.Logic
     public class FacebookDatingFeature
     {
         private readonly User m_LoggedInUser;
-        
+
+        public IComparer<UserProxy> Comparer { get; set; }
+
         public FacebookDatingFeature(User i_LoggedInUser)
         {
             m_LoggedInUser = i_LoggedInUser;
         }
 
-        public LinkedList<UserProxy> GenerateFilteredFriendsList(string i_HomeTownFilter, User.eGender i_GenderFilter)
+        public FacebookUserProxyCollection GenerateFilteredFriendsList(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
             // show a dialog which the user can choose which gender he wants to date
             // and also the user will enter a city which he wants to find the date/all cities.
@@ -29,9 +31,21 @@ namespace Ex01_Facebook.Logic
                 }
             }
 
-            // now show filteredUsers list in listBox -and when the user choose one of them -
-            // their profile picture and email to contact will appear.
-            return filteredFriendsList;
+            //sort the list according to user demand
+            FacebookUserProxyCollection facebookUserProxyCollection = new FacebookUserProxyCollection(sort(filteredFriendsList));
+            
+            return facebookUserProxyCollection;
+        }
+
+        private LinkedList<UserProxy> sort(LinkedList<UserProxy> i_FilteredFriendsList)
+        {
+            List<UserProxy> friendsList = i_FilteredFriendsList.ToList<UserProxy>();
+            LinkedList<UserProxy> sortedFriendsLinkedList;
+
+            friendsList.Sort(Comparer);
+            sortedFriendsLinkedList = new LinkedList<UserProxy>(friendsList);
+
+            return sortedFriendsLinkedList;
         }
 
         private bool isFriendAMatch(User i_Friend, string i_HomeTownFilter, User.eGender i_GenderFilter)

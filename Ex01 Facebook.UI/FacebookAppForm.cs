@@ -50,10 +50,13 @@ namespace Ex01_Facebook.UI
         {
             EngineManager = i_Engine;
             ApplicationSettings = i_AppSettings;
+            EngineManager.GuessMyNameScoreChanged += new ScoreChangeHandler(updateScore);
+            EngineManager.GuessMyNameHealthChanged += new HealthChangeHandler(updateHealthBar);
         }
 
         private void FormFacebookApp_Load(object sender, EventArgs e)
         {
+            EngineManager.initGuessingGame();
             new Thread(updateProfilePictureBox).Start();
             new Thread(updateUserNameLables).Start();
             initGuessingGame();
@@ -142,8 +145,11 @@ namespace Ex01_Facebook.UI
 
         private void fetchFriends()
         {
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Clear()));
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.DisplayMember = "Name"));
             foreach (User friend in EngineManager.GetUserFriends())
             {
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
@@ -151,8 +157,27 @@ namespace Ex01_Facebook.UI
             {
                 MessageBox.Show("No friends to retrieve");
             }
+        }
 
-            listBoxFriends.Invoke(new Action(() => userBindingSource.DataSource = EngineManager.GetUserFriends()));
+        private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displaySelectedFriend();
+        }
+
+        private void displaySelectedFriend()
+        {
+            if (listBoxFriends.SelectedItems.Count == 1)
+            {
+                User selectedFriend = listBoxFriends.SelectedItem as User;
+                if (selectedFriend.PictureNormalURL != null)
+                {
+                    pictureBoxFriends.LoadAsync(selectedFriend.PictureNormalURL);
+                }
+                else
+                {
+                    pictureBoxProfilePicture3.Image = pictureBoxProfilePicture3.ErrorImage;
+                }
+            }
         }
 
         private void labelEvents_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -163,12 +188,17 @@ namespace Ex01_Facebook.UI
 
         private void fetchEvents()
         {
+            listBoxFriends.Invoke(new Action(() => listBoxEvents.Items.Clear()));
+            listBoxFriends.Invoke(new Action(() => listBoxEvents.DisplayMember = "Name"));
+            foreach (Event fbEvent in EngineManager.GetUserEvents())
+            {
+                listBoxEvents.Items.Add(fbEvent);
+            }
+
             if (EngineManager.GetUserEvents().Count == 0)
             {
                 MessageBox.Show("No events to retrieve");
             }
-
-            listBoxEvents.Invoke(new Action(() => eventBindingSource.DataSource = EngineManager.GetUserEvents()));
         }
 
         private void linkCheckins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -197,12 +227,17 @@ namespace Ex01_Facebook.UI
 
         private void fetchPages()
         {
+            listBoxCheckins.Invoke(new Action(() => listBoxPages.Items.Clear()));
+            listBoxCheckins.Invoke(new Action(() => listBoxPages.DisplayMember = "Name"));
+            foreach (Page page in EngineManager.GetUserLikedPages())
+            {
+                listBoxPages.Items.Add(page);
+            }
+
             if (EngineManager.GetUserLikedPages().Count == 0)
             {
                 MessageBox.Show("No liked pages to retrieve");
             }
-
-            listBoxPages.Invoke(new Action(() => pageBindingSource.DataSource = EngineManager.GetUserLikedPages()));
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
@@ -225,7 +260,7 @@ namespace Ex01_Facebook.UI
             string cityFilter;
             User.eGender gender;
             bool genderFilterChosen = true;
-            LinkedList<UserProxy> filteredFriendsList;
+            FacebookUserProxyCollection filteredFriendsList;
 
             if (checkBoxFilterHomeTown.Checked)
             {
@@ -242,11 +277,28 @@ namespace Ex01_Facebook.UI
                 genderFilterChosen = false;
             }
 
+
             if (genderFilterChosen)
             {
+                if(radioButtonAscendingSort.Checked)
+                {
+                    EngineManager.Comparer = new AscendingUserNameComparer();
+                }
+                else
+                {
+                    EngineManager.Comparer = new DescendingUserNameComparer();
+                }
+
                 gender = radioButtonMale.Checked ? User.eGender.male : User.eGender.female;
                 filteredFriendsList = EngineManager.MatchMe(cityFilter, gender);
-                userProxyBindingSource.DataSource = filteredFriendsList;
+                if (filteredFriendsList.Count() != 0)
+                {
+                    userProxyBindingSource.DataSource = filteredFriendsList;
+                }
+                else
+                {
+                    MessageBox.Show("Sorry, there is no match for you");
+                }
             }
         }
 
@@ -332,20 +384,8 @@ namespace Ex01_Facebook.UI
             isStrikeThree = EngineManager.IsUserWorthyExtraHealth(isUserGuessedRight);
             EngineManager.UpdateUserDueToHisGuess(isUserGuessedRight);
             friendName = EngineManager.GetFriendToGuess().Name;
-            updateUserState(isUserGuessedRight, isStrikeThree, friendName);
+            updateLabelUserInteractionAboutCurrentRound(isUserGuessedRight, isStrikeThree, friendName);
             prepareNextRound();
-        }
-
-        private void updateUserState(bool i_IsUserGuessedRight, bool i_IsStrikeThree, string i_FriendName)
-        {
-            updateLabelUserInteractionAboutCurrentRound(i_IsUserGuessedRight, i_IsStrikeThree, i_FriendName);
-            updateUserGamingData();
-        }
-
-        private void updateUserGamingData()
-        {
-            updateScore();
-            updateHealthBar();
         }
 
         private void prepareNextRound()
@@ -373,21 +413,20 @@ namespace Ex01_Facebook.UI
             pictureBoxFriend.BackgroundImage = null;
             textBoxUserGuess.Text = string.Empty;
             labelUserInteraction.Text = string.Empty;
-            updateUserGamingData();
             initGuessingGame();
         }
 
-        private void updateLabelUserInteractionAboutCurrentRound(bool isUserGuessedRight, bool isStrikeThree, string friendName)
+        private void updateLabelUserInteractionAboutCurrentRound(bool i_IsUserGuessedRight, bool i_IsStrikeThree, string i_FriendName)
         {
-            if (isUserGuessedRight)
+            if (i_IsUserGuessedRight)
             {
                 labelUserInteraction.ForeColor = Color.Lime;
-                labelUserInteraction.Text = isStrikeThree ? string.Format("PERFECT! You got extra health!") : string.Format("{0} is a CORRECT ANSWER! ", friendName);
+                labelUserInteraction.Text = i_IsStrikeThree ? string.Format("PERFECT! You got extra health!") : string.Format("{0} is a CORRECT ANSWER! ", i_FriendName);
             }
             else
             {
                 labelUserInteraction.ForeColor = Color.Red;
-                labelUserInteraction.Text = string.Format("WRONG! The correct answer is: {0}", friendName);
+                labelUserInteraction.Text = string.Format("WRONG! The correct answer is: {0}", i_FriendName);
             }
         }
 
@@ -406,21 +445,17 @@ namespace Ex01_Facebook.UI
             labelInstruction.Text = "Click Roll a friend button for another round!";
         }
 
-        private void updateScore()
+        private void updateScore(int i_NewScore)
         {
             string newScoreText;
-            int score;
 
-            score = EngineManager.GetUserGuessingGameScore();
-            newScoreText = string.Format("SCORE : {0}", score);
+            newScoreText = string.Format("SCORE : {0}", i_NewScore);
             labelScore.Text = newScoreText;
         }
 
-        private void updateHealthBar()
+        private void updateHealthBar(int i_NewHealth)
         {
-            int health = EngineManager.GetHealthGuessingGame();
-
-            pictureBoxHealthBar.BackgroundImage = getHealthBarImageFromResources(health);
+            pictureBoxHealthBar.BackgroundImage = getHealthBarImageFromResources(i_NewHealth);
         }
 
         private Bitmap getHealthBarImageFromResources(int i_CurrentHealth)
@@ -463,7 +498,6 @@ namespace Ex01_Facebook.UI
         private void giveUp()
         {
             EngineManager.GiveUpGuessingGame();
-            updateHealthBar();
             exposeFriendName();
             prepareNextRound();
         }
@@ -482,6 +516,7 @@ namespace Ex01_Facebook.UI
                 checkGuess();
             }
         }
+
         #endregion
     }
 }

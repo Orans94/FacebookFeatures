@@ -36,6 +36,21 @@ namespace Ex01_Facebook.Logic
         private FacebookGuessMyNameFeature m_GuessMyNameFeature;
         private User m_LoggedInUser;
         private LoginResult m_LastLoginResult;
+        
+        public event ScoreChangeHandler GuessMyNameScoreChanged;
+        public event HealthChangeHandler GuessMyNameHealthChanged;
+
+        public IComparer<UserProxy> Comparer
+        {
+            get
+            {
+                return m_DatingFeature.Comparer;
+            }
+            set
+            {
+                m_DatingFeature.Comparer = value;
+            }
+        }
 
         public LoginResult LoginToFacebook()
         {
@@ -82,9 +97,9 @@ namespace Ex01_Facebook.Logic
             prepareFacebookApplication(m_LastLoginResult);
         }
 
-        public LinkedList<UserProxy> MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
+        public FacebookUserProxyCollection MatchMe(string i_HomeTownFilter, User.eGender i_GenderFilter)
         {
-            LinkedList<UserProxy> filteredFriendsList;
+            FacebookUserProxyCollection filteredFriendsList;
 
             filteredFriendsList = m_DatingFeature.GenerateFilteredFriendsList(i_HomeTownFilter, i_GenderFilter);
 
@@ -184,6 +199,12 @@ namespace Ex01_Facebook.Logic
         public string GetUserAccessToken()
         {
             return m_LastLoginResult.AccessToken;
+        }
+
+        public void initGuessingGame()
+        {
+            m_GuessMyNameFeature.ScoreChanged += GuessMyNameScoreChanged;
+            m_GuessMyNameFeature.HealthChanged += GuessMyNameHealthChanged;
         }
     }
 }

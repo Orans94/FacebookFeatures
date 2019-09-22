@@ -6,6 +6,9 @@ using FacebookWrapper.ObjectModel;
 
 namespace Ex01_Facebook.Logic
 {
+    public delegate void ScoreChangeHandler(int newScore);
+    public delegate void HealthChangeHandler(int newHealth);
+
     public class FacebookGuessMyNameFeature
     {
         private int m_WinsInARow = 0;
@@ -20,6 +23,9 @@ namespace Ex01_Facebook.Logic
         public int Score { get; set; }
 
         public int Health { get; set; }
+
+        public event ScoreChangeHandler ScoreChanged;
+        public event HealthChangeHandler HealthChanged;
 
         public User GetChosenFriend()
         {
@@ -124,7 +130,8 @@ namespace Ex01_Facebook.Logic
         private void updateUserDataDueToWrongGuessing()
         {
             m_WinsInARow = 0;
-            Health -= Health >= 2 ? 2 : 1; 
+            Health -= Health >= 2 ? 2 : 1;
+            HealthChanged(Health);
         }
 
         public bool IsGameOver()
@@ -137,12 +144,16 @@ namespace Ex01_Facebook.Logic
             Health = 6;
             Score = 0;
             m_WinsInARow = 0;
+
+            ScoreChanged(Score);
+            HealthChanged(Health);
         }
 
         public void GiveUp()
         {
             m_WinsInARow = 0;
             Health--;
+            HealthChanged(Health);
         }
 
         public bool IsUserWorthyExtraHealth(bool i_IsUserGuessedRight)
@@ -164,7 +175,10 @@ namespace Ex01_Facebook.Logic
                 }
 
                 m_WinsInARow = 0;
+                HealthChanged(Health);
             }
+           
+            ScoreChanged(Score);
         }
     }
 }

@@ -1,9 +1,9 @@
 ==========================Exercise Checking Report==========================
 Exercise No...........: 2
-First Student Details.:  205493489 - Oran sherf
+First Student Details.:  205493489 - Oran sherf
 Second Student Details: 312220007 - Tomer Shaked
-Delivery Date.........: 29\08\2019
+Delivery Date.........: 04\09\2019
 Delivered In Delay....: No
-Delay Reason..........: 
-Comments..............: 
-=======================End Exercise Checking Report=========================
+Delay Reason..........: 
+Comments..............: resubmit
+=======================End Exercise Checking Report=========================  
