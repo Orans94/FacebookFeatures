@@ -31,7 +31,7 @@ namespace Ex01_Facebook.Logic
                 }
             }
 
-            //sort the list according to user demand
+            // sort the list according to user demand
             FacebookUserProxyCollection facebookUserProxyCollection = new FacebookUserProxyCollection(sort(filteredFriendsList));
             
             return facebookUserProxyCollection;

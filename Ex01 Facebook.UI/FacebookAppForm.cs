@@ -277,7 +277,6 @@ namespace Ex01_Facebook.UI
                 genderFilterChosen = false;
             }
 
-
             if (genderFilterChosen)
             {
                 if(radioButtonAscendingSort.Checked)

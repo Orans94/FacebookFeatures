@@ -7,6 +7,7 @@ using FacebookWrapper.ObjectModel;
 namespace Ex01_Facebook.Logic
 {
     public delegate void ScoreChangeHandler(int newScore);
+
     public delegate void HealthChangeHandler(int newHealth);
 
     public class FacebookGuessMyNameFeature
@@ -25,6 +26,7 @@ namespace Ex01_Facebook.Logic
         public int Health { get; set; }
 
         public event ScoreChangeHandler ScoreChanged;
+
         public event HealthChangeHandler HealthChanged;
 
         public User GetChosenFriend()

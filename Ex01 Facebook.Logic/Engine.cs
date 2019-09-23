@@ -38,6 +38,7 @@ namespace Ex01_Facebook.Logic
         private LoginResult m_LastLoginResult;
         
         public event ScoreChangeHandler GuessMyNameScoreChanged;
+
         public event HealthChangeHandler GuessMyNameHealthChanged;
 
         public IComparer<UserProxy> Comparer
@@ -46,6 +47,7 @@ namespace Ex01_Facebook.Logic
             {
                 return m_DatingFeature.Comparer;
             }
+
             set
             {
                 m_DatingFeature.Comparer = value;

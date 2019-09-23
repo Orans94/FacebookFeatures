@@ -15,7 +15,7 @@ namespace Ex01_Facebook.Logic
             r_UserProxyCollection = i_UserProxyCollection;
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<UserProxy> GetEnumerator()
         {
             foreach (UserProxy user in r_UserProxyCollection)
             {
@@ -26,6 +26,11 @@ namespace Ex01_Facebook.Logic
         public int Count()
         {
             return r_UserProxyCollection.Count;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)r_UserProxyCollection).GetEnumerator();
         }
     }
 }
